@@ -1,0 +1,19 @@
+*
+{
+    font-family: 'Helvetica Neue', sans-serif;
+}
+
+.reactDivClass
+{
+    border-color:#0e0042;
+    background-color: rgb(76, 254, 48);
+    padding-top: 15px;
+    padding-bottom: 15px;
+    padding-left: 25px;
+    padding-right: 25px;
+    border-width:5px;
+    display: inline-block;
+    /* justify-content: center; */
+    border-radius: 5px;
+    font-weight: bold;
+}
