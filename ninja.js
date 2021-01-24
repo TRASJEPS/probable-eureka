@@ -17,7 +17,6 @@ class Ninja
             `This Ninja's Name is: ${this.first_name} ${this.last_name}`);
           return this;
     }
-
     showStats()
     {
         console.log(
@@ -29,7 +28,6 @@ class Ninja
         this.health += 10;
         return this;
     }
-    
 }
 
 const ninja1 = new Ninja("Slick","McSlash");
