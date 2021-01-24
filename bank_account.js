@@ -10,39 +10,40 @@ class User
         this.firstName = userFirstName
         this.lastName = userLastName
         this.email = userEmailAddress
-        this.accountBalance = 0
+        this.created_at = createdAt
+        this.updated_at = updatedAt
     }
     
 }
 
 class BankAccount {
-    constructor(intRate = 0.01, accountBalance = 0) 
+    constructor(interestRate = 0.09, accountBalance = 0) 
     { 
-        this.userInterestRate = 0.01;
-        this.accountBalance = 0;
+        this.interestRate = userInterestRate;
+        this.accountBalance = userAccountBalance;
     }
     makeDeposit(amount)
     {
-        this.accountBalance += amount;
+        this.userAccountBalance += amount;
         return this;
     }
     makeWithdrawal(amount)
     {
-        this.accountBalance -= amount;
-        if(this.accountBalance < 0)
+        this.userAccountBalance -= amount;
+        if(this.userAccountBalance < 0)
         {
-            console.log(`Hello ${this.firstName} ${this.lastName}, your current account balance is: $${this.accountBalance}.`);
+            console.log(`Hello ${this.firstName} ${this.lastName}, your current account balance is: $${this.userAccountBalance}.`);
             this.balance -= 5.00;
         }
         return this;
     }
     displayBalance()
     {
-        console.log(`Hello ${this.firstName} ${this.lastName}, your current account balance is: $${this.accountBalance}.`)
+        console.log(`Hello ${this.firstName} ${this.lastName}, your current account balance is: $${this.userAccountBalance}.`)
     }
-    yieldInterest() 
+    interestEarned() 
     {
-    
+        this.userAccountBalance += this.userAccountBalance * this.userInterestRate
     }
 }
 
