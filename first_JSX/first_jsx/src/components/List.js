@@ -12,6 +12,8 @@ class List extends Component{
                     <li>Make My First Million</li>
                     <li>Help People Create</li>
                 </ul>
+
+                <p>The Coding Dojo uploader keeps failing so here is a screenshot instead!</p>
             </div>
         )
     }
