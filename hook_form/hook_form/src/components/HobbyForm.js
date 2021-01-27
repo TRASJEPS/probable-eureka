@@ -53,8 +53,16 @@ const HobbyForm = () => {
     const buttonStyle = 
         {
             marginTop: "15px",
-            paddingLeft: "15px",
-            paddingRight: "15px",
+            paddingTop: "10px",
+            paddingBottom: "10px",
+            paddingLeft: "25px",
+            paddingRight: "25px",
+            background: "rgb(27, 36, 87)",
+            color: "white",
+            fontWeight: "bolder",
+            fontSize: "large",
+            border: "2px solid darkblue",
+            borderRadius: "30px",
         }
 
     // the return in () allows for multiple elements 
@@ -63,16 +71,12 @@ const HobbyForm = () => {
     return (
         <div style={hobbyContainer}>
             <h3>Welcome to the Hobby Form!</h3>
+            <p>Add your favorite hobby below.</p>
             {/* USING A FUNCTION WITHOUT PARAMS WILL WAIT FOR EVENT and WILL SEND THE EVENT AS A PARM AUTOMATICALLY */}
             <form onSubmit = { submitForm }>
                 <div style={inputPad}>
                     <label>Hobby: </label>
                     <input type="text" value={getHobby} onChange={ (e) => setHobby(e.target.value)}/>
-
-                </div>
-                <div style={inputPad}>
-                    <label>Description: </label>
-                    <input type="text" value={getDesc} onChange={ (e) => setDesc(e.target.value)}/>
                 </div>
                 <div style={inputPad}>
                     <label>Years of Experience: </label>
@@ -82,7 +86,11 @@ const HobbyForm = () => {
                     <label>Equipment Needed: </label>
                     <input type="text" value={getEquip} onChange={ (e) => setEquip(e.target.value)}/>
                 </div>
-                <button style={buttonStyle} type="submit" value="Submit">Submit</button>
+                <div style={inputPad}>
+                    <label>Description: </label>
+                    <input type="text" value={getDesc} onChange={ (e) => setDesc(e.target.value)}/>
+                </div>
+                <button style={buttonStyle} type="submit" value="Submit">Post</button>
             </form>
             {/* IMPORT FROM THE  DisplayHobby  method*/}
             <DisplayHobby displayHobby={ getDisplay }/>

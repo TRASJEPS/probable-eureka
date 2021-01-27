@@ -7,11 +7,13 @@ const PersonCard = props => {
             border: "2px solid darkblue",
             borderRadius: "20px",
             display: "inline-block",
-            width: "250px",
+            width: "290px",
             margin: "10px",
+            paddingBottom: "0",
             //textAlign: "left",
             background: "white",
-            paddingLeft: "25px"
+            paddingLeft: "25px",
+            paddingRight: "25px",
         }
 
     const nameOnly = 
@@ -20,7 +22,7 @@ const PersonCard = props => {
             borderRadius: "20px",
             display: "inline-block",
             textAlign: "center",
-            background: "grey",
+            background: "rgb(27, 87, 87)",
             paddingLeft: "25px",
             paddingRight: "25px",
             paddingTop: "5px",
@@ -31,14 +33,27 @@ const PersonCard = props => {
     const cardInfoAlign = 
         {   
             textAlign: "left",
+            // padding: "0px",
         }
+    
+    const attributeHighlight =
+    {
+        display: "inline-block",
+        background: "rgb(191, 220, 220)",
+        borderRadius: "20px",
+        padding: "5px",
+        paddingLeft: "15px",
+        paddingRight: "15px",
+        margin: "0px",
+    }
     
     return(
         <div style={personCardStyle}>
             <h2 style={nameOnly}>{ props.firstName }  { props.lastName }</h2>
             <div style={cardInfoAlign}>
-                <h4>Age: { props.age }</h4>
-                <h4>Hair Color: { props.hairColor }</h4>
+                <p>Age: <p style={attributeHighlight}>{ props.age }</p></p>
+                <p>Hair Color: <p style={attributeHighlight}>{ props.hairColor }</p></p>
+                <p>Favorite Hobby: <p style={attributeHighlight}>{ props.favoriteHobby }</p></p>
             </div>
         </div>
     );

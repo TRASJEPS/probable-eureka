@@ -13,12 +13,10 @@
   color: rgb(0, 0, 0);
 }
 
-/* .peopleCSS {
-border-color: "2px solid darkblue";
-border-radius: "20px";
-display: "inline-block";
-width: "50%";
-margin: "10px";
-text-align: "center";
-background: "white";
-} */
+.use_for_color
+{
+  color: rgb(191, 220, 220);
+  background-color: rgb(27, 36, 87);
+  font-weight: bolder;
+  font-size: large;
+}
