@@ -8,7 +8,7 @@ const HobbyForm = () => {
     // destructured from the useSate method
     const [ getHobby, setHobby ] = useState("");
     const [ getDesc, setDesc ] = useState("");
-    const [ getExp, setExp ] = useState(0);
+    const [ getExp, setExp ] = useState();  //SET TO ZERO IF ERROR
     const [ getEquip, setEquip ] = useState("");
     // THIS WAITS FOR SUBMIT BUTTON
     const [ getDisplay, setDisplay ] = useState("");
@@ -28,7 +28,7 @@ const HobbyForm = () => {
         //MAKE SURE THIS IS AT THE BOTTOM 
         setHobby("");
         setDesc("");
-        setExp(0);
+        setExp(0);   //SET TO ZERO IF ERROR BUT FIND FIX SO ITS CLEANER
         setEquip("");
         //THIS IS SET AS THE VALUE ON THE INPUTS BELOW
     };
@@ -50,6 +50,26 @@ const HobbyForm = () => {
             paddingTop: "5px",
             paddingBottom: "5px",
         }
+    const inputPadDesc = 
+        {
+            // Tying to make it perfect center but center does not work
+            verticalAlign: "top",
+        }
+    const textAreaPadding = 
+        {
+            padding: "10px",
+            borderRadius: "30px",
+            border: "2px solid darkblue",
+        }
+    const inputTextPadding = 
+        {
+            paddingTop: "5px",
+            paddingBottom: "5px",
+            paddingLeft: "15px",
+            paddingRight: "15px",
+            borderRadius: "30px",
+            border: "2px solid darkblue",
+        }
     const buttonStyle = 
         {
             marginTop: "15px",
@@ -64,6 +84,7 @@ const HobbyForm = () => {
             border: "2px solid darkblue",
             borderRadius: "30px",
         }
+    
 
     // the return in () allows for multiple elements 
     // the on change makes an event listener  IN THIS CASE ITS CALLED e in an ANON FUNCTION
@@ -76,19 +97,21 @@ const HobbyForm = () => {
             <form onSubmit = { submitForm }>
                 <div style={inputPad}>
                     <label>Hobby: </label>
-                    <input type="text" value={getHobby} onChange={ (e) => setHobby(e.target.value)}/>
+                    <input type="text" value={getHobby} onChange={ (e) => setHobby(e.target.value)} style={inputTextPadding}/>
                 </div>
                 <div style={inputPad}>
                     <label>Years of Experience: </label>
-                    <input type="text" value={getExp} onChange={ (e) => setExp(e.target.value)}/>
+                    <input type="text" value={getExp} onChange={ (e) => setExp(e.target.value)} style={inputTextPadding}/>
                 </div>
                 <div style={inputPad}>
                     <label>Equipment Needed: </label>
-                    <input type="text" value={getEquip} onChange={ (e) => setEquip(e.target.value)}/>
+                    <input type="text" value={getEquip} onChange={ (e) => setEquip(e.target.value)} style={inputTextPadding}/>
                 </div>
                 <div style={inputPad}>
-                    <label>Description: </label>
-                    <input type="text" value={getDesc} onChange={ (e) => setDesc(e.target.value)}/>
+                {/* <div style={inputPad}> */}
+                    <label style={inputPadDesc}>Description: </label>
+                    {/* <input type="textarea" value={getDesc} onChange={ (e) => setDesc(e.target.value)}/> */}
+                    <textarea value={getDesc} onChange={ (e) => setDesc(e.target.value)} cols={50} rows={3} style={textAreaPadding}></textarea>
                 </div>
                 <button style={buttonStyle} type="submit" value="Submit">Post</button>
             </form>

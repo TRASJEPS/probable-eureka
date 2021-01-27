@@ -28,6 +28,20 @@ const DisplayHobby = (props) => {
             margin: "0px",
         }
 
+    const attributeHighlightDescriptionOverflow =
+        {
+            display: "inline-block",
+            background: "rgb(191, 220, 220)",
+            borderRadius: "20px",
+            padding: "5px",
+            paddingTop: "5px",
+            paddingLeft: "15px",
+            paddingRight: "15px",
+            margin: "0px",
+            marginTop: "13px",
+        }
+
+
     return(
         
         // THIS CHECKS IF THE VAL IS THERE IF ITS NOT THEN IT SHOWS NOTHING 
@@ -37,7 +51,7 @@ const DisplayHobby = (props) => {
         <p>Hobby: <p style={attributeHighlight}>{ displayHobby.getHobby ? displayHobby.getHobby : "..."} </p></p>
         <p>Years of Experience: <p style={attributeHighlight}>{ displayHobby.getExp ? displayHobby.getExp : "..."} </p></p>
         <p>Equipment Needed: <p style={attributeHighlight}>{ displayHobby.getEquip ? displayHobby.getEquip : "..."} </p></p>
-        <p>Description: <p style={attributeHighlight}>{ displayHobby.getDesc ? displayHobby.getDesc : "..."} </p></p>
+        <p>Description: <p style={attributeHighlightDescriptionOverflow}>{ displayHobby.getDesc ? displayHobby.getDesc : "..."} </p></p>
 
         
         </div>
