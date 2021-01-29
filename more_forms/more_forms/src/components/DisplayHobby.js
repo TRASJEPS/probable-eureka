@@ -38,7 +38,9 @@ const DisplayHobby = (props) => {
             paddingLeft: "15px",
             paddingRight: "15px",
             margin: "0px",
-            marginTop: "13px",
+            marginLeft: "25px",
+            marginRight: "25px",
+            marginTop: "5px",
         }
 
 

@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
+import DisplayUserSignup from './DisplayUserSignup';
  
-const UserSignup = (props) => {
+//REMOVED props  MAYBE THATS IT???
+const UserSignup = () => {
     const [getUsername, setUsername] = useState("");
     const [getFirstName, setFirstName] = useState("");
     const [getLastName, setLastName] = useState("");
@@ -8,6 +10,95 @@ const UserSignup = (props) => {
     const [getPassword, setPassword] = useState("");
     // const [getPassword, setPassword] = useState("");
     const [hasBeenSubmitted, setHasBeenSubmitted] = useState(false);
+
+    //SET ERRORS SEPARATELY FOR ERRORS
+    const [getUsernameError, setUserNameError] = useState("");
+    const [getFirstNameError, setFirstNameError] = useState("");
+    const [getLastNameError, setLastNameError] = useState("");
+    const [getEmailError, setEmailError] = useState("");
+    const [getPasswordError, setPasswordError] = useState("");
+
+// PUT ALL CONST ABOVE BEFORE THE FUNCTION
+    const userValidator = (e) => {    //IS THIS USED CORRECTLY?????
+        if (e.target.name === "userName"){
+        setUsername(e.target.value);
+            if(e.target.value.length < 1) {
+                setUserNameError(<p style={errorAlert}>Please enter your username.</p>);
+            } else if(e.target.value.length < 2) {
+                setUserNameError(<p style={errorAlert}>Your username must be longer than 2 characters.</p>);
+            } else {
+                setUserNameError(<p style={successAlert}>Username Accepted!</p>);
+            }
+        }
+        if (e.target.name === "firstName"){
+        setFirstName(e.target.value);
+            if(e.target.value.length < 1) {
+                setFirstNameError(<p style={errorAlert}>Please enter your first name.</p>);
+            } else if(e.target.value.length < 2) {
+                setFirstNameError(<p style={errorAlert}>Your first name must be longer than 2 characters.</p>);
+            } else {    
+                setFirstNameError(<p style={successAlert}>First Name Accepted!</p>);
+            }
+        }
+        if (e.target.name === "lastName"){
+        setLastName(e.target.value);
+            if(e.target.value.length < 1) {
+                setLastNameError(<p style={errorAlert}>Please enter your last name.</p>);
+            } else if(e.target.value.length < 1) {
+                setLastNameError(<p style={errorAlert}>Your last name must be longer than 1 character.</p>);
+            } else {    
+                setLastNameError(<p style={successAlert}>Last Name Accepted!</p>);
+            }
+        }
+        if (e.target.name === "email"){
+        setEmail(e.target.value);
+            if(e.target.value.length < 1) {
+                setEmailError(<p style={errorAlert}>Please enter your email.</p>);
+            } else if(e.target.value.length < 6) {
+                setEmailError(<p style={errorAlert}>Please enter a valid email address.</p>);
+            } else {    
+                setEmailError(<p style={successAlert}>Valid Email!</p>);
+            }
+        }
+        if (e.target.name === "password"){
+        setPassword(e.target.value);
+            if(e.target.value.length < 1) {
+                setPasswordError(<p style={errorAlert}>Please enter a secure password.</p>);
+            } else if(e.target.value.length < 7) {
+                setPasswordError(<p style={errorAlert}>Your password must be longer than 7 characters.</p>);
+            } else {    
+                setPasswordError(<p style={successAlert}>Password Accepted!</p>);
+                //onChange={ (e) => setEquip(e.target.value)}
+            }
+        }
+        };
+
+        
+
+    const [ getDisplay, setDisplay ] = useState("");
+
+        // CALLS THIS IN THE FIRST FORM TAG
+        // THIS ALLOWS INFO TO REMAIN AFTER REFRESH 
+        const submitForm = (e) => {
+            e.preventDefault();
+    
+            setDisplay({
+                getUsername: getUsername,
+                getFirstName: getFirstName,
+                getLastName: getLastName,
+                getEmail: getEmail,
+            });
+            //THIS CLEARS VALUES AFTER ENTERING IN THE FORM
+            //MAKE SURE THIS IS AT THE BOTTOM 
+            setUsername("");
+            setFirstName("");
+            setLastName("");   
+            setEmail("");
+            //THIS IS SET AS THE VALUE ON THE INPUTS BELOW
+        };
+//KEEP ALL VALIDATORS TOGETHER!!!!
+
+
     
     const createUser = (e) => {
         e.preventDefault();
@@ -66,38 +157,101 @@ const UserSignup = (props) => {
             paddingTop: "5px",
             paddingBottom: "5px",
     };
+    const successAlert =
+        {
+            display: "inline-block",
+            color: "white",
+            background: "rgb(21, 103, 28)",
+            borderRadius: "20px",
+            padding: "5px",
+            paddingLeft: "25px",
+            paddingRight: "25px",
+            margin: "0px",
+        };
+    const errorAlert =
+        {
+            display: "inline-block",
+            color: "white",
+            background: "rgb(142, 3, 3)",
+            borderRadius: "20px",
+            padding: "5px",
+            paddingLeft: "25px",
+            paddingRight: "25px",
+            margin: "0px",
+        };
 
     return (
+        
         <div style={userSignupContainer}>
-            <form onsubmit={ createUser }>
+            {/* OLD WAY????? */}
+            {/* <form onSubmit={ createUser }> */}
+            <form onSubmit={ (e) => e.preventDefault() }>
                 {/* THIS CALLS THE FORM MESSAGE FUNCTION  */}
                 <h3>{ formMessage() }</h3> 
                 <div style={inputPad}>
                     <label>Username: </label> 
-                    <input type="text" value={getUsername} onchange={ (e) => setUsername(e.target.value)} style={inputTextPadding}/>
+                    <input name="userName" type="text" value={getUsername} onChange={ userValidator } style={inputTextPadding}/>
+                    {
+                    getUsernameError ?
+                    <p>{ getUsernameError }</p> :
+                    ''
+                    }
                 </div>
                 <div style={inputPad}>
-                    <label>First Name: </label> 
-                    <input type="text" value={getFirstName} onchange={ (e) => setFirstName(e.target.value)} style={inputTextPadding}/>
+                    <label>First Name: </label>
+                    <input name="firstName" type="text" value={getFirstName} onChange={ userValidator } style={inputTextPadding}/>
+                    {
+                    getFirstNameError ?
+                    <p>{ getFirstNameError }</p> :
+                    ''
+                    }
                 </div>
                 <div style={inputPad}>
                     <label>Last Name: </label> 
-                    <input type="text" value={getLastName} onchange={ (e) => setLastName(e.target.value)} style={inputTextPadding}/>
+                    <input name="lastName" type="text" value={getLastName} onChange={ userValidator } style={inputTextPadding}/>
+                    {
+                    getLastNameError ?
+                    <p>{ getLastNameError }</p> :
+                    ''
+                    }
                 </div>
                 <div style={inputPad}>
                     <label>Email Address: </label> 
-                    <input type="text" value={getEmail} onchange={ (e) => setEmail(e.target.value)} style={inputTextPadding}/>
+                    <input name="email" type="text" value={getEmail} onChange={ userValidator } style={inputTextPadding}/>
+                    {
+                    getEmailError ?
+                    <p>{ getEmailError }</p> :
+                    ''
+                    }
                 </div>
                 <div style={inputPad}>
                     <label>Password: </label>
-                    <input type="text" value={getPassword} onchange={ (e) => setPassword(e.target.value)} style={inputTextPadding}/>
+                    <input name="password" type="password" value={getPassword} onChange={ userValidator } style={inputTextPadding}/>
+                    {
+                    getPasswordError ?
+                    <p>{ getPasswordError }</p> :
+                    ''
+                    }
                 </div>
                 <div style={inputPad}>
                     <label>Confirm Password: </label>
-                    <input type="text" value={getPassword} onchange={ (e) => setPassword(e.target.value)} style={inputTextPadding}/>
+                    <input name="password" type="password" value={getPassword} onChange={ userValidator } style={inputTextPadding}/>
+                    {
+                   getPasswordError ?
+                    <p>{ getPasswordError }</p> :
+                    ''
+                    }
                 </div>
-                <button style={buttonStyle} type="submit" value="Create User">Create Profile</button>
+                    {/* ADD THIS INSEAD OF THE BUTTON  ADD FOR EVERY VALUE??? FOR ALL OF THEM*/}
+                    {
+                        getUsernameError ?
+                        <input style={buttonStyle} type="submit" value="Create Profile" disabled /> : 
+                        <input style={buttonStyle} type="submit" value="Create Profile" />
+                    }
+                    {/* STYLE THE INPUTS LIKE A BUTTON MAKE THE DISABLED GREY   */}
+                {/* <button style={buttonStyle} type="submit" value="Create User">Create Profile</button> */}
             </form>
+            <DisplayUserSignup displayUserSignup={ getDisplay }/>
         </div>
     );
 };
