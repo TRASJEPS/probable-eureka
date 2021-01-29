@@ -23,7 +23,7 @@ const UserSignup = () => {
         if (e.target.name === "userName"){
         setUsername(e.target.value);
             if(e.target.value.length < 1) {
-                setUserNameError(<p style={errorAlert}>Please enter your username.</p>);
+                setUserNameError(<p style={enterAlert}>Please enter your username.</p>);
             } else if(e.target.value.length < 2) {
                 setUserNameError(<p style={errorAlert}>Your username must be longer than 2 characters.</p>);
             } else {
@@ -33,7 +33,7 @@ const UserSignup = () => {
         if (e.target.name === "firstName"){
         setFirstName(e.target.value);
             if(e.target.value.length < 1) {
-                setFirstNameError(<p style={errorAlert}>Please enter your first name.</p>);
+                setFirstNameError(<p style={enterAlert}>Please enter your first name.</p>);
             } else if(e.target.value.length < 2) {
                 setFirstNameError(<p style={errorAlert}>Your first name must be longer than 2 characters.</p>);
             } else {    
@@ -43,8 +43,8 @@ const UserSignup = () => {
         if (e.target.name === "lastName"){
         setLastName(e.target.value);
             if(e.target.value.length < 1) {
-                setLastNameError(<p style={errorAlert}>Please enter your last name.</p>);
-            } else if(e.target.value.length < 1) {
+                setLastNameError(<p style={enterAlert}>Please enter your last name.</p>);
+            } else if(e.target.value.length < 2) {
                 setLastNameError(<p style={errorAlert}>Your last name must be longer than 1 character.</p>);
             } else {    
                 setLastNameError(<p style={successAlert}>Last Name Accepted!</p>);
@@ -53,7 +53,7 @@ const UserSignup = () => {
         if (e.target.name === "email"){
         setEmail(e.target.value);
             if(e.target.value.length < 1) {
-                setEmailError(<p style={errorAlert}>Please enter your email.</p>);
+                setEmailError(<p style={enterAlert}>Please enter your email.</p>);
             } else if(e.target.value.length < 6) {
                 setEmailError(<p style={errorAlert}>Please enter a valid email address.</p>);
             } else {    
@@ -63,7 +63,7 @@ const UserSignup = () => {
         if (e.target.name === "password"){
         setPassword(e.target.value);
             if(e.target.value.length < 1) {
-                setPasswordError(<p style={errorAlert}>Please enter a secure password.</p>);
+                setPasswordError(<p style={enterAlert}>Please enter a secure password.</p>);
             } else if(e.target.value.length < 7) {
                 setPasswordError(<p style={errorAlert}>Your password must be longer than 7 characters.</p>);
             } else {    
@@ -143,6 +143,20 @@ const UserSignup = () => {
         border: "2px solid darkblue",
         borderRadius: "30px",
     };
+    const disabledButtonStyle = 
+    {
+        marginTop: "15px",
+        paddingTop: "10px",
+        paddingBottom: "10px",
+        paddingLeft: "25px",
+        paddingRight: "25px",
+        background: "rgb(138, 138, 138)",
+        color: "lightgrey",
+        fontWeight: "bolder",
+        fontSize: "large",
+        border: "2px solid lightgrey",
+        borderRadius: "30px",
+    };
     const inputTextPadding = 
     {
         paddingTop: "5px",
@@ -162,6 +176,17 @@ const UserSignup = () => {
             display: "inline-block",
             color: "white",
             background: "rgb(21, 103, 28)",
+            borderRadius: "20px",
+            padding: "5px",
+            paddingLeft: "25px",
+            paddingRight: "25px",
+            margin: "0px",
+        };
+    const enterAlert =
+        {
+            display: "inline-block",
+            color: "white",
+            background: "rgb(59, 132, 177)",
             borderRadius: "20px",
             padding: "5px",
             paddingLeft: "25px",
@@ -245,8 +270,9 @@ const UserSignup = () => {
                     {/* ADD THIS INSEAD OF THE BUTTON  ADD FOR EVERY VALUE??? FOR ALL OF THEM*/}
                     {
                         getUsernameError ?
-                        <input style={buttonStyle} type="submit" value="Create Profile" disabled /> : 
+                        <input style={disabledButtonStyle} type="submit" value="Create Profile" disabled /> : 
                         <input style={buttonStyle} type="submit" value="Create Profile" />
+                        //MAKE ANOTHER STATE FOR SUCCESSESSSSSS
                     }
                     {/* STYLE THE INPUTS LIKE A BUTTON MAKE THE DISABLED GREY   */}
                 {/* <button style={buttonStyle} type="submit" value="Create User">Create Profile</button> */}
