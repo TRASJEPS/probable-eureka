@@ -3,6 +3,59 @@ import DisplayUserSignup from './DisplayUserSignup';
  
 //REMOVED props  MAYBE THATS IT???
 const UserSignup = () => {
+
+//     const [users, setUsers] = useState({
+//         userName: {
+//             value: "",
+//             minLength:2,
+//             error: "",
+//             prompt: "Please enter your username",
+//             valid: false,
+//             displayPrompt:false,
+//         },
+//         firstName: {
+//             value: "",
+//             minLength:2,
+//             error: "",
+//             prompt: "Please enter your first name",
+//             valid: false,
+//         },
+//         lastName: {
+//             value: "",
+//             minLength:2,
+//             error: "",
+//             prompt: "Please enter your last name",
+//             valid: false,
+//         },
+//         email: {
+//             value: "",
+//             minLength:2,
+//             error: "",
+//             prompt: "Please enter your email",
+//             valid: false,
+//         },
+//     });
+
+//     const userValidator2 = (e) => {
+//         const keyName = e.target.name;
+//         const displayPrompt = false;
+        
+//         if(e.target.value.length >= users[keyname].minLength){
+//             valid = true;
+//         }
+//             else if (e.target.value.length < 1){
+
+//             }
+
+//         setUsers({...users})
+//         [e.target.name]: {
+//             ...users[e.target.name],
+//             value: e.target.value,
+//             error: "",
+//             valid: ,
+//         }
+//     };
+// 
     const [getUsername, setUsername] = useState("");
     const [getFirstName, setFirstName] = useState("");
     const [getLastName, setLastName] = useState("");
@@ -73,8 +126,6 @@ const UserSignup = () => {
         }
         };
 
-        
-
     const [ getDisplay, setDisplay ] = useState("");
 
         // CALLS THIS IN THE FIRST FORM TAG
@@ -96,10 +147,8 @@ const UserSignup = () => {
             setEmail("");
             //THIS IS SET AS THE VALUE ON THE INPUTS BELOW
         };
-//KEEP ALL VALIDATORS TOGETHER!!!!
+    //KEEP ALL VALIDATORS TOGETHER!!!!
 
-
-    
     const createUser = (e) => {
         e.preventDefault();
         const newUser = { getUsername, getFirstName, getLastName, getEmail, getPassword };
@@ -115,9 +164,9 @@ const UserSignup = () => {
         else {
 	    return "Welcome! Please signup to access our community.";
 	    }
-    };
+      };
 
-//STYLING
+    //STYLING
     const userSignupContainer = 
     {
         border: "2px solid darkblue",
