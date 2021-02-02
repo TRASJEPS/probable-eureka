@@ -15,9 +15,13 @@
 
 .use_for_color
 {
-  color: rgb(191, 220, 220);
+  color: rgb(191, 207, 220);
   background-color: rgb(138, 138, 138);
   font-weight: bolder;
   font-size: large;
   vertical-align:sub;
+  /* vertical-align:middle;
+  display: flex;
+  text-align: center;
+  overflow: auto; */
 }

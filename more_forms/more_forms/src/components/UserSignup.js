@@ -5,6 +5,7 @@ import DisplayUserSignup from './DisplayUserSignup';
 const UserSignup = () => {
 
 //     const [users, setUsers] = useState({
+
 //         userName: {
 //             value: "",
 //             minLength:2,
@@ -56,6 +57,8 @@ const UserSignup = () => {
 //         }
 //     };
 // 
+
+
     const [getUsername, setUsername] = useState("");
     const [getFirstName, setFirstName] = useState("");
     const [getLastName, setLastName] = useState("");
@@ -70,6 +73,8 @@ const UserSignup = () => {
     const [getLastNameError, setLastNameError] = useState("");
     const [getEmailError, setEmailError] = useState("");
     const [getPasswordError, setPasswordError] = useState("");
+    //IF ALL VALID THIS IS USED IN LATER FUNCTION
+    const [getAllVaidUserSignup, setAllVaidUserSignup] = useState(false);
 
 // PUT ALL CONST ABOVE BEFORE THE FUNCTION
     const userValidator = (e) => {    //IS THIS USED CORRECTLY?????
@@ -80,7 +85,9 @@ const UserSignup = () => {
             } else if(e.target.value.length < 2) {
                 setUserNameError(<p style={errorAlert}>Your username must be longer than 2 characters.</p>);
             } else {
-                setUserNameError(<p style={successAlert}>Username Accepted!</p>);
+                setUserNameError("validResponse");
+                // MAKE IT AN EMPTY STRING SO ALL VALID
+                // setUserNameError(<p style={successAlert}>Username Accepted!</p>);
             }
         }
         if (e.target.name === "firstName"){
@@ -90,7 +97,8 @@ const UserSignup = () => {
             } else if(e.target.value.length < 2) {
                 setFirstNameError(<p style={errorAlert}>Your first name must be longer than 2 characters.</p>);
             } else {    
-                setFirstNameError(<p style={successAlert}>First Name Accepted!</p>);
+                setFirstNameError("validResponse");
+                // setFirstNameError(<p style={successAlert}>First Name Accepted!</p>);
             }
         }
         if (e.target.name === "lastName"){
@@ -127,6 +135,28 @@ const UserSignup = () => {
         };
 
     const [ getDisplay, setDisplay ] = useState("");
+    // Validate all user inputs
+    // LINK TO BUTTON disable
+    // CALL validateUserInputs @
+    const validateUserInputs = () => {
+        let allValid = true;
+        if (getUsername !== "validResponse"){
+            allValid = false;
+        }
+        if (getFirstName !== "validResponse"){
+            allValid = false;
+        }
+        if (getLastName !== "validResponse"){
+            allValid = false;
+        }
+        if (getEmail !== "validResponse"){
+            allValid = false;
+        }
+        if (getPassword !== "validResponse"){
+            allValid = false;
+        }
+        return (allValid);
+    };
 
         // CALLS THIS IN THE FIRST FORM TAG
         // THIS ALLOWS INFO TO REMAIN AFTER REFRESH 
@@ -225,11 +255,15 @@ const UserSignup = () => {
             display: "inline-block",
             color: "white",
             background: "rgb(21, 103, 28)",
-            borderRadius: "20px",
-            padding: "5px",
-            paddingLeft: "25px",
-            paddingRight: "25px",
-            margin: "0px",
+            paddingBottom: "3px",
+            paddingTop: "0px",
+            paddingLeft: "4px",
+            paddingRight: "4px",
+            borderRadius: "30px",
+            marginLeft: "10px",
+            marginBottom: "0px",
+            border: "2px solid rgb(192, 220, 191)",
+            marginTop: "0px",
         };
     const enterAlert =
         {
@@ -241,6 +275,7 @@ const UserSignup = () => {
             paddingLeft: "25px",
             paddingRight: "25px",
             margin: "0px",
+            border: "2px solid rgb(191, 207, 220)",
         };
     const errorAlert =
         {
@@ -252,6 +287,7 @@ const UserSignup = () => {
             paddingLeft: "25px",
             paddingRight: "25px",
             margin: "0px",
+            border: "2px solid rgb(220, 191, 191)",
         };
 
     return (
@@ -265,20 +301,28 @@ const UserSignup = () => {
                 <div style={inputPad}>
                     <label>Username: </label> 
                     <input name="userName" type="text" value={getUsername} onChange={ userValidator } style={inputTextPadding}/>
-                    {
-                    getUsernameError ?
-                    <p>{ getUsernameError }</p> :
-                    ''
-                    }
+                        
+                        {
+                        getUsernameError !== "validResponse" ?
+                        <p>{ getUsernameError }</p> :
+                        // ''
+                        // THIS WAS THE OLD WAY IF the getUserNameError was no good
+                        <p style={successAlert}>&#10003;</p>
+                        // ADD THE SUCCESS p STYLE HERE!
+                        // <p style={successAlert}>Username Accepted!</p>
+                        }
+                        
                 </div>
                 <div style={inputPad}>
                     <label>First Name: </label>
                     <input name="firstName" type="text" value={getFirstName} onChange={ userValidator } style={inputTextPadding}/>
-                    {
-                    getFirstNameError ?
-                    <p>{ getFirstNameError }</p> :
-                    ''
-                    }
+                        
+                        {
+                        getFirstNameError !== "validResponse" ?
+                        <p>{ getFirstNameError }</p> :
+                        <p style={successAlert}>&#10003;</p>
+                        }
+                        
                 </div>
                 <div style={inputPad}>
                     <label>Last Name: </label> 
@@ -318,7 +362,8 @@ const UserSignup = () => {
                 </div>
                     {/* ADD THIS INSEAD OF THE BUTTON  ADD FOR EVERY VALUE??? FOR ALL OF THEM*/}
                     {
-                        getUsernameError ?
+                        //THIS GRABS THE RETURN OF THIS FUNCTION
+                        ! validateUserInputs() ?
                         <input style={disabledButtonStyle} type="submit" value="Create Profile" disabled /> : 
                         <input style={buttonStyle} type="submit" value="Create Profile" />
                         //MAKE ANOTHER STATE FOR SUCCESSESSSSSS
