@@ -1,18 +1,16 @@
 import './App.css';
 import PersonCard from './components/PersonCard';
 import HobbyForm from './components/HobbyForm';
-import UserSignup from './components/UserSignup';
 
 function App() {
   
   return (
     
     <div className="App">
-      <h1>Welcome to Hobby Hub!</h1>
+      <h1>Hook Form</h1>
       
       <div> 
-      <UserSignup />
-      <HobbyForm />
+      < HobbyForm />
       </div>
 
       <div>

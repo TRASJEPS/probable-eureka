@@ -107,18 +107,20 @@ const UserSignup = () => {
                 setLastNameError(<p style={enterAlert}>Please enter your last name.</p>);
             } else if(e.target.value.length < 2) {
                 setLastNameError(<p style={errorAlert}>Your last name must be longer than 1 character.</p>);
-            } else {    
-                setLastNameError(<p style={successAlert}>Last Name Accepted!</p>);
+            } else {
+                setLastNameError("validResponse");    
+                // setLastNameError(<p style={successAlert}>Last Name Accepted!</p>);
             }
         }
         if (e.target.name === "email"){
         setEmail(e.target.value);
             if(e.target.value.length < 1) {
                 setEmailError(<p style={enterAlert}>Please enter your email.</p>);
-            } else if(e.target.value.length < 6) {
+            } else if(e.target.value.length < 5) {
                 setEmailError(<p style={errorAlert}>Please enter a valid email address.</p>);
             } else {    
-                setEmailError(<p style={successAlert}>Valid Email!</p>);
+                setEmailError("validResponse");
+                // setEmailError(<p style={successAlert}>Valid Email!</p>);
             }
         }
         if (e.target.name === "password"){
@@ -328,18 +330,18 @@ const UserSignup = () => {
                     <label>Last Name: </label> 
                     <input name="lastName" type="text" value={getLastName} onChange={ userValidator } style={inputTextPadding}/>
                     {
-                    getLastNameError ?
+                    getLastNameError !== "validResponse" ?
                     <p>{ getLastNameError }</p> :
-                    ''
+                    <p style={successAlert}>&#10003;</p>
                     }
                 </div>
                 <div style={inputPad}>
                     <label>Email Address: </label> 
                     <input name="email" type="text" value={getEmail} onChange={ userValidator } style={inputTextPadding}/>
                     {
-                    getEmailError ?
+                    getEmailError !== "validResponse" ?
                     <p>{ getEmailError }</p> :
-                    ''
+                    <p style={successAlert}>&#10003;</p>
                     }
                 </div>
                 <div style={inputPad}>
