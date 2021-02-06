@@ -71,12 +71,10 @@ function App() {
   return (
     
     <div className="App">
-      <h1>Star Wars API</h1>
-      <h5>This person is fetched by clicking:</h5>
-      <button onClick={getPerson}>Fetch Starwars Person in SLOT 1</button>
-      <div>{ person.name }</div> 
-      <h5>This person is automatically fetched:</h5>
-      <div>{ personByUseEffect.name }</div> 
+      <h1>Pokémon API</h1>
+      <h5>There are too many of them!</h5>
+      
+      
     </div>
  
   );
