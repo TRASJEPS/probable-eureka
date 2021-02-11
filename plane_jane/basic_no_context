@@ -1,0 +1,14 @@
+// Too plane.  Plain Jane.
+// EXPRESS - our library.
+// Listens for requests.  Responds to them.
+// Simplifies what NODE does for us.
+
+EXPRESS & NODE
+Node.js USES JSON
+
+POSTMAN - application that tests APIs.  You can control what the request looks like.
+in browser you can only do a GET request.  POSTMAN makes gives you control
+If POSTMAN can get the data REACT should be able to get it too.  In POSTMAN it makes
+it easier.
+
+You can use JUST NODE
