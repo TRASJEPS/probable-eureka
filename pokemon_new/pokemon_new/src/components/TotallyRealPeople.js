@@ -87,7 +87,7 @@ function People() {
                     <p>Phone Number: {personObj.phone}</p>
                     <p>Job: {personObj.job}</p>
                     <div>
-                    <img src={personObj.avatar}></img>
+                    <img src={personObj.avatar}/>
                     </div>
                 </div>
                 ))
