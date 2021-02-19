@@ -9,7 +9,7 @@ module.exports = {
             })
             .catch((err) => {
                 console.log("error in getAll:" + err)
-                res.json(err);
+                res.json(err);  //THERE MUST BE A RESPONSE HERE OR IT WAITS INDEFINITELY
             })
     },
 
@@ -69,5 +69,4 @@ module.exports = {
                 res.json(err);
             })
     },
-
 }

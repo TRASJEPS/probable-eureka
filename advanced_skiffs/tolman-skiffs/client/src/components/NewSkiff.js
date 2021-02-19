@@ -10,8 +10,8 @@ const NewSkiff = (props) => {
     const [ modelName, setModelName ] = useState("Standard");  //AUTOMATICALLY STARTS AS STANDARD IN THIS CASE
     const [ startDate, setStartDate ] = useState("");
     const [ finishDate, setFinishDate ] = useState("");
-    const [ stockLength, setStockLength ] = useState();  //LEAVE EMPTY SINCE NUMBER
-    const [ customLength, setCustomLength ] = useState(); 
+    const [ stockLength, setStockLength ] = useState("");  // SET AS A NUMBER BUT USE AN EMPTY STRING SO CONSOLE PLAYS NICE
+    const [ customLength, setCustomLength ] = useState(""); // SET AS A NUMBER BUT USE AN EMPTY STRING SO CONSOLE PLAYS NICE
     const [ pictureUrl, setPictureUrl ] = useState("");
     const [ description, setDescription ] = useState("");
 
@@ -33,25 +33,27 @@ const NewSkiff = (props) => {
 const submitForm = (event) => {
     event.preventDefault();
     // NAU USE AXIOS!
-    axios.post("http://localhost:7777/api/skiffs", 
-    {
-    buildComplete: buildComplete,
-    ownerName: ownerName,
-    builderName: builderName,
-    modelName: modelName,
-    startDate: startDate,
-    finishDate: finishDate,
-    stockLength: stockLength,
-    customLength: customLength,
-    pictureUrl: pictureUrl,
-    description: description
-    })
-    .then((response) => {
-    console.log(response);
-    navigate(`/skiff/${response.data._id}`);
-    })
-    .catch((err) => { console.log(err); 
-    })
+    const newSkiff = {       //USE THIS AS AN OBJECT
+        buildComplete: buildComplete,
+        ownerName: ownerName,
+        builderName: builderName,
+        modelName: modelName,
+        startDate: startDate,
+        finishDate: finishDate,
+        stockLength: stockLength,
+        customLength: customLength,
+        pictureUrl: pictureUrl,
+        description: description
+    };
+    
+    console.log(newSkiff);
+    axios.post("http://localhost:7777/api/skiffs", newSkiff)
+        .then((response) => {
+        console.log(response);
+        navigate(`/skiff/${response.data._id}`);
+        })
+        .catch((err) => { console.log(err); 
+        })
 }
 
 return (
