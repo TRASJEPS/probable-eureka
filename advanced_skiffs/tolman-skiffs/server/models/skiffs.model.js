@@ -63,6 +63,10 @@ const TolmanSkiffSchema = new mongoose.Schema({
         type: String,
     }, //SEPARATE BY COMMAS
 
+    description: {    //CHANGE THIS TO OWNER FIRST NAME AND LAST NAME LATER
+        type: String,
+    }, //SEPARATE BY COMMAS
+
 }, { timestamps: true })   //THE TIMESTAMPS MAKES THE CREATED AND UPDATED AUTOMATICALLY
 
 //THIS MAKES A COLLECTION THAT IS ALL LOWERCSE AND PLURAL BASED ON THIS STRING "Skiff"

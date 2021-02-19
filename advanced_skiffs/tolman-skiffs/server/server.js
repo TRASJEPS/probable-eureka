@@ -1,7 +1,7 @@
 const express = require('express');
 const app = express();
 const cors = require('cors');
-const port = 8000;
+const port = 7777;
 
 app.use(express.json());  //enables req and response function
 app.use(express.urlencoded({ extended: true })); //this prevents ERRORS
@@ -11,4 +11,4 @@ require('./config/mongoose.config'); //THIS REQUIRE STATEMENT WILL COPTY
 
 require('./routes/skiffs.route')(app);  //GOES TO SKIFF ROUTES AND REQUIRES APP
 
-app.listen(port, () => console.log(`Listening on port: ${port}`)); //runs and listens on the assigned port
+app.listen(port, () => console.log(`ADVANCED SKIFF SET. Listening on port: ${port}`)); //runs and listens on the assigned port
