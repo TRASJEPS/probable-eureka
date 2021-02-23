@@ -56,21 +56,116 @@ const submitForm = (event) => {
         })
 }
 
+const titleHeader = 
+{
+    border: "4px solid rgb(176, 217, 255)",
+    borderRadius: "20px",
+    // display: "inline-block",
+    margin: "20px",
+    marginLeft: "35px",
+    marginRight: "35px",
+    // fontWeight: "bold",
+    padding: "25px",
+    // fontWeight: "bolder",
+    // fontSize: "large",
+    //textAlign: "left",
+    background: "rgb(224, 240, 255)",
+    paddingBottom: "20px"
+};
+
+const skiffContainer = 
+{
+    border: "2px solid darkblue",
+    borderRadius: "20px",
+    display: "inline-block",
+    width: "26%",
+    margin: "10px",
+    fontWeight: "bold",
+    paddingLeft: "25px",
+    paddingRight: "25px",
+    //textAlign: "left",
+    background: "white",
+    paddingBottom: "20px",
+    paddingTop: "20px"
+};
+
+const mainNameContainer = 
+{
+    border: "4px solid rgb(176, 217, 255)",
+    borderRadius: "20px",
+    display: "inline-block",
+    margin: "10px",
+    fontWeight: "bold",
+    padding: "15px",
+    fontWeight: "bolder",
+    fontSize: "large",
+    //textAlign: "left",
+    background: "rgb(224, 240, 255)",
+    paddingBottom: "20px"
+};
+
+const buttonStyle = 
+    {
+        marginTop: "15px",
+        marginLeft: "5px",
+        marginRight: "5px",
+        paddingTop: "10px",
+        paddingBottom: "10px",
+        paddingLeft: "15px",
+        paddingRight: "15px",
+        background: "rgb(27, 36, 87)",
+        color: "white",
+        fontWeight: "bolder",
+        fontSize: "small",
+        border: "2px solid darkblue",
+        borderRadius: "30px",
+    };
+
+    const inputTextPadding = 
+    {
+        paddingTop: "5px",
+        paddingBottom: "5px",
+        paddingLeft: "15px",
+        paddingRight: "15px",
+        borderRadius: "30px",
+        border: "2px solid rgb(176, 217, 255)",
+        margin: "5px"
+    };
+
+    const textAreaPadding = 
+        {
+            padding: "10px",
+            borderRadius: "30px",
+            border: "2px solid rgb(176, 217, 255)",
+            margin: "5px",
+            width: "72%",
+            height: "100px"
+        };
+
+    const inputPadDesc = 
+        {
+            // Tying to make it perfect center but center does not work
+            // horizontalAlign: "center",
+            align: "vertial",
+            // border: "2px solid rgb(176, 217, 255)",
+            // display: "inline-block"
+        };
+
 return (
     <div>
-        <h2>New Skiff</h2>
-        <form onSubmit = {submitForm}>
+        <h2 style={titleHeader}>Add New Skiff</h2>
+        <form style={skiffContainer} onSubmit = {submitForm}>
         <div>
             <label>Owner Name</label>
-            <input type="text" name="ownerName" value={ownerName} onChange={(event) => setOwnerName(event.target.value)}></input>
+            <input style={inputTextPadding} type="text" name="ownerName" value={ownerName} onChange={(event) => setOwnerName(event.target.value)}></input>
         </div>
         <div>
             <label>Builder Name</label>
-            <input type="text" name="builderName"  value={builderName} onChange={(event) => setBuilderName(event.target.value)}></input>
+            <input style={inputTextPadding} type="text" name="builderName"  value={builderName} onChange={(event) => setBuilderName(event.target.value)}></input>
         </div>
         <div>
             <label>Model Name</label>
-            <select type="text" name="modelName" value={modelName} onChange={(event) => setModelName(event.target.value)}>
+            <select style={inputTextPadding} type="text" name="modelName" value={modelName} onChange={(event) => setModelName(event.target.value)}>
                 <option value="Standard">Standard</option>
                 <option value="Wide Body">Wide Body</option>
                 <option value="Jumbo">Jumbo</option>
@@ -79,33 +174,33 @@ return (
         </div>
         <div>
             <label>Build Start Date</label>
-            <input type="date" name="startDate" value={startDate} onChange={(event) => setStartDate(event.target.value)}></input>
+            <input style={inputTextPadding} type="date" name="startDate" value={startDate} onChange={(event) => setStartDate(event.target.value)}></input>
         </div>
         <div>
             <label>Build Finish Date</label>
-            <input type="date" name="finishDate" value={finishDate} onChange={(event) => setFinishDate(event.target.value)}></input>
+            <input style={inputTextPadding} type="date" name="finishDate" value={finishDate} onChange={(event) => setFinishDate(event.target.value)}></input>
         </div>
         <div>
             <label>Stock Length in Feet</label>
-            <input type="number" name="stockLength" value={stockLength} onChange={(event) => setStockLength(event.target.value)}></input>
+            <input style={inputTextPadding} type="number" name="stockLength" value={stockLength} onChange={(event) => setStockLength(event.target.value)}></input>
         </div>
         <div>
             <label>Custom Length in Feet</label>
-            <input type="number" name="customLength" value={customLength} onChange={(event) => setCustomLength(event.target.value)}></input>
+            <input style={inputTextPadding} type="number" name="customLength" value={customLength} onChange={(event) => setCustomLength(event.target.value)}></input>
         </div>
         <div>
-            <label>Photo</label>
-            <input type="text" name="pictureUrl" value={pictureUrl} onChange={(event) => setPictureUrl(event.target.value)}></input>
+            <label>Photo Link</label>
+            <input style={inputTextPadding} type="text" name="pictureUrl" value={pictureUrl} onChange={(event) => setPictureUrl(event.target.value)}></input>
         </div>
         <div>
-            <label>Description</label>
-            <input type="text" name="description" value={description} onChange={(event) => setDescription(event.target.value)}></input>
+            <div style={inputPadDesc}><label >Description:</label></div>
+            <textarea style={textAreaPadding} type="text" name="description" value={description} rows={100} onChange={(event) => setDescription(event.target.value)}></textarea>
         </div>
         <div>
             <label>Build Complete</label>
-             <input type="checkbox" name="buildComplete" checked={buildComplete} onChange={(event) => setBuildComplete( !buildComplete )}></input>  {/*SET OPPOSITE TO MAKE IT MAKES IT AUTO FALSE */}
+             <input style={inputTextPadding} type="checkbox" name="buildComplete" checked={buildComplete} onChange={(event) => setBuildComplete( !buildComplete )}></input>  {/*SET OPPOSITE TO MAKE IT MAKES IT AUTO FALSE */}
         </div>
-        <button type="submit">Add Skiff</button>
+        <button style={buttonStyle} type="submit">Add New Skiff</button>
         </form>
     </div>
 )
