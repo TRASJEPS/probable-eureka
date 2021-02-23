@@ -147,7 +147,7 @@ return (
                 <option value="Entertainment">Entertainment</option>
                 <option value="Software">Software</option>
                 <option value="Furnature">Furnature</option>
-                <option value="Cloathing">Cloathing</option>
+                <option value="Clothing">Clothing</option>
                 <option value="Medicine">Medicine</option>
                 <option value="Chemicals">Chemicals</option>
                 <option value="Electronics">Electronics</option>

@@ -19,7 +19,7 @@ const ProductSchema = new mongoose.Schema({
     productType: {    //CHANGE THIS TO OWNER FIRST NAME AND LAST NAME LATER
         type: String,
         required: [true, "Please select the product type."], //shows user they must have a builder name
-        enum: ['Hardware', 'Food', 'Entertainment', 'Software','Furnature','Cloathing','Medicine','Chemicals','Electronics','Other'],  // Dont need "Please make a selection."
+        enum: ['Hardware', 'Food', 'Entertainment', 'Software','Furnature','Clothing','Medicine','Chemicals','Electronics','Other'],  // Dont need "Please make a selection."
         //ENUM is short for enumeration.  YOU CAN SET IT LOWERCASE
         //IT ONLY ACCEPTS THESE VALUES, IT MATCHES PERFECTLY.  ITS CASE SENSITIVE.  
     }, //SEPARATE BY COMMAS
