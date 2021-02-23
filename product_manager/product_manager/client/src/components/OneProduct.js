@@ -12,6 +12,9 @@ const OneProduct = (props) => {
             }))
     }, [])
  
+    function goBack() {
+        window.history.back();
+      };
  
 const titleHeader = 
 {
@@ -107,10 +110,11 @@ const inputPadDesc =
             // border: "2px solid rgb(176, 217, 255)",
             // display: "inline-block"
 };
+
  
     return(
     <div>
-        <h2 style={titleHeader}>{`${product.supplier} ${product.productName} Details`}</h2>
+        <h2 style={titleHeader}>{`${product.supplier} - ${product.productName} Details`}</h2>
 
         <div style={productContainer}>
         <div>
@@ -128,11 +132,14 @@ const inputPadDesc =
         <div>
             <p>{`Description: ${product.description}`}</p>
         </div>
-        
-        <button onclick="history.back()" style={buttonStyle} type="submit">Go Back</button>
+        {/* SCRIPT WONT WORK !! AGHHHHH*/}
+        <button onclick="goBack()" style={buttonStyle} type="submit">Go Back</button>
         </div>
     </div>
  )
+ 
 }
+
+
 
 export default OneProduct;
