@@ -5,7 +5,7 @@ import { link, navigate } from '@reach/router';
 const OneSkiff = (props) => {
  return(
     <div>
-        <h2>One Skiffs</h2>
+        <h2>Skiff Details</h2>
     </div>
  )
 }

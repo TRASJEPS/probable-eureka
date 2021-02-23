@@ -45,9 +45,9 @@ const submitForm = (event) => {
         pictureUrl: pictureUrl,
         description: description
     };
-    
+
     console.log(newSkiff);
-    axios.post("http://localhost:7777/api/skiffs", newSkiff)
+    axios.post("http://localhost:7777/api/skiffs", newSkiff)  //THIS REPLACES THE LIST IN AXIOS
         .then((response) => {
         console.log(response);
         navigate(`/skiff/${response.data._id}`);
@@ -79,27 +79,27 @@ return (
         </div>
         <div>
             <label>Build Start Date</label>
-            <input type="date" name="startDate"  value={startDate} onChange={(event) => setStartDate(event.target.value)}></input>
+            <input type="date" name="startDate" value={startDate} onChange={(event) => setStartDate(event.target.value)}></input>
         </div>
         <div>
             <label>Build Finish Date</label>
-            <input type="date" name="finishDate"  value={finishDate} onChange={(event) => setFinishDate(event.target.value)}></input>
+            <input type="date" name="finishDate" value={finishDate} onChange={(event) => setFinishDate(event.target.value)}></input>
         </div>
         <div>
             <label>Stock Length in Feet</label>
-            <input type="number" name="stockLength"  value={stockLength}  onChange={(event) => setStockLength(event.target.value)}></input>
+            <input type="number" name="stockLength" value={stockLength} onChange={(event) => setStockLength(event.target.value)}></input>
         </div>
         <div>
             <label>Custom Length in Feet</label>
-            <input type="number" name="customLength"  value={customLength} onChange={(event) => setCustomLength(event.target.value)}></input>
+            <input type="number" name="customLength" value={customLength} onChange={(event) => setCustomLength(event.target.value)}></input>
         </div>
         <div>
             <label>Photo</label>
-            <input type="text" name="pictureUrl"  value={pictureUrl} onChange={(event) => setPictureUrl(event.target.value)}></input>
+            <input type="text" name="pictureUrl" value={pictureUrl} onChange={(event) => setPictureUrl(event.target.value)}></input>
         </div>
         <div>
             <label>Description</label>
-            <input type="text" name="description"  value={description}  onChange={(event) => setDescription(event.target.value)}></input>
+            <input type="text" name="description" value={description} onChange={(event) => setDescription(event.target.value)}></input>
         </div>
         <div>
             <label>Build Complete</label>
