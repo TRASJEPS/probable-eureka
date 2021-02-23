@@ -2,12 +2,12 @@ import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import { link, navigate } from '@reach/router';
 
-const EditSkiff = (props) => {
+const OneProduct = (props) => {
  return(
     <div>
-        <h2>Edit Skiff</h2>
+        <h2>Product Details</h2>
     </div>
  )
 }
 
-export default EditSkiff;
+export default OneProduct;

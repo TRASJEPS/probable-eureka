@@ -2,22 +2,22 @@ import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import { link, navigate } from '@reach/router';
 
-const AllSkiffs = (props) => {
-    const [ allSkiffs, setAllSkiffs ] = useState([]);  // SETUP THE GETTER AND SETTER AND A EMPTY ARRAY!!!!!!!   THIS IS THE STATE
+const AllProducts = (props) => {
+    const [ allProducts, setAllProducts ] = useState([]);  // SETUP THE GETTER AND SETTER AND A EMPTY ARRAY!!!!!!!   THIS IS THE STATE
 
     useEffect(() => {
         axios
-            .get("http://localhost:7777/api/skiffs")
+            .get("http://localhost:5555/api/products")
             .then((response) => {
                 console.log(response.data);
-                setAllSkiffs(response.data);
+                setAllProducts(response.data);
             }) 
             .catch((err) => {
                 console.log(err);
             });
     },[]);
  
-    const skiffContainer = 
+    const productContainer = 
     {
         border: "2px solid darkblue",
         borderRadius: "20px",
@@ -83,22 +83,22 @@ const AllSkiffs = (props) => {
 
     return(
     <div>
-        <h1 style={titleHeader}>All Skiffs</h1>
+        <h1 style={titleHeader}>All Products</h1>
 
-        {allSkiffs.map((skiff, index) => (
-            <div style={skiffContainer}> 
-                <h4 style={mainNameContainer}>{`${skiff.ownerName}'s ${skiff.modelName} Skiff`}</h4>
-                <br></br>
-                <img src={ skiff.pictureUrl} />    {/* ADD IMG CONTAINER HERE */}
-                <p>{`Built by: ${skiff.builderName}`}</p>
-                <p>{`Description: ${skiff.description}`}</p>
-                <button style={buttonStyle} onClick={() => navigate(`/skiff/${skiff._id}`)}>View Skiff Details</button>
-                <button style={buttonStyle} onClick={() => navigate(`/skiff/${skiff._id}`)}>Edit</button>
-                <button style={buttonStyle} onClick={() => navigate(`/skiff/${skiff._id}`)}>Delete</button>
+        {allProducts.map((product, index) => (
+            <div style={productContainer}> 
+                <h4 style={mainNameContainer}>{`${product.productName}`}</h4>
+                <p>{`Cost Per: ${product.price}`}</p>
+                <p>{`Produced by: ${product.supplier}`}</p>
+                <p>{`Type: ${product.productType}`}</p>
+                <p>{`Description: ${product.description}`}</p>
+                <button style={buttonStyle} onClick={() => navigate(`/product/${product._id}`)}>Details</button>
+                <button style={buttonStyle} onClick={() => navigate(`/product/${product._id}`)}>Edit</button>
+                <button style={buttonStyle} onClick={() => navigate(`/product/${product._id}`)}>Delete</button>
             </div>
         ))}
     </div>
     )
 }
 
-export default AllSkiffs;
+export default AllProducts;

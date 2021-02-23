@@ -2,29 +2,29 @@
 import './App.css';
 import React from 'react';
 import { Router } from '@reach/router';
-import NewSkiff from './components/NewSkiff';
-import EditSkiff from './components/EditSkiff';
-import AllSkiffs from './components/AllSkiffs';
-import OneSkiff from './components/OneSkiff';
+import NewProduct from './components/NewProduct';
+import EditProduct from './components/EditProduct';
+import AllProducts from './components/AllProducts';
+import OneProduct from './components/OneProduct';
 
 function App() {
 
 const NotFound = () => {
     return (
       <div>
-        ERROR ROUTE NOT FOUND.  CHECK YOUR URL ENTRY.
+        ERROR ROUTE NOT FOUND IN PRODUCT MANAGER.  CHECK YOUR URL ENTRY AND OR HARD REFRESH.
       </div>
     )
   };
 
   return (
-    // FRONT END PATHING!! USE THIS ON PORT 3000
+    // FRONT END PATHING!! USE THIS ON PORT 5555
     <div className="App">
       <Router>
-        <AllSkiffs path="/" />
-        <NewSkiff path="/skiff/new" />
-        <OneSkiff path="/skiff/:id" />
-        <EditSkiff path="/skiff/:id/edit" />
+        <AllProducts path="/" />
+        <NewProduct path="/product/new" />
+        <OneProduct path="/product/:id" />
+        <EditProduct path="/product/:id/edit" />
         <NotFound default />
       </Router>
     </div>

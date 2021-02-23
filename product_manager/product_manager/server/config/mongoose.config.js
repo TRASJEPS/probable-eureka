@@ -1,5 +1,5 @@
 const mongoose = require('mongoose'); //connect to mongoose lib
-const db_name = "skiffs"; //NAME OF DATABASE
+const db_name = "products"; //NAME OF DATABASE
 
 mongoose.connect("mongodb://localhost/" + db_name, {
     useNewUrlParser: true,

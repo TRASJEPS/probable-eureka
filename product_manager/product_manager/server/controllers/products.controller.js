@@ -1,11 +1,11 @@
-const TolmanSkiff = require('../models/skiffs.model');
+const Product = require('../models/products.model');
 
 module.exports = {
     getAll: (req,res) => {
-        TolmanSkiff.find()   //FINDS EVERYTHING IN DATABASE THAT IS A SOLMAN SKIFF
-            .then((allSkiffs) => {
-                console.log(allSkiffs);
-                res.json(allSkiffs);
+        Product.find()   //FINDS EVERYTHING IN DATABASE THAT IS A SOLMAN SKIFF
+            .then((allProducts) => {
+                console.log(allProducts);
+                res.json(allProducts);
             })
             .catch((err) => {
                 console.log("error in getAll:" + err)
@@ -15,10 +15,10 @@ module.exports = {
 
     create: (req,res) => {
         console.log(req.body);
-        TolmanSkiff.create(req.body)
-            .then((newSkiff) => {
-                console.log(newSkiff);
-                res.json(newSkiff);
+        Product.create(req.body)
+            .then((newProduct) => {
+                console.log(newProduct);
+                res.json(newProduct);
             })
             .catch((err) => { 
                 console.log("error in create:" + err);
@@ -28,10 +28,10 @@ module.exports = {
 
     getOne: (req,res) => {
         console.log(req.params.id);
-        TolmanSkiff.findById(req.params.id)  //THIS IS IN THE assigned ID in the skiffs.ROUTE
-            .then((oneSkiff) => {
-                console.log(oneSkiff);
-                res.json(oneSkiff);
+        Product.findById(req.params.id)  //THIS IS IN THE assigned ID in the skiffs.ROUTE
+            .then((oneProduct) => {
+                console.log(oneProduct);
+                res.json(oneProduct);
             })
             .catch((err) => { 
                 console.log("error in getOne:" + err);
@@ -43,13 +43,13 @@ module.exports = {
     update: (req,res) => {
         console.log(req.params.id);
         console.log(req.body);
-        TolmanSkiff.findByIdAndUpdate(req.params.id, req.body, {
+        Product.findByIdAndUpdate(req.params.id, req.body, {
             new: true,
             runValidators: true,
         })  //THIS IS IN THE assigned ID in the skiffs.ROUTE
-            .then((updatedSkiff) => {
-                console.log(updatedSkiff);
-                res.json(updatedSkiff);
+            .then((updatedProduct) => {
+                console.log(updatedProduct);
+                res.json(updatedProduct);
             })
             .catch((err) => { 
                 console.log("error in update:" + err);
@@ -59,10 +59,10 @@ module.exports = {
 
     delete: (req,res) => {
         console.log(req.params.id);
-        TolmanSkiff.findByIdAndRemove(req.params.id)  //THIS IS IN THE assigned ID in the skiffs.ROUTE
-            .then((removedSkiff) => {
-                console.log(removedSkiff);
-                res.json(removedSkiff);
+        Product.findByIdAndRemove(req.params.id)  //THIS IS IN THE assigned ID in the skiffs.ROUTE
+            .then((removedProduct) => {
+                console.log(removedProduct);
+                res.json(removedProduct);
             })
             .catch((err) => { 
                 console.log("error in delete:" + err);
