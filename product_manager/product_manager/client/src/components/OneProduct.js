@@ -13,6 +13,8 @@ const OneProduct = (props) => {
     }, [])
  
     function goBack() {
+    //     console.log("USING GO BACK!")
+    //    console.log(window.history)
         window.history.back();
       };
  
@@ -111,7 +113,6 @@ const inputPadDesc =
             // display: "inline-block"
 };
 
- 
     return(
     <div>
         <h2 style={titleHeader}>{`${product.supplier} - ${product.productName} Details`}</h2>
@@ -132,8 +133,8 @@ const inputPadDesc =
         <div>
             <p>{`Description: ${product.description}`}</p>
         </div>
-        {/* SCRIPT WONT WORK !! AGHHHHH*/}
-        <button onclick="goBack()" style={buttonStyle} type="submit">Go Back</button>
+        {/* REMOVE THE () AND CHANGE SO IT WILL BE WHEN THE CLICK OCCURS  */}
+        <button onClick={goBack} style={buttonStyle} type="submit">Go Back</button>
         </div>
     </div>
  )

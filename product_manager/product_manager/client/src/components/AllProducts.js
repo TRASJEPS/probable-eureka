@@ -86,7 +86,7 @@ const AllProducts = (props) => {
         <h1 style={titleHeader}>All Products</h1>
 
         {allProducts.map((product, index) => (
-            <div style={productContainer}> 
+            <div key={index} style={productContainer}> 
                 <h4 style={mainNameContainer}>{`${product.productName}`}</h4>
                 <p>{`Cost Per: $${product.price}`}</p>
                 <p>{`Produced by: ${product.supplier}`}</p>
