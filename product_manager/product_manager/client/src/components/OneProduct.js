@@ -13,8 +13,6 @@ const OneProduct = (props) => {
     }, [])
  
     function goBack() {
-    //     console.log("USING GO BACK!")
-    //    console.log(window.history)
         window.history.back();
       };
  

@@ -29,11 +29,25 @@
   /* background-color: rgb(224, 240, 255); */
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.elementToFadeInAndOut 
+{
+  opacity: 0;
+  animation: fade 3s linear;
 }
+@keyframes fade {
+  0% { opacity: 0; }
+  50% { opacity: 1; }
+  100% { opacity: 0; }  /* This fades it in then OUT!! woooohhh */
+  /* visibility: hidden; */
+  }
+
+  .fadeIn 
+  {
+    opacity: 1;
+    animation: arrival 2s linear;
+  }
+  @keyframes arrival {
+    0% { opacity: 0; }
+    100% { opacity: 1; }
+    }
+  
