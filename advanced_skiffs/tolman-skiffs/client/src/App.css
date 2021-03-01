@@ -19,7 +19,7 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
+  justify-content: default;
   font-size: calc(10px + 2vmin);
   color: white;
 }
@@ -33,21 +33,65 @@
 {
   opacity: 0;
   animation: fade 3s linear;
+  position: fixed;
 }
 @keyframes fade {
   0% { opacity: 0; }
   50% { opacity: 1; }
-  100% { opacity: 0; }  /* This fades it in then OUT!! woooohhh */
+  100% { opacity: 0; position: fixed; }  /* This fades it in then OUT!! woooohhh */
   /* visibility: hidden; */
   }
 
-  .fadeIn 
-  {
+  /* MAKE ONE FOR ERRORS */
+  .fadeIn {
     opacity: 1;
     animation: arrival 2s linear;
+    position: fixed;
   }
   @keyframes arrival {
+    0% { opacity: 0; }
+    100% { opacity: 1; position: fixed;}
+    }
+
+  /* FOR LENGTHS Stock and Custom */
+  .fadeInLengths {
+      opacity: 1;
+      animation: arrival3 2s linear;
+      position: fixed right;
+    }
+    @keyframes arrival3 {
+      0% { opacity: 0; }
+      100% { opacity: 1; position: fixed right;}
+      }
+
+  .fadeInErrors {
+    opacity: 1;
+    animation: arrival2 2s linear;
+  }
+  @keyframes arrival2 {
     0% { opacity: 0; }
     100% { opacity: 1; }
     }
   
+#smallFont
+{
+  padding-top: 3px;
+  padding-bottom: 0px;
+  font-size: 50%;
+}
+
+.fontAlignmentPal
+{
+  padding-right: 1px;
+  padding-top: 0px;
+  padding-bottom: 0px;
+  display: inline-block;
+}
+
+.theTroubleShooter
+{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 5px;
+}
