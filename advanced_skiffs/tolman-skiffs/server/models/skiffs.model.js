@@ -19,7 +19,7 @@ const TolmanSkiffSchema = new mongoose.Schema({
     modelName: {    //CHANGE THIS TO OWNER FIRST NAME AND LAST NAME LATER
         type: String,
         required: [true, "Please select a model name."], //shows user they must have a builder name
-        enum: ['Standard', 'Wide Body', 'Jumbo', 'Flat Bottom'],  // Dont need "Please make a selection."
+        enum: ['Standard', 'Wide Body', 'Jumbo', 'Flat Bottom'],  // Dont need "Please make a selection."  Seabright Trawler
         //ENUM is short for enumeration.  YOU CAN SET IT LOWERCASE
         //IT ONLY ACCEPTS THESE VALUES, IT MATCHES PERFECTLY.  ITS CASE SENSITIVE.  
     }, //SEPARATE BY COMMAS

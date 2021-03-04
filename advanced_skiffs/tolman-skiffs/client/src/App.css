@@ -95,3 +95,11 @@
   justify-content: center;
   padding: 5px;
 }
+
+textarea
+{
+  font-family: 'Open Sans', 'Helvetica Neue', sans-serif;
+  font-size:large;
+  padding-left: 25px;
+  padding-right: 25px;
+}

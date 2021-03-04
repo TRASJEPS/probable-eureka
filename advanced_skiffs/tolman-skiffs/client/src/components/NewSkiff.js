@@ -275,10 +275,6 @@ return (
                     : <p className="elementToFadeInAndOut" style={enterAlert}>Date selected...</p> }
                 { errs.finishDate? <span className="fadeInErrors" style={errorAlert}> { errs.finishDate.message }</span> : null }
             </div>
-
-
-
-
             <div className="theTroubleShooter">
                 <div className="fontAlignmentPal">
                     <label>Stock Length in Feet</label>
@@ -304,10 +300,6 @@ return (
                 { errs.customLength? <span className="fadeInErrors" style={errorAlert}> { errs.customLength.message }</span> : null }
             </div>
             <div>
-
-
-
-
                 <label>Photo Link</label>
                 <input style={inputTextPadding} type="text" name="pictureUrl" onBlur={(event) => setPictureUrl(event.target.value)}></input>
                 { pictureUrl.length == 0 ? null 
@@ -319,7 +311,7 @@ return (
                 <textarea style={textAreaPadding} type="text" name="description" rows={100} onBlur={(event) => setDescription(event.target.value)}></textarea>
                 { description.length == 0 ? null 
                     : description.length < 6 ? <span className="fadeInErrors" style={errorAlert}>Please enter description longer than 6 characters.</span>
-                        : description.length > 50 ? <span className="fadeInErrors" style={errorAlert}>Please enter a shorter description. </span>
+                        : description.length > 500 ? <span className="fadeInErrors" style={errorAlert}>Please enter a shorter description. </span>
                             : <p className="fadeIn" style={successAlert}>&#10003;</p> }
                 { errs.description? <span style={errorAlert}> { errs.description.message }</span> : null }
             </div>
