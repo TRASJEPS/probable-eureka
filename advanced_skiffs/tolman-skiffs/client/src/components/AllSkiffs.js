@@ -92,6 +92,7 @@ const AllSkiffs = (props) => {
                 <img src={ skiff.pictureUrl} />    {/* ADD IMG CONTAINER HERE */}
                 <p>{`Built by: ${skiff.builderName}`}</p>
                 <p>{`Description: ${skiff.description}`}</p>
+                <p id="smallFont">{`Date Added: ${skiff.createdAt}`}</p>
                 <button style={buttonStyle} onClick={() => navigate(`/skiff/${skiff._id}`)}>View Skiff Details</button>
                 <button style={buttonStyle} onClick={() => navigate(`/skiff/${skiff._id}`)}>Edit</button>
                 <button style={buttonStyle} onClick={() => navigate(`/skiff/${skiff._id}`)}>Delete</button>
