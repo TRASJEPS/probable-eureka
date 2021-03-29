@@ -280,7 +280,7 @@ return (
                     <label>Stock Length in Feet</label>
                     <div id="smallFont">Between 15-30'</div>
                 </div>
-                <input style={inputTextPadding} type="number" name="stockLength" onBlur={(event) => setStockLength(event.target.value)}></input>
+                <input style={inputTextPadding} type="float" name="stockLength" onBlur={(event) => setStockLength(event.target.value)}></input>
                 { stockLength == 0 ? null 
                     : stockLength < 14 ? <span className="fadeInErrors" style={errorAlert}>Please enter a stock length longer than 14 feet.</span>
                         : stockLength > 30 ? <span className="fadeInErrors" style={errorAlert}>Please enter a stock length shorter than 30 feet.</span>
@@ -292,7 +292,7 @@ return (
                     <label>Custom Length in Feet</label>
                     <div id="smallFont">Between 15-30'</div>
                 </div>
-                <input style={inputTextPadding} type="number" name="customLength" onBlur={(event) => setCustomLength(event.target.value)}></input>
+                <input style={inputTextPadding} type="float" name="customLength" onBlur={(event) => setCustomLength(event.target.value)}></input>
                 { customLength == 0 ? null 
                     : customLength < 14 ? <span className="fadeInErrors" style={errorAlert}>Please enter a custom length longer than 14 feet.</span>
                         : customLength > 30 ? <span className="fadeInErrors" style={errorAlert}>Please enter a custom length shorter than 30 feet.</span>

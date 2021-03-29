@@ -1,6 +1,9 @@
 //THIS IS THE VALIDATOR/MANAGER EQV
 const mongoose = require('mongoose');
 
+//USE THIS FOR CURRENCY and or EACH MODEL TO ENABLE FLOATS as type
+var Float = require('mongoose-float').loadType(mongoose);
+
 // TOLMAN SKIFFS
 const TolmanSkiffSchema = new mongoose.Schema({
     ownerName: {    //CHANGE THIS TO OWNER FIRST NAME AND LAST NAME LATER
@@ -45,15 +48,17 @@ const TolmanSkiffSchema = new mongoose.Schema({
         default: false,
     },
 
+    // OG TYPE: number now its...
     stockLength: {
-        type: Number,
+        type: Float,
         required: [true, "Your boat must have a stock length."],
         min: [15, "Minimum length for a Tolman skiff must be at least 15 feet."],
         max: [30, "Maximum length for a Tolman skiff is 65 feet."],
     },
 
+    // OG TYPE: number now its...
     customLength: {
-        type: Number,
+        type: Float,
         required: [true, "Your boat must have a custom length."],
         min: [15, "Minimum length for a Tolman skiff must be at least 15 feet."],
         max: [30, "Maximum length for a Tolman skiff is 65 feet."],
