@@ -3,6 +3,11 @@ import axios from 'axios';
 import { Link, navigate } from '@reach/router';
 // import { set } from 'mongoose';  DO NOT ADD THIS ON THE FRONT END
 
+// SETTING UP REGEX using r
+// the first forward slash ingicates start then the slash G at end is global to document 
+// SETTING UP FOR CURRENCY  -- ADD TO INSIDE OF FUNCTION
+// let regex = /^[0-9]+.[0-9][0-9]/g;
+
 const NewSkiff = (props) => {
     const [ buildComplete, setBuildComplete ] = useState(false);
     const [ ownerName, setOwnerName ] = useState("");
@@ -16,6 +21,7 @@ const NewSkiff = (props) => {
     const [ description, setDescription ] = useState("");
 
     const [errs, setErrs ] = useState({});  //READY FOR OBJECT
+    let regex = /^[0-9]+.[0-9][0-9]/g;  // SETTING UP FOR CURRENCY
 
     //     "buildComplete": true,
     //     "_id": "602f12d1708e671126bef843",
@@ -275,24 +281,47 @@ return (
                     : <p className="elementToFadeInAndOut" style={enterAlert}>Date selected...</p> }
                 { errs.finishDate? <span className="fadeInErrors" style={errorAlert}> { errs.finishDate.message }</span> : null }
             </div>
+
+                    {/* //
+                    
+                    */}
+            {/* SETTING UP REGEX  */}
             <div className="theTroubleShooter">
                 <div className="fontAlignmentPal">
                     <label>Stock Length in Feet</label>
                     <div id="smallFont">Between 15-30'</div>
                 </div>
-                <input style={inputTextPadding} type="float" name="stockLength" onBlur={(event) => setStockLength(event.target.value)}></input>
+                <input style={inputTextPadding} type="number" step=".01" name="stockLength" onBlur={(event) => setStockLength(event.target.value)}></input>
+                {/* IF THIS MATCHES THE REGEX THEN ITS GOOD returns nothing */}
+                
+                {stockLength == 0 ? null 
+                    // parseFloat(stockLength).toFixed(2).match(regex) ? null
+                    // stockLength.match(regex) ? null
+                    // parseFloat((stockLength).toFixed(2)).match(regex) ? null
+                    // (stockLength.toFixed(2)).match(regex) ? null
+                    // parseFloat((stockLength).toFixed(2)).match(regex) ? null
+                    : parseFloat(stockLength).toFixed(2).match(regex) ? null
+                    // ELSE 
+                        : <span className="fadeInErrors" style={errorAlert}>Please enter a value in dollars and cents.</span> 
+                }
                 { stockLength == 0 ? null 
                     : stockLength < 14 ? <span className="fadeInErrors" style={errorAlert}>Please enter a stock length longer than 14 feet.</span>
                         : stockLength > 30 ? <span className="fadeInErrors" style={errorAlert}>Please enter a stock length shorter than 30 feet.</span>
-                            : <p className="fadeInLengths" style={successAlertLength}>&#10003;</p> }
+                                : <p className="fadeInLengths" style={successAlertLength}>&#10003;</p> }
                 { errs.stockLength? <span className="fadeInErrors" style={errorAlert}> { errs.stockLength.message }</span> : null }
             </div>
+
+        {/* //
+                    
+                    */}
+            {/* SETTING UP REGEX  */}
+
             <div className="theTroubleShooter">
                 <div className="fontAlignmentPal">
                     <label>Custom Length in Feet</label>
                     <div id="smallFont">Between 15-30'</div>
                 </div>
-                <input style={inputTextPadding} type="float" name="customLength" onBlur={(event) => setCustomLength(event.target.value)}></input>
+                <input style={inputTextPadding} type="number" name="customLength" onBlur={(event) => setCustomLength(event.target.value)}></input>
                 { customLength == 0 ? null 
                     : customLength < 14 ? <span className="fadeInErrors" style={errorAlert}>Please enter a custom length longer than 14 feet.</span>
                         : customLength > 30 ? <span className="fadeInErrors" style={errorAlert}>Please enter a custom length shorter than 30 feet.</span>
