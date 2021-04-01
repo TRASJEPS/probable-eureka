@@ -291,7 +291,7 @@ return (
                     <label>Stock Length in Feet</label>
                     <div id="smallFont">Between 15-30'</div>
                 </div>
-                <input style={inputTextPadding} type="number" step=".01" name="stockLength" onBlur={(event) => setStockLength(event.target.value)}></input>
+                <input style={inputTextPadding} type="number" min="0.01" step=".01" name="stockLength" onBlur={(event) => setStockLength(event.target.value)}></input>
                 {/* IF THIS MATCHES THE REGEX THEN ITS GOOD returns nothing */}
                 
                 {stockLength == 0 ? null 
