@@ -1,6 +1,9 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import { Link, navigate } from '@reach/router';
+import NumberFormat from 'react-number-format';  // THIS MUST BE ADDED FOR ALLLLLL INPUTS THAT REQUIRE NUMBERS
+
+
 // import { set } from 'mongoose';  DO NOT ADD THIS ON THE FRONT END
 
 // SETTING UP REGEX using r
@@ -15,7 +18,7 @@ const NewSkiff = (props) => {
     const [ modelName, setModelName ] = useState("Standard");  //AUTOMATICALLY STARTS AS STANDARD IN THIS CASE
     const [ startDate, setStartDate ] = useState("");
     const [ finishDate, setFinishDate ] = useState("");
-    const [ stockLength, setStockLength ] = useState("");  // SET AS A NUMBER BUT USE AN EMPTY STRING SO CONSOLE PLAYS NICE
+    const [ stockLength, setStockLength ] = useState("");  // PLAY WITH NUMBERS 
     const [ customLength, setCustomLength ] = useState(""); // SET AS A NUMBER BUT USE AN EMPTY STRING SO CONSOLE PLAYS NICE
     const [ pictureUrl, setPictureUrl ] = useState("");
     const [ description, setDescription ] = useState("");
@@ -291,15 +294,17 @@ return (
                     <label>Stock Length in Feet</label>
                     <div id="smallFont">Between 15-30'</div>
                 </div>
-                <input style={inputTextPadding} type="number" min="0.01" step=".01" name="stockLength" onBlur={(event) => setStockLength(event.target.value)}></input>
-                {/* IF THIS MATCHES THE REGEX THEN ITS GOOD returns nothing */}
-                
+                {/* MAKE SURE THIS IS SELF CLOSING  USE REGULAR GETTER stockLength VALUE values is the OBJECT, value is the NON formatted incoming data*/}
+                <NumberFormat style={inputTextPadding} value={stockLength} displayType={'text'} thousandSeparator={true} prefix={'$'} onValueChange={(values) => setStockLength(values.value)}/>
+                {/* <input style={inputTextPadding} type="number" name="stockLength" onBlur={(event) => setStockLength(event.target.value)}></input> */}
+                {/* <input style={inputTextPadding} placeholder="1000" onChange={(event) => setStockLength(event.target.value)}></input> */}
+                {/* <NumberFormat style={inputTextPadding} placeholder="1000" displayType={'text'} thousandSeparator={true} prefix={'$'} onChange={(event) => setStockLength(event.target.value)}/> */}
+                {/* <NumberFormat style={inputTextPadding} value={stockLength} isNumericString={true} displayType={'text'} thousandSeparator={true} prefix={'$'} onValueChange={(event) => setStockLength(event.target.value)}/> */}
+                {/* <NumberFormat style={inputTextPadding} placeholder="9001.00" displayType={'text'} thousandSeparator={true} prefix={'$'} onChange={(event) => setStockLength(event.target.value)}/> */}
+                {/* <NumberFormat style={inputTextPadding} value={stockLength} displayType={'text'} thousandSeparator={true} prefix={'$'} onChange={(event) => setStockLength(event.target.value)}/> displays but is wrong */}
+                {/* <NumberFormat displayType={'text'} value="9001" thousandSeparator={true} prefix={'$'} onChange={(event) => setStockLength(event.target.value)}/> */}
+                {/* <NumberFormat style={inputTextPadding} displayType={'text'} thousandSeparator={true} prefix={'$'} step=".01" name="stockLength" onBlur={(event) => setStockLength(event.target.value)}/> */}
                 {stockLength == 0 ? null 
-                    // parseFloat(stockLength).toFixed(2).match(regex) ? null
-                    // stockLength.match(regex) ? null
-                    // parseFloat((stockLength).toFixed(2)).match(regex) ? null
-                    // (stockLength.toFixed(2)).match(regex) ? null
-                    // parseFloat((stockLength).toFixed(2)).match(regex) ? null
                     : parseFloat(stockLength).toFixed(2).match(regex) ? null
                     // ELSE 
                         : <span className="fadeInErrors" style={errorAlert}>Please enter a value in dollars and cents.</span> 
