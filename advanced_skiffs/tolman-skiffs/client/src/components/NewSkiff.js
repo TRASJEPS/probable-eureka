@@ -1,8 +1,9 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import { Link, navigate } from '@reach/router';
-import NumberFormat from 'react-number-format';  // THIS MUST BE ADDED FOR ALLLLLL INPUTS THAT REQUIRE NUMBERS
 
+// import NumberFormat from 'react-number-format';  // INITIAL TEST FORMATTING  // DOES NOT WORK
+import CurrencyInput from 'react-currency-input-field';  //NEWEST TRIALS 
 
 // import { set } from 'mongoose';  DO NOT ADD THIS ON THE FRONT END
 
@@ -24,7 +25,8 @@ const NewSkiff = (props) => {
     const [ description, setDescription ] = useState("");
 
     const [errs, setErrs ] = useState({});  //READY FOR OBJECT
-    let regex = /^[0-9]+.[0-9][0-9]/g;  // SETTING UP FOR CURRENCY
+    // RIP REGEX 2021-2021
+    // let regex = /^[0-9]+.[0-9][0-9]/g;  // SETTING UP FOR CURRENCY
 
     //     "buildComplete": true,
     //     "_id": "602f12d1708e671126bef843",
@@ -285,41 +287,19 @@ return (
                 { errs.finishDate? <span className="fadeInErrors" style={errorAlert}> { errs.finishDate.message }</span> : null }
             </div>
 
-                    {/* //
-                    
-                    */}
-            {/* SETTING UP REGEX  */}
             <div className="theTroubleShooter">
                 <div className="fontAlignmentPal">
-                    <label>Stock Length in Feet</label>
-                    <div id="smallFont">Between 15-30'</div>
+                    <label>Boat Cost</label>
+                    <div id="smallFont">{"Enter Value in Dollars & Cents"}</div>
                 </div>
-                {/* MAKE SURE THIS IS SELF CLOSING  USE REGULAR GETTER stockLength VALUE values is the OBJECT, value is the NON formatted incoming data*/}
-                <NumberFormat style={inputTextPadding} value={stockLength} displayType={'text'} thousandSeparator={true} prefix={'$'} onValueChange={(values) => setStockLength(values.value)}/>
-                {/* <input style={inputTextPadding} type="number" name="stockLength" onBlur={(event) => setStockLength(event.target.value)}></input> */}
-                {/* <input style={inputTextPadding} placeholder="1000" onChange={(event) => setStockLength(event.target.value)}></input> */}
-                {/* <NumberFormat style={inputTextPadding} placeholder="1000" displayType={'text'} thousandSeparator={true} prefix={'$'} onChange={(event) => setStockLength(event.target.value)}/> */}
-                {/* <NumberFormat style={inputTextPadding} value={stockLength} isNumericString={true} displayType={'text'} thousandSeparator={true} prefix={'$'} onValueChange={(event) => setStockLength(event.target.value)}/> */}
-                {/* <NumberFormat style={inputTextPadding} placeholder="9001.00" displayType={'text'} thousandSeparator={true} prefix={'$'} onChange={(event) => setStockLength(event.target.value)}/> */}
-                {/* <NumberFormat style={inputTextPadding} value={stockLength} displayType={'text'} thousandSeparator={true} prefix={'$'} onChange={(event) => setStockLength(event.target.value)}/> displays but is wrong */}
-                {/* <NumberFormat displayType={'text'} value="9001" thousandSeparator={true} prefix={'$'} onChange={(event) => setStockLength(event.target.value)}/> */}
-                {/* <NumberFormat style={inputTextPadding} displayType={'text'} thousandSeparator={true} prefix={'$'} step=".01" name="stockLength" onBlur={(event) => setStockLength(event.target.value)}/> */}
-                {stockLength == 0 ? null 
-                    : parseFloat(stockLength).toFixed(2).match(regex) ? null
-                    // ELSE 
-                        : <span className="fadeInErrors" style={errorAlert}>Please enter a value in dollars and cents.</span> 
-                }
+                <CurrencyInput style={inputTextPadding} prefix="$" decimalsLimit={2} fixedDecimalLength={2} name="stockLength" onBlur={(event) => setStockLength(event.target.value)}/>
+                {/* <input style={inputTextPadding} type="number" name="stockLength" onBlur={(event) => setStockLength(event.target.value)}></input> */}  {/*org setup */}
                 { stockLength == 0 ? null 
                     : stockLength < 14 ? <span className="fadeInErrors" style={errorAlert}>Please enter a stock length longer than 14 feet.</span>
                         : stockLength > 30 ? <span className="fadeInErrors" style={errorAlert}>Please enter a stock length shorter than 30 feet.</span>
                                 : <p className="fadeInLengths" style={successAlertLength}>&#10003;</p> }
                 { errs.stockLength? <span className="fadeInErrors" style={errorAlert}> { errs.stockLength.message }</span> : null }
             </div>
-
-        {/* //
-                    
-                    */}
-            {/* SETTING UP REGEX  */}
 
             <div className="theTroubleShooter">
                 <div className="fontAlignmentPal">

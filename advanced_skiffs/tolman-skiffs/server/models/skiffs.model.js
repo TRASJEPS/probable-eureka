@@ -48,8 +48,8 @@ const TolmanSkiffSchema = new mongoose.Schema({
         default: false,
     },
 
-    // OG TYPE: number now its...
-    //  this makes data save as ...0.00
+    // OG TYPE: number now its... this makes data save as ...0.00
+    // FRONT END NOW SEES THIS AS BOAT COST
     stockLength: {
         type: Float,
         required: [true, "Your boat must have a stock length."],
