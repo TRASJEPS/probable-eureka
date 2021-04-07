@@ -46,6 +46,9 @@ const NewSkiff = (props) => {
 const submitForm = (event) => {
     event.preventDefault();
     // NAU USE AXIOS!
+    // console.log(Number(stockLength.replace(/[^0-9.-]+/g,"")))
+    // console.log(stockLength)
+
     const newSkiff = {       //USE THIS AS AN OBJECT
         buildComplete: buildComplete,
         ownerName: ownerName,
@@ -53,7 +56,8 @@ const submitForm = (event) => {
         modelName: modelName,
         startDate: startDate,
         finishDate: finishDate,
-        stockLength: stockLength,
+        // stockLength: stockLength,
+        stockLength: Number(stockLength.replace(/[^0-9.-]+/g,"")),
         customLength: customLength,
         pictureUrl: pictureUrl,
         description: description
@@ -287,12 +291,14 @@ return (
                 { errs.finishDate? <span className="fadeInErrors" style={errorAlert}> { errs.finishDate.message }</span> : null }
             </div>
 
+            {/* 888888888888888888888888888888888888888888888888 */}
+
             <div className="theTroubleShooter">
                 <div className="fontAlignmentPal">
                     <label>Boat Cost</label>
                     <div id="smallFont">{"Enter Value in Dollars & Cents"}</div>
                 </div>
-                <CurrencyInput style={inputTextPadding} prefix="$" decimalsLimit={2} fixedDecimalLength={2} name="stockLength" onBlur={(event) => setStockLength(event.target.value)}/>
+                <CurrencyInput style={inputTextPadding} prefix="$" decimalsLimit={2} decimalScale={2} name="stockLength" onBlur={(event) => setStockLength(event.target.value)}/>
                 {/* <input style={inputTextPadding} type="number" name="stockLength" onBlur={(event) => setStockLength(event.target.value)}></input> */}  {/*org setup */}
                 { stockLength == 0 ? null 
                     : stockLength < 14 ? <span className="fadeInErrors" style={errorAlert}>Please enter a stock length longer than 14 feet.</span>
@@ -300,6 +306,8 @@ return (
                                 : <p className="fadeInLengths" style={successAlertLength}>&#10003;</p> }
                 { errs.stockLength? <span className="fadeInErrors" style={errorAlert}> { errs.stockLength.message }</span> : null }
             </div>
+
+            {/* 888888888888888888888888888888888888888888888888 */}
 
             <div className="theTroubleShooter">
                 <div className="fontAlignmentPal">
