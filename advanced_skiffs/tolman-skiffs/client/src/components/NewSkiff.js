@@ -57,7 +57,7 @@ const submitForm = (event) => {
         startDate: startDate,
         finishDate: finishDate,
         // stockLength: stockLength,
-        stockLength: Number(stockLength.replace(/[^0-9.-]+/g,"")),
+        stockLength: Number(stockLength.replace(/[^0-9.-]+/g,"")),     //WHERE THE FILTER IS ADDED CHECK THIS
         customLength: customLength,
         pictureUrl: pictureUrl,
         description: description
@@ -246,7 +246,7 @@ const successAlertLength =
 // TOGGLE FROM onChange TO onBlur
 return (
     <div>
-        <h2 style={titleHeader}>Add New Skiff</h2>
+        <h2 style={titleHeader}>Add New Yacht</h2>
         <form style={skiffContainer} onSubmit = {submitForm}>
             <div>
                 <label>Owner Name</label>
@@ -291,8 +291,6 @@ return (
                 { errs.finishDate? <span className="fadeInErrors" style={errorAlert}> { errs.finishDate.message }</span> : null }
             </div>
 
-            {/* 888888888888888888888888888888888888888888888888 */}
-
             <div className="theTroubleShooter">
                 <div className="fontAlignmentPal">
                     <label>Boat Cost</label>
@@ -301,23 +299,21 @@ return (
                 <CurrencyInput style={inputTextPadding} prefix="$" decimalsLimit={2} decimalScale={2} name="stockLength" onBlur={(event) => setStockLength(event.target.value)}/>
                 {/* <input style={inputTextPadding} type="number" name="stockLength" onBlur={(event) => setStockLength(event.target.value)}></input> */}  {/*org setup */}
                 { stockLength == 0 ? null 
-                    : stockLength < 14 ? <span className="fadeInErrors" style={errorAlert}>Please enter a stock length longer than 14 feet.</span>
-                        : stockLength > 30 ? <span className="fadeInErrors" style={errorAlert}>Please enter a stock length shorter than 30 feet.</span>
+                    : stockLength < 14 ? <span className="fadeInErrors" style={errorAlert}>Your yacht will cost at least $150,000.</span>
+                        // : stockLength > 30 ? <span className="fadeInErrors" style={errorAlert}>Please enter a stock length shorter than 350 feet.</span>
                                 : <p className="fadeInLengths" style={successAlertLength}>&#10003;</p> }
                 { errs.stockLength? <span className="fadeInErrors" style={errorAlert}> { errs.stockLength.message }</span> : null }
             </div>
 
-            {/* 888888888888888888888888888888888888888888888888 */}
-
             <div className="theTroubleShooter">
                 <div className="fontAlignmentPal">
                     <label>Custom Length in Feet</label>
-                    <div id="smallFont">Between 15-30'</div>
+                    <div id="smallFont">Between 50-350'</div>
                 </div>
                 <input style={inputTextPadding} type="number" name="customLength" onBlur={(event) => setCustomLength(event.target.value)}></input>
                 { customLength == 0 ? null 
-                    : customLength < 14 ? <span className="fadeInErrors" style={errorAlert}>Please enter a custom length longer than 14 feet.</span>
-                        : customLength > 30 ? <span className="fadeInErrors" style={errorAlert}>Please enter a custom length shorter than 30 feet.</span>
+                    : customLength < 14 ? <span className="fadeInErrors" style={errorAlert}>Please enter a custom length longer than 50 feet.</span>
+                        : customLength > 30 ? <span className="fadeInErrors" style={errorAlert}>Please enter a custom length shorter than 350 feet.</span>
                             : <span className="fadeInLengths" style={successAlertLength}>&#10003;</span> }
                 { errs.customLength? <span className="fadeInErrors" style={errorAlert}> { errs.customLength.message }</span> : null }
             </div>
