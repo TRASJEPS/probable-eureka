@@ -16,6 +16,11 @@ const AllSkiffs = (props) => {
                 console.log(err);
             });
     },[]);
+
+    // delete 
+    const deleteSkiff = (skiff){};
+
+
  
     const skiffContainer = 
     {
