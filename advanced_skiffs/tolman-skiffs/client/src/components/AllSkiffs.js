@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import { link, navigate } from '@reach/router';
 
+// DEFINE THE PROPS and THEN YOU TAKE IT OUT OF PROPS
 const AllSkiffs = (props) => {
     const [ allSkiffs, setAllSkiffs ] = useState([]);  // SETUP THE GETTER AND SETTER AND A EMPTY ARRAY!!!!!!!   THIS IS THE STATE
 
@@ -18,7 +19,16 @@ const AllSkiffs = (props) => {
     },[]);
 
     // delete 
-    const deleteSkiff = (skiff){};
+    // USE skiff._id
+    const deleteSkiff = (skiff) => {
+        console.log(skiff + " - has been deleted.  The ID was" + skiff._id);
+
+    const newSkiffsArray = allSkiffs.filter((deletedSkiff) => {
+        return deletedSkiff !== skiff._id;
+    }) 
+
+    setAllSkiffs(newSkiffsArray)
+    };
 
 
  
@@ -40,7 +50,7 @@ const AllSkiffs = (props) => {
     const mainNameContainer = 
     {
         border: "4px solid rgb(176, 217, 255)",
-        borderRadius: "20px",
+        borderRadius: "30px",
         display: "inline-block",
         margin: "10px",
         fontWeight: "bold",
@@ -54,25 +64,26 @@ const AllSkiffs = (props) => {
 
     const buttonStyle = 
         {
-            marginTop: "1px",
-            marginLeft: "5px",
-            marginRight: "5px",
-            paddingTop: "10px",
-            paddingBottom: "10px",
-            paddingLeft: "15px",
-            paddingRight: "15px",
+            margin: "5px",
+            // marginLeft: "5px",
+            // marginRight: "5px",
+            marginTop: "15px",
+            paddingTop: "5px",
+            paddingBottom: "5px",
+            paddingLeft: "10px",
+            paddingRight: "10px",
             background: "rgb(27, 36, 87)",
             color: "white",
             fontWeight: "bolder",
             fontSize: "small",
             border: "2px solid darkblue",
-            borderRadius: "30px",
+            borderRadius: "10px",
         };
 
     const titleHeader = 
     {
         border: "4px solid rgb(176, 217, 255)",
-        borderRadius: "20px",
+        borderRadius: "30px",
         // display: "inline-block",
         margin: "20px",
         marginLeft: "35px",
@@ -90,6 +101,7 @@ const AllSkiffs = (props) => {
     <div>
         <h1 style={titleHeader}>All Skiffs</h1>
 
+        {/* SKIFF is an object  */}
         {allSkiffs.map((skiff, index) => (
             <div style={skiffContainer}> 
                 <h4 style={mainNameContainer}>{`${skiff.ownerName}'s ${skiff.modelName} Skiff`}</h4>
@@ -102,6 +114,9 @@ const AllSkiffs = (props) => {
                 <p id="smallFont">{`Date Added: ${skiff.createdAt.substring(5,10)}-${skiff.createdAt.substring(0,4)}`}</p>
                 <button style={buttonStyle} onClick={() => navigate(`/skiff/${skiff._id}`)}>View Skiff Details</button>
                 <button style={buttonStyle} onClick={() => navigate(`/skiff/${skiff._id}`)}>Edit</button>
+                {/* WIP DELETE  */}
+                {/* <button style={buttonStyle} onClick={() => deleteSkiff(`/skiff/${skiff._id}`)}>Delete</button> */}
+                {/* OR iS IT skiff.name ???  */}
                 <button style={buttonStyle} onClick={() => navigate(`/skiff/${skiff._id}`)}>Delete</button>
             </div>
         ))}
