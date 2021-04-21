@@ -19,15 +19,28 @@ const AllSkiffs = (props) => {
     },[]);
 
     // delete 
-    // USE skiff._id
-    const deleteSkiff = (skiff) => {
-        console.log(skiff + " - has been deleted.  The ID was" + skiff._id);
-
-    const newSkiffsArray = allSkiffs.filter((deletedSkiff) => {
-        return deletedSkiff !== skiff._id;
-    }) 
-
-    setAllSkiffs(newSkiffsArray)
+    // USE skiff._id  
+    //  THE ROUTE! wooohhh
+    //  app.delete('/api/skiffs/:id', SkiffsController.delete);
+    const deleteSkiff = (skiffToDelete) => {
+        //skiffToDelete is the passed in OBJECT
+        axios
+            //DONT FORGET THE END SLASHHHHHH!H!H!H!H!H! /////
+            .delete('http://localhost:7777/api/skiffs/' + skiffToDelete._id )
+            .then( response => {
+                // ${skiff.ownerName}'s ${skiff.modelName}  THIS ONLY DELETES STATE BUT WITH AXIOS is goes buh-bye
+                console.log(skiffToDelete.ownerName+"'s "+ skiffToDelete.modelName + " Skiff - has been deleted.  The ID was " + skiffToDelete._id);
+                // filter callback function is going through the skiff array
+                const newSkiffsArray = allSkiffs.filter((skiff) => {
+                    //MAKE SURE TO COMPARE THE ._id for specifics NOT the OBJECT
+                    return skiffToDelete._id !== skiff._id;
+                })
+                //THE NEW ARRAY!  MINUS the skiff passed in that was compared via _ID
+                setAllSkiffs(newSkiffsArray)
+            })  //NO SEMICOLIN to keep the chain going ....
+            .catch((err) => {
+                console.log(err);
+            });
     };
 
 
@@ -117,7 +130,9 @@ const AllSkiffs = (props) => {
                 {/* WIP DELETE  */}
                 {/* <button style={buttonStyle} onClick={() => deleteSkiff(`/skiff/${skiff._id}`)}>Delete</button> */}
                 {/* OR iS IT skiff.name ???  */}
-                <button style={buttonStyle} onClick={() => navigate(`/skiff/${skiff._id}`)}>Delete</button>
+                {/* DONT INCLUDE THE {} BECAUSE YOU JUST WANT THE SKIFF object */}
+                {/* ITS GOOD TO IMPORT THE WHOLE  */}
+                <button style={buttonStyle} onClick={() => deleteSkiff(skiff)}>Delete</button>
             </div>
         ))}
     </div>
