@@ -69,8 +69,8 @@ const TolmanSkiffSchema = new mongoose.Schema({
     customLength: {
         type: Float,
         required: [true, "Your boat must have a custom length."],
-        min: [15, "Minimum length for a Tolman skiff must be at least 15 feet."],
-        max: [30, "Maximum length for a Tolman skiff is 30 feet."],
+        min: [50, "Minimum length for a Tolman skiff must be at least 15 feet."],
+        max: [350, "Maximum length for a Tolman skiff is 30 feet."],
     },
 
     pictureUrl: {    //CHANGE THIS TO OWNER FIRST NAME AND LAST NAME LATER

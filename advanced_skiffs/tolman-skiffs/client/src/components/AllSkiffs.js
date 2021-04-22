@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import { link, navigate } from '@reach/router';
 import { formatValue } from 'react-currency-input-field';
-
+import { formatCurrency } from '../utilities/CurrencyFormatter';  //NOT EXPORT DEFAULT
 
 
 // DEFINE THE PROPS and THEN YOU TAKE IT OUT OF PROPS
@@ -130,7 +130,7 @@ const moneyStyle = formatValue ({
                 <img src={ skiff.pictureUrl} />    {/* ADD IMG CONTAINER HERE */}
                 <p>{`Built by: ${skiff.builderName}`}</p>
                 {/* ADD THE toString YAYYYYY */}
-                <p> {`Cost: ${formatValue({groupSeparator:',', decimalSeparator:'.',prefix:'$', value:skiff.stockLength.toString()})}`}</p>
+                <p> {`Cost: ${formatCurrency(skiff.stockLength)}`}</p>
                 <p>{`Custom Length: ${skiff.customLength}'`}</p>
                 <p>{`Description: ${skiff.description}`}</p>
                 <p id="smallFont">{`Date Added: ${skiff.createdAt.substring(5,10)}-${skiff.createdAt.substring(0,4)}`}</p>

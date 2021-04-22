@@ -1,18 +1,23 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import { link, navigate } from '@reach/router';
-import { formatValue } from 'react-currency-input-field';
+// import { formatValue } from 'react-currency-input-field';   //THIS IS NOT NEEDED ANY MORE BECAUSE OF CURRENCY FUNCTION
+// THIS FORMATS ALL CURRENCY USE ON ALL PAGES 
+import { formatCurrency } from '../utilities/CurrencyFormatter';
 
 const OneSkiff = (props) => {
-    const { singleID } = props;
+    // THIS HAS TO BE CALLED id BECAUSE ITS DEFINED THERE IN THE APP.JS
+    const { id } = props;
     // make sure its CURLY not an array BRACKET
+    // COMES IN AS OBJECT and is initially set as EMPTY
+    // BECAUSE THIS IS WITH AXIOS this is ACRYNIOUS ** spelling MVP
     const [ skiff, setSkiff ] = useState({});
 
     //app.get('/api/skiffs/:id', SkiffsController.getOne);
     useEffect(() => {
         axios
         //THIS IS DEFINED above
-            .get("http://localhost:7777/api/skiffs/" + singleID)
+            .get("http://localhost:7777/api/skiffs/" + id)
             .then((response) => {
                 const oneSkiffOnly = response.data;
                 console.log(response.data);
@@ -27,11 +32,13 @@ const OneSkiff = (props) => {
     },[]);
 
 //THIS IS FOR CURRENCY
-const moneyStyle = formatValue ({
-    groupSeparator: ',',
-    decimalSeparator: '.',
-    prefix: '$',
-});
+// const moneyStyle = formatValue ({
+//     groupSeparator: ',',
+//     decimalSeparator: '.',
+//     prefix: '$',
+//     decimalScale: 2,
+//     value: skiff.stockLength,
+// });
 
 const skiffContainer = 
 {
@@ -125,19 +132,33 @@ const titleHeader =
  return(
     <div>
         <h1>Skiff Details</h1>
-        <div style={skiffContainer}> 
-            <h4 style={mainNameContainer}>{`${skiff.ownerName}'s ${skiff.modelName} Skiff`}</h4>
-            <br></br>
-            <img src={ skiff.pictureUrl} />    {/* ADD IMG CONTAINER HERE */}
-            <p>{`Built by: ${skiff.builderName}`}</p>
-            {/* <p> {`Cost: ${formatValue({groupSeparator:',', decimalSeparator:'.',prefix:'$', value:skiff.stockLength.toString()})}`}</p> */}
-            <p>{`Custom Length: ${skiff.customLength}'`}</p>
-            <p>{`Description: ${skiff.description}`}</p>
-            {/* <p id="smallFont">{`Date Added: ${skiff.createdAt.substring(5,10)}-${skiff.createdAt.substring(0,4)}`}</p> */}
-            {/* <button style={buttonStyle} onClick={() => navigate(`/skiff/${skiff._id}`)}>View Skiff Details</button> */}
-            <button style={buttonStyle} onClick={() => navigate(`/skiff/${skiff._id}`)}>Edit</button>
-            {/* <button style={buttonStyle} onClick={() => deleteSkiff(skiff)}>Delete</button>     */}
-        </div>
+        {/* AT THIS POINT ITS THE WHOLE OBJECT OR NOTHING */}
+        {/* MAKE SURE TO CHECK ITS NOT UNDEFINED  */}
+        {
+            skiff.ownerName !== undefined ? 
+            (
+            <div style={skiffContainer}> 
+                <h4 style={mainNameContainer}>{`${skiff.ownerName}'s ${skiff.modelName} Skiff`}</h4>
+                <br></br>
+                <img src={ skiff.pictureUrl} />    {/* ADD IMG CONTAINER HERE */}
+                <p>{`Built by: ${skiff.builderName}`}</p>
+                {/* <p> {`Cost: ${ moneyStyle }`}</p> */}
+
+                {/* <p> {`Cost: $${ skiff.stockLength }`}</p> */}
+                <p> {`Cost: ${ formatCurrency(skiff.stockLength)} `}</p>
+
+                <p>{`Custom Length: ${skiff.customLength}'`}</p>
+                <p>{`Description: ${skiff.description}`}</p>
+                <p id="smallFont">{`Date Added: ${skiff.createdAt.substring(5,10)}-${skiff.createdAt.substring(0,4)}`}</p>
+
+
+                {/* <button style={buttonStyle} onClick={() => navigate(`/skiff/${skiff._id}`)}>View Skiff Details</button> */}
+                <button style={buttonStyle} onClick={() => navigate(`/skiff/${skiff._id}`)}>Edit</button>
+                {/* <button style={buttonStyle} onClick={() => deleteSkiff(skiff)}>Delete</button>     */}
+            </div>
+            ):
+            <p>GETTING DATA...</p>
+        }
     </div>
 )
 }
