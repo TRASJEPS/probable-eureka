@@ -1,6 +1,9 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import { link, navigate } from '@reach/router';
+import { formatValue } from 'react-currency-input-field';
+
+
 
 // DEFINE THE PROPS and THEN YOU TAKE IT OUT OF PROPS
 const AllSkiffs = (props) => {
@@ -18,7 +21,7 @@ const AllSkiffs = (props) => {
             });
     },[]);
 
-    // delete 
+    // THIS IS THE DELETE BUTTON 
     // USE skiff._id  
     //  THE ROUTE! wooohhh
     //  app.delete('/api/skiffs/:id', SkiffsController.delete);
@@ -43,7 +46,12 @@ const AllSkiffs = (props) => {
             });
     };
 
-
+//THIS IS FOR CURRENCY
+const moneyStyle = formatValue ({
+    groupSeparator: ',',
+    decimalSeparator: '.',
+    prefix: '$',
+});
  
     const skiffContainer = 
     {
@@ -121,7 +129,8 @@ const AllSkiffs = (props) => {
                 <br></br>
                 <img src={ skiff.pictureUrl} />    {/* ADD IMG CONTAINER HERE */}
                 <p>{`Built by: ${skiff.builderName}`}</p>
-                <p>{`Stock Length: ${skiff.stockLength}'`}</p>
+                {/* ADD THE toString YAYYYYY */}
+                <p> {`Cost: ${formatValue({groupSeparator:',', decimalSeparator:'.',prefix:'$', value:skiff.stockLength.toString()})}`}</p>
                 <p>{`Custom Length: ${skiff.customLength}'`}</p>
                 <p>{`Description: ${skiff.description}`}</p>
                 <p id="smallFont">{`Date Added: ${skiff.createdAt.substring(5,10)}-${skiff.createdAt.substring(0,4)}`}</p>
