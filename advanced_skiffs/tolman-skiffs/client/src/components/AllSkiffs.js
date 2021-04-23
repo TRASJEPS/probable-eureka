@@ -45,13 +45,6 @@ const AllSkiffs = (props) => {
                 console.log(err);
             });
     };
-
-//THIS IS FOR CURRENCY
-const moneyStyle = formatValue ({
-    groupSeparator: ',',
-    decimalSeparator: '.',
-    prefix: '$',
-});
  
     const skiffContainer = 
     {
@@ -120,12 +113,12 @@ const moneyStyle = formatValue ({
 
     return(
     <div>
-        <h1 style={titleHeader}>All Skiffs</h1>
+        <h1 style={titleHeader}>All Yachts</h1>
 
         {/* SKIFF is an object  */}
         {allSkiffs.map((skiff, index) => (
             <div style={skiffContainer}> 
-                <h4 style={mainNameContainer}>{`${skiff.ownerName}'s ${skiff.modelName} Skiff`}</h4>
+                <h4 style={mainNameContainer}>{`${skiff.ownerName}'s ${skiff.modelName} Yacht`}</h4>
                 <br></br>
                 <img src={ skiff.pictureUrl} />    {/* ADD IMG CONTAINER HERE */}
                 <p>{`Built by: ${skiff.builderName}`}</p>

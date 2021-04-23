@@ -131,7 +131,7 @@ const titleHeader =
 
  return(
     <div>
-        <h1>Skiff Details</h1>
+        <h1>Yacht Profile Details</h1>
         {/* AT THIS POINT ITS THE WHOLE OBJECT OR NOTHING */}
         {/* MAKE SURE TO CHECK ITS NOT UNDEFINED  */}
         {
@@ -152,7 +152,7 @@ const titleHeader =
                 <p id="smallFont">{`Date Added: ${skiff.createdAt.substring(5,10)}-${skiff.createdAt.substring(0,4)}`}</p>
 
 
-                {/* <button style={buttonStyle} onClick={() => navigate(`/skiff/${skiff._id}`)}>View Skiff Details</button> */}
+                {/* <button style={buttonStyle} onClick={this.context.router.histoy.goBack}>Return</button> */}
                 <button style={buttonStyle} onClick={() => navigate(`/skiff/${skiff._id}`)}>Edit</button>
                 {/* <button style={buttonStyle} onClick={() => deleteSkiff(skiff)}>Delete</button>     */}
             </div>
