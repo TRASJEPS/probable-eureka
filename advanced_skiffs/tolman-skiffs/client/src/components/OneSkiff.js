@@ -5,6 +5,10 @@ import { link, navigate } from '@reach/router';
 // THIS FORMATS ALL CURRENCY USE ON ALL PAGES 
 import { formatCurrency } from '../utilities/CurrencyFormatter';
 
+// BACK BUTTON
+// import { withRouter } from 'react-router-dom';
+import { useHistory } from "react-router-dom";
+
 const OneSkiff = (props) => {
     // THIS HAS TO BE CALLED id BECAUSE ITS DEFINED THERE IN THE APP.JS
     const { id } = props;
@@ -30,6 +34,10 @@ const OneSkiff = (props) => {
                 console.log(err);
             });
     },[]);
+
+    // BACK BUTTON!?!?!?!
+// export const Item = () => {
+//     let history = useHistory();
 
 //THIS IS FOR CURRENCY
 // const moneyStyle = formatValue ({
@@ -151,8 +159,9 @@ const titleHeader =
                 <p>{`Description: ${skiff.description}`}</p>
                 <p id="smallFont">{`Date Added: ${skiff.createdAt.substring(5,10)}-${skiff.createdAt.substring(0,4)}`}</p>
 
-
+                {/* <button style={buttonStyle} onClick={this.props.history.goBack}>Return</button> */}
                 {/* <button style={buttonStyle} onClick={this.context.router.histoy.goBack}>Return</button> */}
+                {/* <button style={buttonStyle} onClick={history.back}>Return</button> */}
                 <button style={buttonStyle} onClick={() => navigate(`/skiff/${skiff._id}`)}>Edit</button>
                 {/* <button style={buttonStyle} onClick={() => deleteSkiff(skiff)}>Delete</button>     */}
             </div>
