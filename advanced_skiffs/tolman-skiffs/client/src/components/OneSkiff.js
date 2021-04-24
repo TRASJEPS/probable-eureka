@@ -7,7 +7,7 @@ import { formatCurrency } from '../utilities/CurrencyFormatter';
 
 // BACK BUTTON
 // import { withRouter } from 'react-router-dom';
-import { useHistory } from "react-router-dom";
+// import { useHistory } from "react-router-dom";   EDITING HERE
 
 const OneSkiff = (props) => {
     // THIS HAS TO BE CALLED id BECAUSE ITS DEFINED THERE IN THE APP.JS
