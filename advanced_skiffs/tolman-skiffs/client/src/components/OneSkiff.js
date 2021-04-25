@@ -166,7 +166,7 @@ const titleHeader =
                 {/* <button style={buttonStyle} onClick={() => deleteSkiff(skiff)}>Delete</button>     */}
             </div>
             ):
-            <p>GETTING DATA...</p>
+            <p>GETTING DATA... or something went horribly wrong...</p>
         }
     </div>
 )

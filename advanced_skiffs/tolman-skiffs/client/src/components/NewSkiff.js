@@ -55,7 +55,7 @@ const submitForm = (event) => {
         modelName: modelName,
         startDate: startDate,
         finishDate: finishDate,
-        // stockLength: stockLength,
+        // stockLength: stockLength,  OLD VERSION PRE CURRENCY
         stockLength: Number(stockLength.replace(/[^0-9.-]+/g,"")),     //WHERE THE FILTER IS ADDED CHECK THIS
         customLength: customLength,
         pictureUrl: pictureUrl,

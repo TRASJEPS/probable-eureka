@@ -24,7 +24,7 @@ const NotFound = () => {
         <AllSkiffs path="/" />
         <NewSkiff path="/skiff/new" />
         <OneSkiff path="/skiff/:id" />
-        <EditSkiff path="/skiff/:id/edit" />
+        <EditSkiff path="/skiff/:id/edit" />   {/* FRONT END PATH */}
         <NotFound default />
       </Router>
     </div>

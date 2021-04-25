@@ -25,25 +25,21 @@ const EditSkiff = (props) => {
     const [errs, setErrs ] = useState({});  //READY FOR OBJECT
 
 useEffect(() => {
-    axios
-            .get("http://localhost:7777/api/skiffs/" + id)
-            .then((response) => {
-                const editOneSkiff = response.data;
-                console.log(editOneSkiff);
-                setBuildComplete(editOneSkiff.buildComplete);
-                setOwnerName(editOneSkiff.buildComplete);
-                setBuilderName(editOneSkiff.buildComplete);
-                setModelName(editOneSkiff.buildComplete);
-                setStartDate(editOneSkiff.buildComplete);
-                setFinishDate(editOneSkiff.buildComplete);
-                setStockLength(editOneSkiff.buildComplete);
-                setCustomLength(editOneSkiff.buildComplete);
-                setPictureUrl(editOneSkiff.buildComplete);
-                setDescription(editOneSkiff.buildComplete);
-                xxx(editOneSkiff.buildComplete);
-                xxx(editOneSkiff.buildComplete);
-                xxx(editOneSkiff.buildComplete);
-                xxx(editOneSkiff.buildComplete);
+    axios  //BACKEND
+        .get("http://localhost:7777/api/skiffs/" + id )  //THIS IS IN THE skiffs.route.js BACKEND PATH
+        .then((response) => {
+            const editOneSkiff = response.data;
+            console.log(editOneSkiff);
+            setBuildComplete(editOneSkiff.buildComplete);
+            setOwnerName(editOneSkiff.ownerName);
+            setBuilderName(editOneSkiff.builderName);
+            setModelName(editOneSkiff.modelName);
+            setStartDate(editOneSkiff.startDate);   
+            setFinishDate(editOneSkiff.finishDate);
+            setStockLength(editOneSkiff.stockLength);
+            setCustomLength(editOneSkiff.customLength);
+            setPictureUrl(editOneSkiff.pictureUrl);
+            setDescription(editOneSkiff.description);
             }) 
             .catch((err) => {
                 console.log(err);
@@ -52,9 +48,31 @@ useEffect(() => {
 
 const submitForm = (event) => {
     event.preventDefault();
-   
+   axios  //BACKEND
+        .put("http://localhost:7777/api/skiffs/" + id,     //THIS IS IN THE skiffs.route.js BACKEND PATH
+   {
+    buildComplete: buildComplete,
+    ownerName: ownerName,
+    builderName: builderName,
+    modelName: modelName,
+    startDate: startDate,
+    finishDate: finishDate,
+    stockLength: stockLength, 
+    customLength: customLength, 
+    pictureUrl: pictureUrl,
+    description: description,
+   })
     
-
+   .then((response) => {
+    if(response.data.errors) {
+        setErrs(response.data.errors);
+    } else {    
+    console.log(response.data);
+    navigate(`/skiff/${response.data._id}`);
+    }
+    })
+    .catch((err) => { console.log(err); 
+    });
 
 }
 
