@@ -8,7 +8,30 @@ import { formatCurrency } from '../utilities/CurrencyFormatter';
 
 //AXIOS UPDATE
 const EditSkiff = (props) => {
+
+    const [ buildComplete, setBuildComplete ] = useState(false);
+    const [ ownerName, setOwnerName ] = useState("");
+    const [ builderName, setBuilderName ] = useState("");
+    const [ modelName, setModelName ] = useState("Standard");  //AUTOMATICALLY STARTS AS STANDARD IN THIS CASE
+    const [ startDate, setStartDate ] = useState("");
+    const [ finishDate, setFinishDate ] = useState("");
+    const [ stockLength, setStockLength ] = useState("");  // PLAY WITH NUMBERS 
+    const [ customLength, setCustomLength ] = useState(""); // SET AS A NUMBER BUT USE AN EMPTY STRING SO CONSOLE PLAYS NICE
+    const [ pictureUrl, setPictureUrl ] = useState("");
+    const [ description, setDescription ] = useState("");
+    const [errs, setErrs ] = useState({});  //READY FOR OBJECT
+
+const submitForm = (e) => {
+   
+    
+
+
+}
+
  return(
+
+
+
     <div>
         <h2>Edit Yacht</h2>
 
