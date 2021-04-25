@@ -23,7 +23,6 @@ const NewSkiff = (props) => {
     const [ customLength, setCustomLength ] = useState(""); // SET AS A NUMBER BUT USE AN EMPTY STRING SO CONSOLE PLAYS NICE
     const [ pictureUrl, setPictureUrl ] = useState("");
     const [ description, setDescription ] = useState("");
-
     const [errs, setErrs ] = useState({});  //READY FOR OBJECT
     // RIP REGEX 2021-2021
     // let regex = /^[0-9]+.[0-9][0-9]/g;  // SETTING UP FOR CURRENCY
