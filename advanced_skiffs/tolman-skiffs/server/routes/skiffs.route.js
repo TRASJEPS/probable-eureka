@@ -2,6 +2,7 @@
 const SkiffsController = require('../controllers/skiffs.controller');
 
 //create the valid routes
+// NOTING THE VERB IS WHATS IMPORTANT
 module.exports = (app) => {                             //LAY GROUNDWORK FOR CONTROLLER
     app.get('/api/skiffs',  SkiffsController.getAll);   //calling it this becuase this is about skiffs
     app.post('/api/skiffs', SkiffsController.create);

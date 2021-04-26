@@ -24,6 +24,9 @@ const NotFound = () => {
         <AllSkiffs path="/" />
         <NewSkiff path="/skiff/new" />
         <OneSkiff path="/skiff/:id" />
+        {/* REMEMBER THAT PROPS CAN TRANSFER INTO MULTIPLE COMPONENTS  */}
+        {/* <OneSkiff path="/skiff/:id/:category" /> */}
+        {/* <OneSkiff path="/issue/:category/:subCategory/:id" />   GRACE SETUP  */}
         <EditSkiff path="/skiff/:id/edit" />   {/* FRONT END PATH */}
         <NotFound default />
       </Router>
