@@ -41,39 +41,39 @@ useEffect(() => {
             setPictureUrl(editOneSkiff.pictureUrl);
             setDescription(editOneSkiff.description);
             }) 
-            .catch((err) => {
-                console.log(err);
+        .catch((err) => {
+            console.log(err);
             });
 }, []);
 
 const submitForm = (event) => {
     event.preventDefault();
-   axios  //BACKEND
+    axios  //BACKEND
         .put("http://localhost:7777/api/skiffs/" + id,     //THIS IS IN THE skiffs.route.js BACKEND PATH
    {
     buildComplete: buildComplete,
     ownerName: ownerName,
     builderName: builderName,
     modelName: modelName,
-    startDate: startDate,
+    startDate: startDate, 
     finishDate: finishDate,
     stockLength: stockLength, 
     customLength: customLength, 
     pictureUrl: pictureUrl,
     description: description,
    })
-    
-   .then((response) => {
-    if(response.data.errors) {
-        setErrs(response.data.errors);
-    } else {    
-    console.log(response.data);
-    navigate(`/skiff/${response.data._id}`);
-    }
-    })
-    .catch((err) => { console.log(err); 
-    });
-
+        .then((response) => {
+            if(response.data.errors) {
+                console.log(response.data.errors);
+                setErrs(response.data.errors);
+            } else {    
+                console.log(response.data);
+                navigate(`/skiff/${response.data._id}`);
+            }
+            })
+        .catch((err) => { 
+            console.log(err); 
+            });
 }
 
 const titleHeader = 
