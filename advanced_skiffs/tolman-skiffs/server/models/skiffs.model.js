@@ -48,16 +48,16 @@ const TolmanSkiffSchema = new mongoose.Schema({
         default: false,
     },
 
-    // OG TYPE: number now its... this makes data save as ...0.00
+    // OG TYPE: number now its    --   CURRENCY  --   this makes data save as ...0.00
     // FRONT END NOW SEES THIS AS BOAT COST
     // NEED TO CONVERT THIS ON BACKEND TO WHOLE NUMBER BUT INCLUDE .00 etc
     stockLength: {
         type: Float,
         required: [true, "Please enter the cost in dollars and cents."],
-        min: [0.00, "You must enter a value, even if it is $0.00."],
+        min: [150000, "The minimum cost of your yacht will be $150,000.00."],
     },
 
-    // stockLength: {
+    // stockLength: {  //THIS WAS THE FIRST TYPE SETUP
     //     type: Float,
     //     required: [true, "Your boat must have a stock length."],
     //     min: [15, "Minimum length for a Tolman skiff must be at least 15 feet."],

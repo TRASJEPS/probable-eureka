@@ -127,13 +127,8 @@ const AllSkiffs = (props) => {
                 <p>{`Custom Length: ${skiff.customLength}'`}</p>
                 <p>{`Description: ${skiff.description}`}</p>
                 <p id="smallFont">{`Date Added: ${skiff.createdAt.substring(5,10)}-${skiff.createdAt.substring(0,4)}`}</p>
-                <button style={buttonStyle} onClick={() => navigate(`/skiff/${skiff._id}`)}>View Skiff Details</button>
-                <button style={buttonStyle} onClick={() => navigate(`/skiff/${skiff._id}`)}>Edit</button>
-                {/* WIP DELETE  */}
-                {/* <button style={buttonStyle} onClick={() => deleteSkiff(`/skiff/${skiff._id}`)}>Delete</button> */}
-                {/* OR iS IT skiff.name ???  */}
-                {/* DONT INCLUDE THE {} BECAUSE YOU JUST WANT THE SKIFF object */}
-                {/* ITS GOOD TO IMPORT THE WHOLE  */}
+                <button style={buttonStyle} onClick={() => navigate(`/skiff/${skiff._id}`)}>Details</button>
+                <button style={buttonStyle} onClick={() => navigate(`/skiff/${skiff._id}/edit`)}>Edit</button>
                 <button style={buttonStyle} onClick={() => deleteSkiff(skiff)}>Delete</button>
             </div>
         ))}

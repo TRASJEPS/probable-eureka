@@ -159,7 +159,7 @@ const titleHeader =
                 <p>{`Description: ${skiff.description}`}</p>
                 <p id="smallFont">{`Date Added: ${skiff.createdAt.substring(5,10)}-${skiff.createdAt.substring(0,4)}`}</p>
                 <button style={buttonStyle} onClick={() => navigate(-1)}>Return</button>
-                <button style={buttonStyle} onClick={() => navigate(`/skiff/${skiff._id}`)}>Edit</button>
+                <button style={buttonStyle} onClick={() => navigate(`/skiff/${skiff._id}/edit`)}>Edit</button>
                 {/* <button style={buttonStyle} onClick={() => deleteSkiff(skiff)}>Delete</button>     */}
             </div>
             ):

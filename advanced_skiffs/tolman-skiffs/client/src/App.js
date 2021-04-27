@@ -1,4 +1,3 @@
-
 import './App.css';
 import React from 'react';
 import { Router } from '@reach/router';
@@ -24,10 +23,7 @@ const NotFound = () => {
         <AllSkiffs path="/" />
         <NewSkiff path="/skiff/new" />
         <OneSkiff path="/skiff/:id" />
-        {/* REMEMBER THAT PROPS CAN TRANSFER INTO MULTIPLE COMPONENTS  */}
-        {/* <OneSkiff path="/skiff/:id/:category" /> */}
-        {/* <OneSkiff path="/issue/:category/:subCategory/:id" />   GRACE SETUP  */}
-        <EditSkiff path="/skiff/:id/edit" />   {/* FRONT END PATH */}
+        <EditSkiff path="/skiff/:id/edit" />
         <NotFound default />
       </Router>
     </div>

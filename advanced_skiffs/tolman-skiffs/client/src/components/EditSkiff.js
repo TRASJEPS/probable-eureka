@@ -1,14 +1,11 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
-import { link, navigate } from '@reach/router';
-// THIS FORMATS ALL CURRENCY USE ON ALL PAGES 
-import { formatCurrency } from '../utilities/CurrencyFormatter';
-
-// app.put('/api/skiffs/:id', SkiffsController.update);   //THIS IS THE UPDATER or EDITOR
+import { Link, navigate } from '@reach/router';
+import CurrencyInput from 'react-currency-input-field';
+// import { formatCurrency } from '../utilities/CurrencyFormatter';
 
 //AXIOS UPDATE
 const EditSkiff = (props) => {
-
     //THIS must be called id because thats how its linked in APP.JS
     //THIS also links into the front end, DESCTURCUTING
     const { id } = props;
@@ -23,7 +20,7 @@ const EditSkiff = (props) => {
     const [ customLength, setCustomLength ] = useState(""); // SET AS A NUMBER BUT USE AN EMPTY STRING SO CONSOLE PLAYS NICE
     const [ pictureUrl, setPictureUrl ] = useState("");
     const [ description, setDescription ] = useState("");
-    const [errs, setErrs ] = useState({});  //READY FOR OBJECT
+    const [errs, setErrs ] = useState({});
 
 useEffect(() => {
     axios  //BACKEND
@@ -137,7 +134,7 @@ const buttonStyle =
         fontSize: "small",
         border: "2px solid darkblue",
         borderRadius: "30px",
-    };
+};
 const inputTextPadding = 
     {
         paddingTop: "7px",
@@ -148,7 +145,7 @@ const inputTextPadding =
         border: "2px solid rgb(176, 217, 255)",
         margin: "5px",
         marginLeft: "20px"
-    };
+};
 const inputTextPaddingSpecial = 
     {
         paddingTop: "5px",
@@ -159,7 +156,7 @@ const inputTextPaddingSpecial =
         border: "2px solid rgb(176, 217, 255)",
         marginTop: "-5px",
         alignItems: "center",
-    };
+};
 const textAreaPadding = 
         {
             padding: "10px",
@@ -168,11 +165,11 @@ const textAreaPadding =
             margin: "5px",
             width: "72%",
             height: "100px"
-        };
+};
 const inputPadDesc = 
         {
             align: "vertial",
-        };
+};
 const errorAlert =
         {
             display: "inline-block",
@@ -184,9 +181,9 @@ const errorAlert =
             paddingRight: "25px",
             margin: "0px",
             border: "2px solid rgb(220, 191, 191)",
-        };
+};
 const enterAlert =
-        {
+{
             display: "inline-block",
             color: "white",
             background: "rgba(59, 132, 177, 1.0)",
@@ -197,8 +194,7 @@ const enterAlert =
             margin: "0px",
             marginTop: "6px",
             border: "2px solid rgba(191, 207, 220, 1.0)",
-        };
-
+};
 const successAlert =
         {
             display: "inline-block",
@@ -214,7 +210,6 @@ const successAlert =
             marginBottom: "3px",
             border: "2px solid rgb(192, 220, 191)",
         };
-
 const successAlertLength =
         {
             alignItems: "right",
@@ -237,15 +232,16 @@ const successAlertLength =
 
  return(
 
-// REMEMBER TO SETUP THE CATCH
+// REMEMBER TO SETUP THE CATCH like on ONE SKIFF
 
     <div>
         <h2>Edit Yacht</h2>
 
+        {/* IS THIS ORDER CORRECT? */}
         <form onSubmit={submitForm}>
         <div>
                 <label>Owner Name</label>
-                <input style={inputTextPadding} type="text" name="ownerName" onBlur={(event) => setOwnerName(event.target.value)}></input>
+                <input style={inputTextPadding} type="text" name="ownerName" value={ownerName} onBlur={(event) => setOwnerName(event.target.value)}></input>
                 { ownerName.length == 0 ? null 
                     : ownerName.length < 3 ? <span className="fadeInErrors" style={errorAlert}>Please enter a name longer than 3 characters.</span>
                         : ownerName.length > 50 ? <span className="fadeInErrors" style={errorAlert}>Your name is longer than 50 characters.  Please enter a shorter name. </span>
@@ -254,7 +250,7 @@ const successAlertLength =
             </div>
             <div>
                 <label>Builder Name</label>
-                <input style={inputTextPadding} type="text" name="builderName" onBlur={(event) => setBuilderName(event.target.value)}></input>
+                <input style={inputTextPadding} type="text" name="builderName" value={builderName} onBlur={(event) => setBuilderName(event.target.value)}></input>
                 { builderName.length == 0 ? null 
                     : builderName.length < 3 ? <span className="fadeInErrors" style={errorAlert}>Please enter a builder name longer than 3 characters.</span>
                         : builderName.length > 50 ? <span className="fadeInErrors" style={errorAlert}>Your builder name is longer than 50 characters.  Please enter a shorter name. </span>
@@ -263,7 +259,7 @@ const successAlertLength =
             </div>
             <div>
                 <label>Select Model Type</label>
-                <select style={inputTextPadding} type="text" name="modelName" onBlur={(event) => setModelName(event.target.value)}>
+                <select style={inputTextPadding} type="text" name="modelName" value={modelName} onBlur={(event) => setModelName(event.target.value)}>
                     <option value="Standard">Standard</option>
                     <option value="Wide Body">Wide Body</option>
                     <option value="Jumbo">Jumbo</option>
@@ -273,14 +269,14 @@ const successAlertLength =
             </div>
             <div>
                 <label>Build Start Date</label>
-                <input style={inputTextPadding} type="date" name="startDate" onBlur={(event) => setStartDate(event.target.value)}></input>
+                <input style={inputTextPadding} type="date" name="startDate" value={startDate} onBlur={(event) => setStartDate(event.target.value)}></input>
                 { startDate.length == 0 ? null 
                     : <p className="elementToFadeInAndOut" style={enterAlert}>Date selected...</p>}
                 { errs.startDate? <span className="fadeInErrors" style={errorAlert}> { errs.startDate.message }</span> : null }
             </div>
             <div>
                 <label>Build Finish Date</label>
-                <input style={inputTextPadding} type="date" name="finishDate" onBlur={(event) => setFinishDate(event.target.value)}></input>
+                <input style={inputTextPadding} type="date" name="finishDate" value={finishDate} onBlur={(event) => setFinishDate(event.target.value)}></input>
                 { finishDate.length == 0 ? null 
                     : <p className="elementToFadeInAndOut" style={enterAlert}>Date selected...</p> }
                 { errs.finishDate? <span className="fadeInErrors" style={errorAlert}> { errs.finishDate.message }</span> : null }
@@ -291,11 +287,10 @@ const successAlertLength =
                     <label>Boat Cost</label>
                     <div id="smallFont">{"Enter Value in Dollars & Cents"}</div>
                 </div>
-                <CurrencyInput style={inputTextPadding} prefix="$" decimalsLimit={2} decimalScale={2} name="stockLength" onBlur={(event) => setStockLength(event.target.value)}/>
+                <CurrencyInput style={inputTextPadding} prefix="$" decimalsLimit={2} decimalScale={2} name="stockLength" value={stockLength} onBlur={(event) => setStockLength(event.target.value)}/>
                 {/* <input style={inputTextPadding} type="number" name="stockLength" onBlur={(event) => setStockLength(event.target.value)}></input> */}  {/*org setup */}
                 { stockLength == 0 ? null 
-                    : stockLength < 14 ? <span className="fadeInErrors" style={errorAlert}>Your yacht will cost at least $150,000.</span>
-                        // : stockLength > 30 ? <span className="fadeInErrors" style={errorAlert}>Please enter a stock length shorter than 350 feet.</span>
+                    : stockLength < 150000 ? <span className="fadeInErrors" style={errorAlert}>Your yacht will cost at least $150,000.</span>
                                 : <p className="fadeInLengths" style={successAlertLength}>&#10003;</p> }
                 { errs.stockLength? <span className="fadeInErrors" style={errorAlert}> { errs.stockLength.message }</span> : null }
             </div>
@@ -305,7 +300,7 @@ const successAlertLength =
                     <label>Custom Length in Feet</label>
                     <div id="smallFont">Between 50-350'</div>
                 </div>
-                <input style={inputTextPadding} type="number" name="customLength" onBlur={(event) => setCustomLength(event.target.value)}></input>
+                <input style={inputTextPadding} type="number" name="customLength" value={customLength} onBlur={(event) => setCustomLength(event.target.value)}></input>
                 { customLength == 0 ? null 
                     : customLength < 50 ? <span className="fadeInErrors" style={errorAlert}>Please enter a custom length longer than 50 feet.</span>
                         : customLength > 350 ? <span className="fadeInErrors" style={errorAlert}>Please enter a custom length shorter than 350 feet.</span>
@@ -314,14 +309,14 @@ const successAlertLength =
             </div>
             <div>
                 <label>Photo Link</label>
-                <input style={inputTextPadding} type="text" name="pictureUrl" onBlur={(event) => setPictureUrl(event.target.value)}></input>
+                <input style={inputTextPadding} type="text" name="pictureUrl" value={pictureUrl} onBlur={(event) => setPictureUrl(event.target.value)}></input>
                 { pictureUrl.length == 0 ? null 
                     : <p className="fadeIn" style={successAlert}>&#10003;</p> }
                 { errs.pictureUrl? <span style={errorAlert}> { errs.pictureUrl.message }</span> : null }
             </div>
             <div>
                 <div style={inputPadDesc}><label >Description:</label></div>
-                <textarea style={textAreaPadding} type="text" name="description" rows={100} onBlur={(event) => setDescription(event.target.value)}></textarea>
+                <textarea style={textAreaPadding} type="text" name="description" value={description} rows={100} onBlur={(event) => setDescription(event.target.value)}></textarea>
                 { description.length == 0 ? null 
                     : description.length < 6 ? <span className="fadeInErrors" style={errorAlert}>Please enter description longer than 6 characters.</span>
                         : description.length > 500 ? <span className="fadeInErrors" style={errorAlert}>Please enter a shorter description. </span>
@@ -330,13 +325,12 @@ const successAlertLength =
             </div>
             <div>
                 <label>Build Complete</label>
-                {/* call was checked="buildComplete" */}
-                <input style={inputTextPadding} type="checkbox" name="buildComplete" onBlur={(event) => setBuildComplete( !buildComplete )}></input>  {/*SET OPPOSITE TO MAKE IT MAKES IT AUTO FALSE */}
+                <input style={inputTextPadding} type="checkbox" name="buildComplete" checked={buildComplete} onBlur={(event) => setBuildComplete( !buildComplete )}></input>  {/*SET OPPOSITE TO MAKE IT MAKES IT AUTO FALSE */}
                 { errs.buildComplete? <span style={errorAlert}> { errs.buildComplete.message }</span> : null }
             </div>
-            <button style={buttonStyle} type="submit">Add New Skiff</button>
+            <button style={buttonStyle} type="submit">Update Yacht Details</button>
         </form>
-
+        <button style={buttonStyle} onClick={() => navigate(-1)}>Cancel Changes</button>
     </div>
  )
 }

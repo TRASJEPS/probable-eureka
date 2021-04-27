@@ -1,8 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import { Link, navigate } from '@reach/router';
-
-// import NumberFormat from 'react-number-format';  // INITIAL TEST FORMATTING  // DOES NOT WORK
 import CurrencyInput from 'react-currency-input-field';  //NEWEST TRIALS 
 
 // import { set } from 'mongoose';  DO NOT ADD THIS ON THE FRONT END
@@ -298,7 +296,7 @@ return (
                 <CurrencyInput style={inputTextPadding} prefix="$" decimalsLimit={2} decimalScale={2} name="stockLength" onBlur={(event) => setStockLength(event.target.value)}/>
                 {/* <input style={inputTextPadding} type="number" name="stockLength" onBlur={(event) => setStockLength(event.target.value)}></input> */}  {/*org setup */}
                 { stockLength == 0 ? null 
-                    : stockLength < 14 ? <span className="fadeInErrors" style={errorAlert}>Your yacht will cost at least $150,000.</span>
+                    : stockLength < 150000 ? <span className="fadeInErrors" style={errorAlert}>Your yacht will cost at least $150,000.</span>
                         // : stockLength > 30 ? <span className="fadeInErrors" style={errorAlert}>Please enter a stock length shorter than 350 feet.</span>
                                 : <p className="fadeInLengths" style={successAlertLength}>&#10003;</p> }
                 { errs.stockLength? <span className="fadeInErrors" style={errorAlert}> { errs.stockLength.message }</span> : null }
