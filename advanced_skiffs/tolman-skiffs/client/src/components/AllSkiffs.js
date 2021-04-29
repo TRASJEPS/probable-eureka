@@ -52,30 +52,43 @@ const AllSkiffs = (props) => {
         borderRadius: "20px",
         display: "inline-block",
         width: "26%",
+        height: "40%",
         margin: "10px",
+        flex: 20, // KEEP 1 for small sec
         fontWeight: "bold",
         paddingLeft: "25px",
         paddingRight: "25px",
-        //textAlign: "left",
+        // textAlign: "left",
         background: "white",
         paddingBottom: "20px"
     };
-
     const mainNameContainer = 
     {
         border: "4px solid rgb(176, 217, 255)",
-        borderRadius: "30px",
+        borderRadius: "15px",
         display: "inline-block",
         margin: "10px",
         fontWeight: "bold",
         padding: "15px",
+        paddingLeft: "5%",
+        paddingRight: "5%",
         fontWeight: "bolder",
         fontSize: "large",
         //textAlign: "left",
         background: "rgb(224, 240, 255)",
-        paddingBottom: "20px"
     };
-
+    const picPreviewSizer = 
+    {
+        border: "4px solid rgb(176, 217, 255)",
+        width: "100px",
+        height: "100px",
+        borderRadius: "25px",
+        display: "inline-block",
+        margin: "10px",
+        padding: "5px",
+        //textAlign: "left",
+        background: "rgb(224, 240, 255)",
+    };
     const buttonStyle = 
         {
             margin: "5px",
@@ -93,7 +106,6 @@ const AllSkiffs = (props) => {
             border: "2px solid darkblue",
             borderRadius: "10px",
         };
-
     const largeButtonStyle = 
         {
             margin: "5px",
@@ -111,16 +123,13 @@ const AllSkiffs = (props) => {
             border: "2px solid darkblue",
             borderRadius: "15px",
         };
-
-
     const titleHeader = 
     {
         border: "4px solid rgb(176, 217, 255)",
-        borderRadius: "30px",
+        borderRadius: "20px",
         // display: "inline-block",
-        margin: "20px",
-        marginLeft: "35px",
-        marginRight: "35px",
+        margin: "40px",
+        marginBottom: "-20px",
         // fontWeight: "bold",
         padding: "25px",
         // fontWeight: "bolder",
@@ -129,30 +138,54 @@ const AllSkiffs = (props) => {
         background: "rgb(224, 240, 255)",
         paddingBottom: "20px"
     };
+    const addNewHeader = 
+    {
+        border: "4px solid rgb(176, 217, 255)",
+        borderRadius: "20px",
+        // width: "26%",
+        // height: "40%",
+        // display: "inline-block",
+        margin: "40px",
+        marginBottom: "7px",
+        // marginRight: "11px",
+        padding: "25px",
+        //textAlign: "left",
+        background: "rgb(224, 240, 255)",
+        paddingBottom: "20px"
+    };
+
+    const scaleFlex = 
+    {
+        display: "flex",
+        flexWrap: "wrap",
+    };
 
     return(
     <div>
         <h1 style={titleHeader}>All Yachts</h1>
-        <div><button style={largeButtonStyle} onClick={() => navigate(`/skiff/new`)}>Add New Yacht</button></div>
+        <div style={addNewHeader}>
+            <p>Add a new yacht to the database here.</p>
+            <button style={largeButtonStyle} onClick={() => navigate(`/skiff/new`)}>Create New Yacht</button>
+        </div>
 
-        
         {/* SKIFF is an object  */}
-        {allSkiffs.map((skiff, index) => (
-            <div style={skiffContainer}> 
-                <h4 style={mainNameContainer}>{`${skiff.ownerName}'s ${skiff.modelName} Yacht`}</h4>
-                <br></br>
-                <img src={ skiff.pictureUrl} />    {/* ADD IMG CONTAINER HERE */}
-                <p>{`Built by: ${skiff.builderName}`}</p>
-                {/* ADD THE toString YAYYYYY */}
-                <p> {`Cost: ${formatCurrency(skiff.stockLength)}`}</p>
-                <p>{`Custom Length: ${skiff.customLength}'`}</p>
-                <p>{`Description: ${skiff.description}`}</p>
-                <p id="smallFont">{`Date Added: ${skiff.createdAt.substring(5,10)}-${skiff.createdAt.substring(0,4)}`}</p>
-                <button style={buttonStyle} onClick={() => navigate(`/skiff/${skiff._id}`)}>Details</button>
-                <button style={buttonStyle} onClick={() => navigate(`/skiff/${skiff._id}/edit`)}>Edit</button>
-                <button style={buttonStyle} onClick={() => deleteSkiff(skiff)}>Delete</button>
-            </div>
-        ))}
+        {/* <div style={scaleFlex}> */}
+            {allSkiffs.map((skiff, index) => (
+                <div style={skiffContainer}> 
+                    <h4 style={mainNameContainer}>{`${skiff.ownerName}'s ${skiff.modelName} Yacht`}</h4>
+                    <br></br>
+                    <img style={picPreviewSizer} src={ skiff.pictureUrl} />    {/* ADD IMG CONTAINER HERE */}
+                    <p>{`Built by: ${skiff.builderName}`}</p>
+                    <p> {`Cost: ${formatCurrency(skiff.stockLength)}`}</p>
+                    <p>{`Custom Length: ${skiff.customLength}'`}</p>
+                    <p>{`Description: ${skiff.description}`}</p>
+                    <p id="smallFont">{`Date Added: ${skiff.createdAt.substring(5,10)}-${skiff.createdAt.substring(0,4)}`}</p>
+                    <button style={buttonStyle} onClick={() => navigate(`/skiff/${skiff._id}`)}>Details</button>
+                    <button style={buttonStyle} onClick={() => navigate(`/skiff/${skiff._id}/edit`)}>Edit</button>
+                    <button style={buttonStyle} onClick={() => deleteSkiff(skiff)}>Delete</button>
+                </div>
+            ))}
+        {/* </div> */}
     </div>
     )
 }
