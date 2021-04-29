@@ -25,14 +25,16 @@ const EditSkiff = (props) => {
     //MUST CONVERT TO YYYY-MM-DD
     const editingDateFormatter = incomingDate => {
         console.log(incomingDate);
+        
+        // return incomingDate.split("T")[0];  // SPLITS UP TO THE first element of that string's character, then LOGS the split to the first slot in array in this case slot 0
+
+        console.log(incomingDate);
         let year = incomingDate.getFullYear();
         let month = String (incomingDate.getMonth()+1).padStart(2,'0');  //BECUASE ITS AN ARRAY!!! starts at zero LOL // THIS MAKES IT SO THE DAMN MONTH is formatted 'mm'
         let day = String (incomingDate.getDate()+1).padStart(2,'0');  //BECUASE ITS AN ARRAY!!! starts at zero LOL // THIS MAKES IT SO THE DAMN DAY is formatted 'dd'
         console.log(`${year}-${month}-${day}`);
         return `${year}-${month}-${day}`;
     };
-
-
 
 useEffect(() => {
     axios  //BACKEND
@@ -45,15 +47,21 @@ useEffect(() => {
             setBuilderName(editOneSkiff.builderName);
             setModelName(editOneSkiff.modelName);
 
-            // setStartDate((new Date(editOneSkiff.startDate)).toLocaleDateString("en-us")); 
+            // setStartDate((new Date(editOneSkiff.startDate)).toLocaleDateString("en_US"));   // TRY THIS!!!
+            //
+
+            // setStartDate((new Date(editOneSkiff.startDate)).toLocaleDateString("en_US")); 
             // IMPLIMENTS THE DATE FORMATIING FUNCTION AND CLEANS UP ENTRY  
-            setStartDate(editingDateFormatter(new Date(editOneSkiff.startDate)));  
+
+            setStartDate(editingDateFormatter(new Date(editOneSkiff.startDate)));   
             setFinishDate(editingDateFormatter(new Date(editOneSkiff.finishDate)));
+            // setStartDate(editingDateFormatter(editOneSkiff.startDate)); 
+            // setStartDate(editingDateFormatter(editOneSkiff.finishDate));
 
             setStockLength(editOneSkiff.stockLength);
             setCustomLength(editOneSkiff.customLength);
-            setPictureUrl(editOneSkiff.pictureUrl);
-            setDescription(editOneSkiff.description);
+            setPictureUrl(editOneSkiff.pictureUrl);  // DOESNT ERROR OUT IF NO PIC FOUND
+            setDescription(editOneSkiff.description == undefined ? "" : editOneSkiff.description);  //TERNARY TO MAKE SURE IT TAKES NON ENTERED DATA
             }) 
         .catch((err) => {
             console.log(err);
@@ -137,6 +145,7 @@ const mainNameContainer =
 };
 const buttonStyle = 
     {
+        display: "inline-block",
         marginTop: "15px",
         marginLeft: "5px",
         marginRight: "5px",
@@ -352,8 +361,9 @@ const successAlertLength =
                 { errs.buildComplete? <span style={errorAlert}> { errs.buildComplete.message }</span> : null }
             </div>
             <button style={buttonStyle} type="submit">Update Yacht Details</button>
+            <button style={buttonStyle} onClick={() => navigate(-1)}>Cancel Changes</button>
         </form>
-        <button style={buttonStyle} onClick={() => navigate(-1)}>Cancel Changes</button>
+        
     </div>
  )
 }

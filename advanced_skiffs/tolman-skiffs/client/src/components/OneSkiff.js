@@ -156,11 +156,12 @@ const titleHeader =
                 <p> {`Cost: ${ formatCurrency(skiff.stockLength)} `}</p>
 
                 <p>{`Custom Length: ${skiff.customLength}'`}</p>
+                <p>{`Build Start Date: ${skiff.startDate.substring(5,10)}-${skiff.startDate.substring(0,4)}`}</p>
+                <p>{`Build Completion Date: ${skiff.finishDate.substring(5,10)}-${skiff.finishDate.substring(0,4)}`}</p>
                 <p>{`Description: ${skiff.description}`}</p>
-                <p>{`Build Start Date: ${skiff.startDate}`}</p>
-                <p>{`Build Completion Date: ${skiff.finishDate}`}</p>
                 <p id="smallFont">{`Date Added: ${skiff.createdAt.substring(5,10)}-${skiff.createdAt.substring(0,4)}`}</p>
-                <button style={buttonStyle} onClick={() => navigate(-1)}>Return</button>
+                {/* <button style={buttonStyle} onClick={() => navigate(-1)}>Return</button> */}
+                <button style={buttonStyle} onClick={() => navigate(`/`)}>Return</button>
                 <button style={buttonStyle} onClick={() => navigate(`/skiff/${skiff._id}/edit`)}>Edit</button>
                 {/* <button style={buttonStyle} onClick={() => deleteSkiff(skiff)}>Delete</button>     */}
             </div>

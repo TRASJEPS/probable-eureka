@@ -337,6 +337,7 @@ return (
                 { errs.buildComplete? <span style={errorAlert}> { errs.buildComplete.message }</span> : null }
             </div>
             <button style={buttonStyle} type="submit">Add New Skiff</button>
+            <button style={buttonStyle} onClick={() => navigate(-1)}>Cancel Changes</button>
         </form>
     </div>
 )

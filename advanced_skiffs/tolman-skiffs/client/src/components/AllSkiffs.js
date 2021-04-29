@@ -94,6 +94,25 @@ const AllSkiffs = (props) => {
             borderRadius: "10px",
         };
 
+    const largeButtonStyle = 
+        {
+            margin: "5px",
+            // marginLeft: "5px",
+            // marginRight: "5px",
+            marginTop: "15px",
+            paddingTop: "10px",
+            paddingBottom: "10px",
+            paddingLeft: "20px",
+            paddingRight: "20px",
+            background: "rgb(27, 36, 87)",
+            color: "white",
+            fontWeight: "bolder",
+            fontSize: "large",
+            border: "2px solid darkblue",
+            borderRadius: "15px",
+        };
+
+
     const titleHeader = 
     {
         border: "4px solid rgb(176, 217, 255)",
@@ -114,7 +133,9 @@ const AllSkiffs = (props) => {
     return(
     <div>
         <h1 style={titleHeader}>All Yachts</h1>
+        <div><button style={largeButtonStyle} onClick={() => navigate(`/skiff/new`)}>Add New Yacht</button></div>
 
+        
         {/* SKIFF is an object  */}
         {allSkiffs.map((skiff, index) => (
             <div style={skiffContainer}> 
