@@ -146,7 +146,7 @@ const titleHeader =
             skiff.ownerName !== undefined ? 
             (
             <div style={skiffContainer}> 
-                <h4 style={mainNameContainer}>{`${skiff.ownerName}'s ${skiff.modelName} Skiff`}</h4>
+                <h4 style={mainNameContainer}>{`${skiff.ownerName}'s ${skiff.modelName} Yacht`}</h4>
                 <br></br>
                 <img src={ skiff.pictureUrl} />    {/* ADD IMG CONTAINER HERE */}
                 <p>{`Built by: ${skiff.builderName}`}</p>

@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import { Link, navigate } from '@reach/router';
-import CurrencyInput from 'react-currency-input-field';  //NEWEST TRIALS 
+import CurrencyInput from 'react-currency-input-field';
 
 // import { set } from 'mongoose';  DO NOT ADD THIS ON THE FRONT END
 

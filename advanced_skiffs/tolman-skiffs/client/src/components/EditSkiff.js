@@ -79,7 +79,7 @@ const submitForm = (event) => {
     modelName: modelName,
     startDate: startDate, 
     finishDate: finishDate,
-    stockLength: stockLength, 
+    stockLength: stockLength,  //ALLOWS FOR THE / to be entered 
     customLength: customLength, 
     pictureUrl: pictureUrl,
     description: description,
@@ -290,9 +290,6 @@ const successAlertLength =
                 </select>
                 { errs.modelName? <span className="fadeInErrors" style={errorAlert}> { errs.modelName.message }</span> : null }
             </div>
-
-
-
             <div>
                 <label>Build Start Date</label>
                 <input style={inputTextPadding} type="date" name="startDate" value={startDate} onChange={(event) => setStartDate(event.target.value)}></input>
@@ -309,7 +306,6 @@ const successAlertLength =
             </div>
 
 
-
             <div className="theTroubleShooter">
                 <div className="fontAlignmentPal">
                     <label>Boat Cost</label>
@@ -317,7 +313,6 @@ const successAlertLength =
                 </div>
                 <CurrencyInput style={inputTextPadding} prefix="$" decimalsLimit={2} decimalScale={2} name="stockLength" value={stockLength} 
                 onChange={
-                    //THIS MAKES THE CURRENCY WORK AND CONVERT BACK 
                     (event) => setStockLength(Number(event.target.value.replace(/[^0-9.-]+/g,"")))
                     }/>
 

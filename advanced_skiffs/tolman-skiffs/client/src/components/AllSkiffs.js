@@ -142,9 +142,9 @@ const AllSkiffs = (props) => {
     {
         border: "4px solid rgb(176, 217, 255)",
         borderRadius: "20px",
-        // width: "26%",
+        width: "42%",
         // height: "40%",
-        // display: "inline-block",
+        display: "inline-block",
         margin: "40px",
         marginBottom: "7px",
         // marginRight: "11px",
@@ -153,7 +153,6 @@ const AllSkiffs = (props) => {
         background: "rgb(224, 240, 255)",
         paddingBottom: "20px"
     };
-
     const scaleFlex = 
     {
         display: "flex",
@@ -166,6 +165,12 @@ const AllSkiffs = (props) => {
         <div style={addNewHeader}>
             <p>Add a new yacht to the database here.</p>
             <button style={largeButtonStyle} onClick={() => navigate(`/skiff/new`)}>Create New Yacht</button>
+        </div>
+        <div style={addNewHeader}>
+            <p>Welcome ((USER NAME HERE)).</p>
+            <button style={largeButtonStyle} onClick={() => navigate(`/skiff/new`)}>View Your Profile</button>
+            <button style={largeButtonStyle} onClick={() => navigate(`/skiff/new`)}>Edit</button>
+            <button style={largeButtonStyle} onClick={() => navigate(`/skiff/new`)}>Log Out</button>
         </div>
 
         {/* SKIFF is an object  */}
