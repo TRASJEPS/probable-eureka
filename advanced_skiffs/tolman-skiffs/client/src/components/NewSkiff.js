@@ -287,7 +287,6 @@ return (
                     : <p className="elementToFadeInAndOut" style={enterAlert}>Date selected...</p> }
                 { errs.finishDate? <span className="fadeInErrors" style={errorAlert}> { errs.finishDate.message }</span> : null }
             </div>
-
             <div className="theTroubleShooter">
                 <div className="fontAlignmentPal">
                     <label>Boat Cost</label>
@@ -301,7 +300,6 @@ return (
                                 : <p className="fadeInLengths" style={successAlertLength}>&#10003;</p> }
                 { errs.stockLength? <span className="fadeInErrors" style={errorAlert}> { errs.stockLength.message }</span> : null }
             </div>
-
             <div className="theTroubleShooter">
                 <div className="fontAlignmentPal">
                     <label>Custom Length in Feet</label>
@@ -336,8 +334,8 @@ return (
                 <input style={inputTextPadding} type="checkbox" name="buildComplete" onBlur={(event) => setBuildComplete( !buildComplete )}></input>  {/*SET OPPOSITE TO MAKE IT MAKES IT AUTO FALSE */}
                 { errs.buildComplete? <span style={errorAlert}> { errs.buildComplete.message }</span> : null }
             </div>
-            <button style={buttonStyle} type="submit">Add New Skiff</button>
-            <button style={buttonStyle} onClick={() => navigate(-1)}>Cancel Changes</button>
+            <button style={buttonStyle} type="submit">Add New Yacht</button>
+            <button style={buttonStyle} onClick={() => navigate(-1)}>Cancel</button>
         </form>
     </div>
 )

@@ -28,10 +28,12 @@ const EditSkiff = (props) => {
         
         // return incomingDate.split("T")[0];  // SPLITS UP TO THE first element of that string's character, then LOGS the split to the first slot in array in this case slot 0
 
+
+        // CHECK DATE IN
         console.log(incomingDate);
         let year = incomingDate.getFullYear();
-        let month = String (incomingDate.getMonth()+1).padStart(2,'0');  //BECUASE ITS AN ARRAY!!! starts at zero LOL // THIS MAKES IT SO THE DAMN MONTH is formatted 'mm'
-        let day = String (incomingDate.getDate()+1).padStart(2,'0');  //BECUASE ITS AN ARRAY!!! starts at zero LOL // THIS MAKES IT SO THE DAMN DAY is formatted 'dd'
+        let month = String (incomingDate.getMonth()+1).padStart(2,'0');  //BECUASE ITS AN ARRAY!!! starts at zero // THIS MAKES IT SO THE DAMN MONTH is formatted 'mm'
+        let day = String (incomingDate.getDate()+1).padStart(2,'0');  //BECUASE ITS AN ARRAY!!! starts at zero // THIS MAKES IT SO THE DAMN DAY is formatted 'dd'
         console.log(`${year}-${month}-${day}`);
         return `${year}-${month}-${day}`;
     };
@@ -306,14 +308,18 @@ const successAlertLength =
             </div>
 
 
+
             <div className="theTroubleShooter">
                 <div className="fontAlignmentPal">
                     <label>Boat Cost</label>
                     <div id="smallFont">{"Value in Dollars & Cents"}</div>
                 </div>
+                {/* <CurrencyInput style={inputTextPadding} prefix="$" decimalsLimit={2} decimalScale={2} name="stockLength" onBlur={(event) => setStockLength(event.target.value)}/> */}
                 <CurrencyInput style={inputTextPadding} prefix="$" decimalsLimit={2} decimalScale={2} name="stockLength" value={stockLength} 
-                onChange={
-                    (event) => setStockLength(Number(event.target.value.replace(/[^0-9.-]+/g,"")))
+                onValueChange={
+                    (value) => setStockLength(value)
+                    // (event) => setStockLength(event.target.value.replace(/[^0-9.-]+/g,""))
+                    // (event) => setStockLength(event.target.value.replace(/[^0-9.-]+/g,""))
                     }/>
 
                 { stockLength == 0 ? null 
