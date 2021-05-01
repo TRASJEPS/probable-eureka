@@ -26,16 +26,16 @@ const EditSkiff = (props) => {
     const editingDateFormatter = incomingDate => {
         console.log(incomingDate);
         
-        // return incomingDate.split("T")[0];  // SPLITS UP TO THE first element of that string's character, then LOGS the split to the first slot in array in this case slot 0
+        return incomingDate.split("T")[0];  // SPLITS UP TO THE first element of that string's character, then LOGS the split to the first slot in array in this case slot 0
 
 
         // CHECK DATE IN
-        console.log(incomingDate);
-        let year = incomingDate.getFullYear();
-        let month = String (incomingDate.getMonth()+1).padStart(2,'0');  //BECUASE ITS AN ARRAY!!! starts at zero // THIS MAKES IT SO THE DAMN MONTH is formatted 'mm'
-        let day = String (incomingDate.getDate()+1).padStart(2,'0');  //BECUASE ITS AN ARRAY!!! starts at zero // THIS MAKES IT SO THE DAMN DAY is formatted 'dd'
-        console.log(`${year}-${month}-${day}`);
-        return `${year}-${month}-${day}`;
+        // console.log(incomingDate);
+        // let year = incomingDate.getFullYear();
+        // let month = String (incomingDate.getMonth()+1).padStart(2,'0');  //BECUASE ITS AN ARRAY!!! starts at zero // THIS MAKES IT SO THE DAMN MONTH is formatted 'mm'
+        // let day = String (incomingDate.getDate()+1).padStart(2,'0');  //BECUASE ITS AN ARRAY!!! starts at zero // THIS MAKES IT SO THE DAMN DAY is formatted 'dd'
+        // console.log(`${year}-${month}-${day}`);
+        // return `${year}-${month}-${day}`;
     };
 
 useEffect(() => {
@@ -55,10 +55,10 @@ useEffect(() => {
             // setStartDate((new Date(editOneSkiff.startDate)).toLocaleDateString("en_US")); 
             // IMPLIMENTS THE DATE FORMATIING FUNCTION AND CLEANS UP ENTRY  
 
-            setStartDate(editingDateFormatter(new Date(editOneSkiff.startDate)));   
-            setFinishDate(editingDateFormatter(new Date(editOneSkiff.finishDate)));
-            // setStartDate(editingDateFormatter(editOneSkiff.startDate)); 
-            // setStartDate(editingDateFormatter(editOneSkiff.finishDate));
+            // setStartDate(editingDateFormatter(new Date(editOneSkiff.startDate)));   
+            // setFinishDate(editingDateFormatter(new Date(editOneSkiff.finishDate)));
+            setStartDate(editingDateFormatter(editOneSkiff.startDate)); 
+            setFinishDate(editingDateFormatter(editOneSkiff.finishDate));
 
             setStockLength(editOneSkiff.stockLength);
             setCustomLength(editOneSkiff.customLength);
@@ -318,7 +318,6 @@ const successAlertLength =
                 <CurrencyInput style={inputTextPadding} prefix="$" decimalsLimit={2} decimalScale={2} name="stockLength" value={stockLength} 
                 onValueChange={
                     (value) => setStockLength(value)
-                    // (event) => setStockLength(event.target.value.replace(/[^0-9.-]+/g,""))
                     // (event) => setStockLength(event.target.value.replace(/[^0-9.-]+/g,""))
                     }/>
 
