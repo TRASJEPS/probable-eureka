@@ -334,8 +334,8 @@ return (
                 <input style={inputTextPadding} type="checkbox" name="buildComplete" onBlur={(event) => setBuildComplete( !buildComplete )}></input>  {/*SET OPPOSITE TO MAKE IT MAKES IT AUTO FALSE */}
                 { errs.buildComplete? <span style={errorAlert}> { errs.buildComplete.message }</span> : null }
             </div>
-            <button style={buttonStyle} type="submit">Add New Yacht</button>
             <button style={buttonStyle} onClick={() => navigate(-1)}>Cancel</button>
+            <button style={buttonStyle} type="submit">Add New Yacht</button>
         </form>
     </div>
 )

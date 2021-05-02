@@ -190,7 +190,7 @@ const textAreaPadding =
             borderRadius: "30px",
             border: "2px solid rgb(176, 217, 255)",
             margin: "5px",
-            width: "72%",
+            width: "45%",
             height: "100px"
 };
 const inputPadDesc = 
@@ -260,7 +260,7 @@ const successAlertLength =
  return(
 
 // REMEMBER TO SETUP THE CATCH like on ONE SKIFF
-                                                                                            //CHANGE FROM ON BLUR TO onChange
+// MUST BE FROM onBlur TO onChange
     <div>
         <h2>Edit Yacht</h2>
         <form onSubmit={submitForm}>
