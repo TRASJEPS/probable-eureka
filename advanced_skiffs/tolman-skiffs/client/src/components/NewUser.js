@@ -6,16 +6,18 @@ const NewUser = (props) => {
     const [ firstName, setFirstName ] = useState(false);
     const [ lastName, setLastName ] = useState("");
     const [ email, setEmail ] = useState("");
-    const [ password, setPassword ] = useState("");  //AUTOMATICALLY STARTS AS STANDARD IN THIS CASE
-    const [ associatedHOAs, setStartDate ] = useState("");
-    const [ streetAddress, setFinishDate ] = useState("");
-    const [ unit, setStockLength ] = useState("");  // PLAY WITH NUMBERS 
-    const [ state, setCustomLength ] = useState(""); // SET AS A NUMBER BUT USE AN EMPTY STRING SO CONSOLE PLAYS NICE
-    const [ zipCode, setStockLength ] = useState("");  // PLAY WITH NUMBERS 
-    const [ residentSince, setCustomLength ] = useState(""); // SET AS A NUMBER BUT USE AN EMPTY STRING SO CONSOLE PLAYS NICE
-    const [ userTotalVehicles, setStockLength ] = useState("");  // PLAY WITH NUMBERS 
+    const [ password, setPassword ] = useState(""); 
+    const [ confirmPassword, setConfirmPassword ] = useState("");           // IS THIS NEEDED?!?!?!?!?!?
+    const [ associatedHOAs, setAssociatedHOAs ] = useState("");             // SINCE THIS IS AN ARRAY IS THIS OK??? ASKKSKSKAKSKSKSAKSAKSAKSAKSAK
+    const [ streetAddress, setStreetAddress ] = useState("");
+    const [ unit, setUnit ] = useState("");   
+    const [ state, setState ] = useState(""); 
+    const [ zipCode, setZipCode ] = useState("");  
+    const [ residentSince, setResidentSince ] = useState("");
+    const [ userTotalVehicles, setUserTotalVehicles ] = useState(""); 
     const [ pictureUrl, setPictureUrl ] = useState("");
     const [ description, setDescription ] = useState("");
+    const [ confirmNewUser, setConfirmNewUser ] = useState("");
     const [errs, setErrs ] = useState({});  //READY FOR OBJECT
 
 const submitForm = (event) => {
@@ -29,6 +31,7 @@ const submitForm = (event) => {
         lastName: lastName,
         email: email,
         password: password,
+        confirmPassword: confirmPassword,     // IS THIS NEEDED??????
         associatedHOAs: associatedHOAs,
         streetAddress: streetAddress,
         unit: unit,
@@ -38,22 +41,40 @@ const submitForm = (event) => {
         userTotalVehicles: userTotalVehicles,
         pictureUrl: pictureUrl,
         description: description
+        // confirmNewUser: confirmNewUser  DONT USE HERE?
     };
 
     console.log(newUser);
-    axios.post("http://localhost:7777/api/skiffs", newUser)  //THIS REPLACES THE LIST IN AXIOS
+
+    axios.post("http://localhost:7777/api/user/register", newUser, {withCredentials: true,})  
         .then((response) => {
         if(response.data.errors) {
             setErrs(response.data.errors);
         } else {    
         console.log(response.data);
-        navigate(`/skiff/${response.data._id}`);
+        setFirstName("");
+        setLastName("");
+        setEmail("");
+        setPassword("");
+        setConfirmPassword("");             // IS THIS NEEDED?????
+        setAssociatedHOAs("");
+        setStreetAddress("");
+        setUnit("");
+        setState("");
+        setZipCode("");
+        setResidentSince("");
+        setUserTotalVehicles("");
+        setPictureUrl("");
+        setDescription("");
+        setConfirmNewUser("Thank you.  Your new account with Steamline Yachts has been created.");
+        navigate(`/`);   // SENDS TO MAIN PAGE
         }
         })
-        .catch((err) => { console.log(err); 
-        });
-    
-}
+        .catch((err) => { 
+            console.log(err); 
+            setErrs(err.response.data.errors);
+        });  
+};
 
 const titleHeader = 
 {
@@ -213,7 +234,7 @@ const successAlertLength =
 
 return (
     <div>
-        <h2 style={titleHeader}>New Member</h2>
+        <h2 style={titleHeader}>Create Your Account Membership</h2>
         <form style={skiffContainer} onSubmit = {submitForm}>
             <div>
                 <label>Owner Name</label>

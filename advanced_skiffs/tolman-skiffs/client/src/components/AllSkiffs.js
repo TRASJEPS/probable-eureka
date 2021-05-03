@@ -159,8 +159,15 @@ const AllSkiffs = (props) => {
         flexWrap: "wrap",
     };
 
-    return(
+
+    // CHECK PASSING OF PROPS TO SHOW NEW USER HAS BEEN CREATED OR WELCOME BACK MESSAGE AW SO CUTE.
+    return( 
     <div>
+        {
+            setConfirmNewUser ?
+            <h1 style={titleHeader}>Your new account has been created!</h1>
+            : null
+        }
         <h1 style={titleHeader}>All Yachts</h1>
         <div style={addNewHeader}>
             <p>Add a new yacht to the database here.</p>
