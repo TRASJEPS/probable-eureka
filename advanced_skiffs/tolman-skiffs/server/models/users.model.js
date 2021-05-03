@@ -17,6 +17,10 @@ const UserSchema = new mongoose.Schema({
     email: {    
         type: String,
         required: [true, "Please enter your email address."],
+        validate:{
+            validator: (val) => /^([a-zA-Z0-9.+_-]+@([a-zA-Z0-9._-])+)\.[a-zA-Z]/.test(val),     //// DID I DO THIS RIGHT :P  THIS ISNT RIGHT...
+            message: "Please enter a valid email address.",
+        },
         minLength: [5, "Please enter a valid email address."],
     }, //SEPARATE BY COMMAS
 

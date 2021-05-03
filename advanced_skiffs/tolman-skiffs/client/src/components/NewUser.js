@@ -237,32 +237,58 @@ return (
         <h2 style={titleHeader}>Create Your Account Membership</h2>
         <form style={skiffContainer} onSubmit = {submitForm}>
             <div>
-                <label>Owner Name</label>
-                <input style={inputTextPadding} type="text" name="ownerName" onBlur={(event) => setOwnerName(event.target.value)}></input>
-                { ownerName.length == 0 ? null 
-                    : ownerName.length < 3 ? <span className="fadeInErrors" style={errorAlert}>Please enter a name longer than 3 characters.</span>
-                        : ownerName.length > 50 ? <span className="fadeInErrors" style={errorAlert}>Your name is longer than 50 characters.  Please enter a shorter name. </span>
+                <label>First Name</label>
+                <input style={inputTextPadding} type="text" name="firstName" onBlur={(event) => setFirstName(event.target.value)}></input>
+                { firstName.length == 0 ? null 
+                    : firstName.length < 1 ? <span className="fadeInErrors" style={errorAlert}>Please enter a name longer than 1 character.</span>
+                        : firstName.length > 50 ? <span className="fadeInErrors" style={errorAlert}>Your first name is longer than 50 characters.  Please enter a shorter name. </span>
                             : <p className="fadeIn" style={successAlert}>&#10003;</p> }
-                { errs.ownerName? <span className="fadeInErrors" style={errorAlert}> { errs.ownerName.message }</span> : null }
+                { errs.firstName? <span className="fadeInErrors" style={errorAlert}> { errs.firstName.message }</span> : null }
             </div>
+
+
             <div>
-                <label>Builder Name</label>
-                <input style={inputTextPadding} type="text" name="builderName" onBlur={(event) => setBuilderName(event.target.value)}></input>
-                { builderName.length == 0 ? null 
-                    : builderName.length < 3 ? <span className="fadeInErrors" style={errorAlert}>Please enter a builder name longer than 3 characters.</span>
-                        : builderName.length > 50 ? <span className="fadeInErrors" style={errorAlert}>Your builder name is longer than 50 characters.  Please enter a shorter name. </span>
+                <label>Last Name</label>
+                <input style={inputTextPadding} type="text" name="lastName" onBlur={(event) => setLastName(event.target.value)}></input>
+                { lastName.length == 0 ? null 
+                    : lastName.length < 3 ? <span className="fadeInErrors" style={errorAlert}>Please enter a builder name longer than 3 characters.</span>
+                        : lastName.length > 50 ? <span className="fadeInErrors" style={errorAlert}>Your builder name is longer than 50 characters.  Please enter a shorter name. </span>
                             : <p className="fadeIn" style={successAlert}>&#10003;</p> }
-                { errs.builderName? <span className="fadeInErrors" style={errorAlert}> { errs.builderName.message }</span> : null }
+                { errs.lastName? <span className="fadeInErrors" style={errorAlert}> { errs.lastName.message }</span> : null }
             </div>
+
+                    {/* CHECK BACK END VALIDATORS ETC ETC ETC  */}
+                     {/* CHECK BACK END VALIDATORS ETC ETC ETC  */}
+                     {/* CHECK BACK END VALIDATORS ETC ETC ETC  */}
+
+
             <div>
-                <label>Select Model Type</label>
-                <select style={inputTextPadding} type="text" name="modelName" onBlur={(event) => setModelName(event.target.value)}>
+                <label>Email Address</label>
+                <input style={inputTextPadding} type="text" name="email" onBlur={(event) => setEmail(event.target.value)}></input>
+                { email.length == 0 ? null 
+                    : <p className="fadeIn" style={successAlert}>&#10003;</p> }
+                { errs.email? <span style={errorAlert}> { errs.email.message }</span> : null }
+            </div>
+
+
+            <div>
+                <label>Email Address</label>
+                <input style={inputTextPadding} type="text" name="xxx" onBlur={(event) => setXxx(event.target.value)}></input>
+                { xxx.length == 0 ? null 
+                    : <p className="fadeIn" style={successAlert}>&#10003;</p> }
+                { errs.xxx? <span style={errorAlert}> { errs.xxx.message }</span> : null }
+            </div>
+
+
+            <div>
+                <label>Email Address</label>
+                <select style={inputTextPadding} type="email" name="email" onBlur={(event) => setEmail(event.target.value)}>
                     <option value="Standard">Standard</option>
                     <option value="Wide Body">Wide Body</option>
                     <option value="Jumbo">Jumbo</option>
                     <option value="Flat Bottom">Flat Bottom</option>
                 </select>
-                { errs.modelName? <span className="fadeInErrors" style={errorAlert}> { errs.modelName.message }</span> : null }
+                { errs.email? <span className="fadeInErrors" style={errorAlert}> { errs.email.message }</span> : null }
             </div>
             <div>
                 <label>Build Start Date</label>
