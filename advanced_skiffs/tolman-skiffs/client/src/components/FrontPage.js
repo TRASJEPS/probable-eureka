@@ -46,67 +46,6 @@ const FrontPage = (props) => {
             });
     };
  
-    const skiffContainer = 
-    {
-        border: "2px solid darkblue",
-        borderRadius: "20px",
-        display: "inline-block",
-        width: "26%",
-        height: "40%",
-        margin: "10px",
-        flex: 20, // KEEP 1 for small sec
-        fontWeight: "bold",
-        paddingLeft: "25px",
-        paddingRight: "25px",
-        // textAlign: "left",
-        background: "white",
-        paddingBottom: "20px"
-    };
-    const mainNameContainer = 
-    {
-        border: "4px solid rgb(176, 217, 255)",
-       
-        borderRadius: "15px",
-        display: "inline-block",
-        margin: "10px",
-        fontWeight: "bold",
-        padding: "15px",
-        paddingLeft: "5%",
-        paddingRight: "5%",
-        fontWeight: "bolder",
-        fontSize: "large",
-        //textAlign: "left",
-        background: "rgb(224, 240, 255)",
-    };
-    const picPreviewSizer = 
-    {
-        border: "4px solid rgb(176, 217, 255)",
-        width: "100px",
-        height: "100px",
-        borderRadius: "25px",
-        display: "inline-block",
-        margin: "10px",
-        padding: "5px",
-        //textAlign: "left",
-        background: "rgb(224, 240, 255)",
-    };
-    const buttonStyle = 
-        {
-            margin: "5px",
-            // marginLeft: "5px",
-            // marginRight: "5px",
-            marginTop: "15px",
-            paddingTop: "5px",
-            paddingBottom: "5px",
-            paddingLeft: "10px",
-            paddingRight: "10px",
-            background: "rgb(27, 36, 87)",
-            color: "white",
-            fontWeight: "bolder",
-            fontSize: "small",
-            border: "2px solid darkblue",
-            borderRadius: "10px",
-        };
     const tealButtonStyle = 
         {
             margin: "5px",
@@ -254,7 +193,7 @@ const FrontPage = (props) => {
             <div style={blueTier}>
                 <h3>Create your custom profile today.</h3>
                 <p>Use your activation code or special link to get started.</p>
-                <button style={tealButtonStyle} onClick={() => navigate(`/skiff/new`)}>Join Now</button>
+                <button style={tealButtonStyle} onClick={() => navigate(`/new_member_signup`)}>Join Now</button>
             </div>
         </div>
     </div>

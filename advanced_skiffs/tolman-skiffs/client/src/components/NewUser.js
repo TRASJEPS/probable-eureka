@@ -1,44 +1,22 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import { Link, navigate } from '@reach/router';
-import CurrencyInput from 'react-currency-input-field';
-
-// import { set } from 'mongoose';  DO NOT ADD THIS ON THE FRONT END
-
-// SETTING UP REGEX using r
-// the first forward slash ingicates start then the slash G at end is global to document 
-// SETTING UP FOR CURRENCY  -- ADD TO INSIDE OF FUNCTION
-// let regex = /^[0-9]+.[0-9][0-9]/g;
 
 const NewUser = (props) => {
-    const [ buildComplete, setBuildComplete ] = useState(false);
-    const [ ownerName, setOwnerName ] = useState("");
-    const [ builderName, setBuilderName ] = useState("");
-    const [ modelName, setModelName ] = useState("Standard");  //AUTOMATICALLY STARTS AS STANDARD IN THIS CASE
-    const [ startDate, setStartDate ] = useState("");
-    const [ finishDate, setFinishDate ] = useState("");
-    const [ stockLength, setStockLength ] = useState("");  // PLAY WITH NUMBERS 
-    const [ customLength, setCustomLength ] = useState(""); // SET AS A NUMBER BUT USE AN EMPTY STRING SO CONSOLE PLAYS NICE
+    const [ firstName, setFirstName ] = useState(false);
+    const [ lastName, setLastName ] = useState("");
+    const [ email, setEmail ] = useState("");
+    const [ password, setPassword ] = useState("");  //AUTOMATICALLY STARTS AS STANDARD IN THIS CASE
+    const [ associatedHOAs, setStartDate ] = useState("");
+    const [ streetAddress, setFinishDate ] = useState("");
+    const [ unit, setStockLength ] = useState("");  // PLAY WITH NUMBERS 
+    const [ state, setCustomLength ] = useState(""); // SET AS A NUMBER BUT USE AN EMPTY STRING SO CONSOLE PLAYS NICE
+    const [ zipCode, setStockLength ] = useState("");  // PLAY WITH NUMBERS 
+    const [ residentSince, setCustomLength ] = useState(""); // SET AS A NUMBER BUT USE AN EMPTY STRING SO CONSOLE PLAYS NICE
+    const [ userTotalVehicles, setStockLength ] = useState("");  // PLAY WITH NUMBERS 
     const [ pictureUrl, setPictureUrl ] = useState("");
     const [ description, setDescription ] = useState("");
     const [errs, setErrs ] = useState({});  //READY FOR OBJECT
-    // RIP REGEX 2021-2021
-    // let regex = /^[0-9]+.[0-9][0-9]/g;  // SETTING UP FOR CURRENCY
-
-    //     "buildComplete": true,
-    //     "_id": "602f12d1708e671126bef843",
-    //     "ownerName": "Jean Puggly",
-    //     "builderName": "Flat Boat",
-    //     "modelName": "Standard",
-    //     "startDate": "2019-10-11T00:00:00.000Z",
-    //     "finishDate": "2020-02-03T00:00:00.000Z",
-    //     "stockLength": 26,
-    //     "customLength": 26,
-    //     "pictureUrl": "weekend_at_qweqw",
-    //     "description": "LOOK MY HAT IS A HELMET TOO!",
-    //     "createdAt": "2021-02-19T01:22:25.133Z",
-    //     "updatedAt": "2021-02-19T01:22:25.133Z",
-    //     "__v": 0
 
 const submitForm = (event) => {
     event.preventDefault();
@@ -46,22 +24,24 @@ const submitForm = (event) => {
     // console.log(Number(stockLength.replace(/[^0-9.-]+/g,"")))
     // console.log(stockLength)
 
-    const newSkiff = {       //USE THIS AS AN OBJECT
-        buildComplete: buildComplete,
-        ownerName: ownerName,
-        builderName: builderName,
-        modelName: modelName,
-        startDate: startDate,
-        finishDate: finishDate,
-        // stockLength: stockLength,  OLD VERSION PRE CURRENCY
-        stockLength: Number(stockLength.replace(/[^0-9.-]+/g,"")),     //WHERE THE FILTER IS ADDED CHECK THIS
-        customLength: customLength,
+    const newUser = {       //USE THIS AS AN OBJECT
+        firstName: firstName,
+        lastName: lastName,
+        email: email,
+        password: password,
+        associatedHOAs: associatedHOAs,
+        streetAddress: streetAddress,
+        unit: unit,
+        state: state,
+        zipCode: zipCode,
+        residentSince: residentSince,
+        userTotalVehicles: userTotalVehicles,
         pictureUrl: pictureUrl,
         description: description
     };
 
-    console.log(newSkiff);
-    axios.post("http://localhost:7777/api/skiffs", newSkiff)  //THIS REPLACES THE LIST IN AXIOS
+    console.log(newUser);
+    axios.post("http://localhost:7777/api/skiffs", newUser)  //THIS REPLACES THE LIST IN AXIOS
         .then((response) => {
         if(response.data.errors) {
             setErrs(response.data.errors);
@@ -91,7 +71,6 @@ const titleHeader =
     background: "rgb(224, 240, 255)",
     paddingBottom: "20px"
 };
-
 const skiffContainer = 
 {
     border: "2px solid darkblue",
@@ -107,7 +86,6 @@ const skiffContainer =
     paddingBottom: "20px",
     paddingTop: "20px"
 };
-
 const mainNameContainer = 
 {
     border: "4px solid rgb(176, 217, 255)",
@@ -122,12 +100,11 @@ const mainNameContainer =
     background: "rgb(224, 240, 255)",
     paddingBottom: "20px"
 };
-
 const buttonStyle = 
     {
         marginTop: "15px",
-        marginLeft: "5px",
-        marginRight: "5px",
+        marginLeft: "15px",
+        marginRight: "15px",
         paddingTop: "10px",
         paddingBottom: "10px",
         paddingLeft: "15px",
@@ -139,7 +116,6 @@ const buttonStyle =
         border: "2px solid darkblue",
         borderRadius: "30px",
     };
-
 const inputTextPadding = 
     {
         paddingTop: "7px",
@@ -162,7 +138,6 @@ const inputTextPaddingSpecial =
         marginTop: "-5px",
         alignItems: "center",
     };
-
 const textAreaPadding = 
         {
             padding: "10px",
@@ -172,12 +147,10 @@ const textAreaPadding =
             width: "72%",
             height: "100px"
         };
-
 const inputPadDesc = 
         {
             align: "vertial",
         };
-
 const errorAlert =
         {
             display: "inline-block",
@@ -203,7 +176,6 @@ const enterAlert =
             marginTop: "6px",
             border: "2px solid rgba(191, 207, 220, 1.0)",
         };
-
 const successAlert =
         {
             display: "inline-block",
@@ -219,7 +191,6 @@ const successAlert =
             marginBottom: "3px",
             border: "2px solid rgb(192, 220, 191)",
         };
-
 const successAlertLength =
         {
             alignItems: "right",
@@ -240,10 +211,9 @@ const successAlertLength =
             border: "2px solid rgb(192, 220, 191)",
         };
 
-// TOGGLE FROM onChange TO onBlur
 return (
     <div>
-        <h2 style={titleHeader}>Add New Yacht</h2>
+        <h2 style={titleHeader}>New Member</h2>
         <form style={skiffContainer} onSubmit = {submitForm}>
             <div>
                 <label>Owner Name</label>
@@ -334,8 +304,9 @@ return (
                 <input style={inputTextPadding} type="checkbox" name="buildComplete" onBlur={(event) => setBuildComplete( !buildComplete )}></input>  {/*SET OPPOSITE TO MAKE IT MAKES IT AUTO FALSE */}
                 { errs.buildComplete? <span style={errorAlert}> { errs.buildComplete.message }</span> : null }
             </div>
+            <button style={buttonStyle} type="submit">Create Your New Account</button>
             <button style={buttonStyle} onClick={() => navigate(-1)}>Cancel</button>
-            <button style={buttonStyle} type="submit">Add New Yacht</button>
+            
         </form>
     </div>
 )
