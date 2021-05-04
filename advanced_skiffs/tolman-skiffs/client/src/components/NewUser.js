@@ -3,13 +3,15 @@ import axios from 'axios';
 import { Link, navigate } from '@reach/router';
 
 const NewUser = (props) => {
-    const [ firstName, setFirstName ] = useState(false);
+    const [ firstName, setFirstName ] = useState("");
     const [ lastName, setLastName ] = useState("");
     const [ email, setEmail ] = useState("");
     const [ password, setPassword ] = useState(""); 
-    const [ confirmPassword, setConfirmPassword ] = useState("");           // IS THIS NEEDED?!?!?!?!?!?
-    const [ associatedHOAs, setAssociatedHOAs ] = useState("");             // SINCE THIS IS AN ARRAY IS THIS OK??? ASKKSKSKAKSKSKSAKSAKSAKSAKSAK
-    const [ streetAddress, setStreetAddress ] = useState("");
+    const [ confirmPassword, setConfirmPassword ] = useState("");
+    const [ associatedHOAs, setAssociatedHOAs ] = useState([]);             // SINCE THIS IS AN ARRAY IS THIS OK??? ASKKSKSKAKSKSKSAKSAKSAKSAKSAK
+    // const [ streetAddress, setStreetAddress ] = useState("");
+    const [ streetNumber, setStreetNumber ] = useState("");
+    const [ streetName, setStreetName ] = useState("");
     const [ unit, setUnit ] = useState("");   
     const [ state, setState ] = useState(""); 
     const [ zipCode, setZipCode ] = useState("");  
@@ -31,9 +33,11 @@ const submitForm = (event) => {
         lastName: lastName,
         email: email,
         password: password,
-        confirmPassword: confirmPassword,     // IS THIS NEEDED??????
+        confirmPassword: confirmPassword,   
         associatedHOAs: associatedHOAs,
-        streetAddress: streetAddress,
+        // streetAddress: streetAddress,
+        streetNumber: streetNumber,
+        streetName: streetName,
         unit: unit,
         state: state,
         zipCode: zipCode,
@@ -56,9 +60,11 @@ const submitForm = (event) => {
         setLastName("");
         setEmail("");
         setPassword("");
-        setConfirmPassword("");             // IS THIS NEEDED?????
+        setConfirmPassword("");           
         setAssociatedHOAs("");
-        setStreetAddress("");
+        // setStreetAddress("");
+        setStreetNumber("");
+        setStreetName("");
         setUnit("");
         setState("");
         setZipCode("");
@@ -234,34 +240,26 @@ const successAlertLength =
 
 return (
     <div>
-        <h2 style={titleHeader}>Create Your Account Membership</h2>
+        <h2 style={titleHeader}>Create New Account</h2>
         <form style={skiffContainer} onSubmit = {submitForm}>
             <div>
                 <label>First Name</label>
                 <input style={inputTextPadding} type="text" name="firstName" onBlur={(event) => setFirstName(event.target.value)}></input>
                 { firstName.length == 0 ? null 
-                    : firstName.length < 1 ? <span className="fadeInErrors" style={errorAlert}>Please enter a name longer than 1 character.</span>
+                    : firstName.length < 2 ? <span className="fadeInErrors" style={errorAlert}>Please enter a name longer than 1 character.</span>
                         : firstName.length > 50 ? <span className="fadeInErrors" style={errorAlert}>Your first name is longer than 50 characters.  Please enter a shorter name. </span>
                             : <p className="fadeIn" style={successAlert}>&#10003;</p> }
                 { errs.firstName? <span className="fadeInErrors" style={errorAlert}> { errs.firstName.message }</span> : null }
             </div>
-
-
             <div>
                 <label>Last Name</label>
                 <input style={inputTextPadding} type="text" name="lastName" onBlur={(event) => setLastName(event.target.value)}></input>
                 { lastName.length == 0 ? null 
-                    : lastName.length < 3 ? <span className="fadeInErrors" style={errorAlert}>Please enter a builder name longer than 3 characters.</span>
-                        : lastName.length > 50 ? <span className="fadeInErrors" style={errorAlert}>Your builder name is longer than 50 characters.  Please enter a shorter name. </span>
+                    : lastName.length < 2 ? <span className="fadeInErrors" style={errorAlert}>Please enter a last name longer than 1 characters.</span>
+                        : lastName.length > 50 ? <span className="fadeInErrors" style={errorAlert}>Your last name is longer than 50 characters.  Please enter a shorter last name. </span>
                             : <p className="fadeIn" style={successAlert}>&#10003;</p> }
                 { errs.lastName? <span className="fadeInErrors" style={errorAlert}> { errs.lastName.message }</span> : null }
             </div>
-
-                    {/* CHECK BACK END VALIDATORS ETC ETC ETC  */}
-                     {/* CHECK BACK END VALIDATORS ETC ETC ETC  */}
-                     {/* CHECK BACK END VALIDATORS ETC ETC ETC  */}
-
-
             <div>
                 <label>Email Address</label>
                 <input style={inputTextPadding} type="text" name="email" onBlur={(event) => setEmail(event.target.value)}></input>
@@ -270,65 +268,84 @@ return (
                 { errs.email? <span style={errorAlert}> { errs.email.message }</span> : null }
             </div>
 
-
             <div>
-                <label>Email Address</label>
-                <input style={inputTextPadding} type="text" name="xxx" onBlur={(event) => setXxx(event.target.value)}></input>
-                { xxx.length == 0 ? null 
+                <label>Account Password</label>
+                <input style={inputTextPadding} type="password" name="password" onBlur={(event) => setPassword(event.target.value)}></input>
+                { password.length == 0 ? null 
                     : <p className="fadeIn" style={successAlert}>&#10003;</p> }
-                { errs.xxx? <span style={errorAlert}> { errs.xxx.message }</span> : null }
-            </div>
-
-
-            <div>
-                <label>Email Address</label>
-                <select style={inputTextPadding} type="email" name="email" onBlur={(event) => setEmail(event.target.value)}>
-                    <option value="Standard">Standard</option>
-                    <option value="Wide Body">Wide Body</option>
-                    <option value="Jumbo">Jumbo</option>
-                    <option value="Flat Bottom">Flat Bottom</option>
-                </select>
-                { errs.email? <span className="fadeInErrors" style={errorAlert}> { errs.email.message }</span> : null }
+                { errs.password? <span style={errorAlert}> { errs.password.message }</span> : null }
             </div>
             <div>
-                <label>Build Start Date</label>
-                <input style={inputTextPadding} type="date" name="startDate" onBlur={(event) => setStartDate(event.target.value)}></input>
-                { startDate.length == 0 ? null 
+                <label>Repeat Password</label>
+                <input style={inputTextPadding} type="password" name="confirmPassword" onBlur={(event) => setConfirmPassword(event.target.value)}></input>
+                { confirmPassword.length == 0 ? null 
+                    : <p className="fadeIn" style={successAlert}>&#10003;</p> }
+                { errs.confirmPassword? <span style={errorAlert}> { errs.confirmPassword.message }</span> : null }
+            </div>
+            
+            <div>
+                <label>HOA Association</label>
+                <input style={inputTextPadding} type="text" name="associatedHOAs" onBlur={(event) => setAssociatedHOAs(event.target.value)}></input>
+                { associatedHOAs.length == 0 ? null 
+                    : <p className="fadeIn" style={successAlert}>&#10003;</p> }
+                { errs.associatedHOAs? <span style={errorAlert}> { errs.associatedHOAs.message }</span> : null }
+            </div>
+
+            {/* ADD AN ADDRESS LABEL AND CSS TO MAKE THIS MORE USER FRIENDLY */}
+            <div>
+                <label>Street Number</label>
+                <input style={inputTextPadding} type="number" name="streetNumber" onBlur={(event) => setStreetNumber(event.target.value)}></input>
+                { streetNumber.length == 0 ? null 
+                    : <p className="fadeIn" style={successAlert}>&#10003;</p> }
+                { errs.streetNumber? <span style={errorAlert}> { errs.streetNumber.message }</span> : null }
+            </div>
+            <div>
+                <label>Street Name</label>
+                <input style={inputTextPadding} type="text" name="streetName" onBlur={(event) => setStreetName(event.target.value)}></input>
+                { streetName.length == 0 ? null 
+                    : <p className="fadeIn" style={successAlert}>&#10003;</p> }
+                { errs.streetName? <span style={errorAlert}> { errs.streetName.message }</span> : null }
+            </div>
+            <div>
+                <label>Unit</label>
+                <input style={inputTextPadding} type="text" name="unit" onBlur={(event) => setUnit(event.target.value)}></input>
+                { unit.length == 0 ? null 
+                    : <p className="fadeIn" style={successAlert}>&#10003;</p> }
+                { errs.unit? <span style={errorAlert}> { errs.unit.message }</span> : null }
+            </div>
+            <div>
+                <label>State</label>
+                <input style={inputTextPadding} type="text" name="state" onBlur={(event) => setState(event.target.value)}></input>
+                { state.length == 0 ? null 
+                    : <p className="fadeIn" style={successAlert}>&#10003;</p> }
+                { errs.state? <span style={errorAlert}> { errs.state.message }</span> : null }
+            </div>
+            <div>
+                <label>Zip Code</label>
+                <input style={inputTextPadding} type="text" name="zipCode" onBlur={(event) => setZipCode(event.target.value)}></input>
+                { zipCode.length == 0 ? null 
+                    : <p className="fadeIn" style={successAlert}>&#10003;</p> }
+                { errs.zipCode? <span style={errorAlert}> { errs.zipCode.message }</span> : null }
+            </div>
+            <div>
+                <label>HOA Member Since</label>
+                <input style={inputTextPadding} type="date" name="residentSince" onBlur={(event) => setResidentSince(event.target.value)}></input>
+                { residentSince.length == 0 ? null 
                     : <p className="elementToFadeInAndOut" style={enterAlert}>Date selected...</p>}
-                { errs.startDate? <span className="fadeInErrors" style={errorAlert}> { errs.startDate.message }</span> : null }
+                { errs.residentSince? <span className="fadeInErrors" style={errorAlert}> { errs.residentSince.message }</span> : null }
             </div>
             <div>
-                <label>Build Finish Date</label>
-                <input style={inputTextPadding} type="date" name="finishDate" onBlur={(event) => setFinishDate(event.target.value)}></input>
-                { finishDate.length == 0 ? null 
-                    : <p className="elementToFadeInAndOut" style={enterAlert}>Date selected...</p> }
-                { errs.finishDate? <span className="fadeInErrors" style={errorAlert}> { errs.finishDate.message }</span> : null }
+                <label>Total Vehicles</label>
+                <input style={inputTextPadding} type="number" name="userTotalVehicles" onBlur={(event) => setUserTotalVehicles(event.target.value)}></input>
+                { userTotalVehicles.length == 0 ? null 
+                    : <p className="fadeIn" style={successAlert}>&#10003;</p> }
+                { errs.userTotalVehicles? <span style={errorAlert}> { errs.userTotalVehicles.message }</span> : null }
             </div>
-            <div className="theTroubleShooter">
-                <div className="fontAlignmentPal">
-                    <label>Boat Cost</label>
-                    <div id="smallFont">{"Enter Value in Dollars & Cents"}</div>
-                </div>
-                <CurrencyInput style={inputTextPadding} prefix="$" decimalsLimit={2} decimalScale={2} name="stockLength" onBlur={(event) => setStockLength(event.target.value)}/>
-                {/* <input style={inputTextPadding} type="number" name="stockLength" onBlur={(event) => setStockLength(event.target.value)}></input> */}  {/*org setup */}
-                { stockLength == 0 ? null 
-                    : stockLength < 150000 ? <span className="fadeInErrors" style={errorAlert}>Your yacht will cost at least $150,000.</span>
-                        // : stockLength > 30 ? <span className="fadeInErrors" style={errorAlert}>Please enter a stock length shorter than 350 feet.</span>
-                                : <p className="fadeInLengths" style={successAlertLength}>&#10003;</p> }
-                { errs.stockLength? <span className="fadeInErrors" style={errorAlert}> { errs.stockLength.message }</span> : null }
-            </div>
-            <div className="theTroubleShooter">
-                <div className="fontAlignmentPal">
-                    <label>Custom Length in Feet</label>
-                    <div id="smallFont">Between 50-350'</div>
-                </div>
-                <input style={inputTextPadding} type="number" name="customLength" onBlur={(event) => setCustomLength(event.target.value)}></input>
-                { customLength == 0 ? null 
-                    : customLength < 50 ? <span className="fadeInErrors" style={errorAlert}>Please enter a custom length longer than 50 feet.</span>
-                        : customLength > 350 ? <span className="fadeInErrors" style={errorAlert}>Please enter a custom length shorter than 350 feet.</span>
-                            : <span className="fadeInLengths" style={successAlertLength}>&#10003;</span> }
-                { errs.customLength? <span className="fadeInErrors" style={errorAlert}> { errs.customLength.message }</span> : null }
-            </div>
+            
+
+
+            
+
             <div>
                 <label>Photo Link</label>
                 <input style={inputTextPadding} type="text" name="pictureUrl" onBlur={(event) => setPictureUrl(event.target.value)}></input>
@@ -345,12 +362,7 @@ return (
                             : <p className="fadeIn" style={successAlert}>&#10003;</p> }
                 { errs.description? <span style={errorAlert}> { errs.description.message }</span> : null }
             </div>
-            <div>
-                <label>Build Complete</label>
-                {/* call was checked="buildComplete" */}
-                <input style={inputTextPadding} type="checkbox" name="buildComplete" onBlur={(event) => setBuildComplete( !buildComplete )}></input>  {/*SET OPPOSITE TO MAKE IT MAKES IT AUTO FALSE */}
-                { errs.buildComplete? <span style={errorAlert}> { errs.buildComplete.message }</span> : null }
-            </div>
+            
             <button style={buttonStyle} type="submit">Create Your New Account</button>
             <button style={buttonStyle} onClick={() => navigate(-1)}>Cancel</button>
             
