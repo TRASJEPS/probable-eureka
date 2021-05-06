@@ -1,8 +1,6 @@
 //import controllers
 const SkiffsController = require('../controllers/skiffs.controller');
 
-// EVERY ROUTE NEEDS A CONTROLLER 
-
 //ALWAYS BEGIN WITH /API/ for EACH ROUTING START
 //create the valid routes
 // NOTING THE VERB IS WHATS IMPORTANT

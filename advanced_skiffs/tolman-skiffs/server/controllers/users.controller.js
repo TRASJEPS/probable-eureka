@@ -1,13 +1,61 @@
-const TolmanSkiff = require('../models/users.model');
+const User = require('../models/users.model');
+// MAKE SURE TO LINK THE MODEL
 const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
 
 module.exports = {
+
+    // THIS ALLOWS for SAVING all righin the register method
+    register: (req, res) => {
+        const user = new User(req.body);
+        user
+            // if (user === null ) {
+            //     // EMAIL IS NOT IN SYSTEM
+            //     res.status(400).json({ msg: "Please enter your registered email address."})
+            // }
+            // THEN ADD ELSE?
+            .save()
+            .then(() => {
+                res.json({ msg: "Your new profile has been created.", user:user });
+            })
+            .catch(err => res.status(400).json(err));
+    },
+    // THIS ALLOWS FOR VALIDATION
+    login: (req, res) => {
+        User.findOne( {email: req.body.email} )
+            .then(user => {
+                if (user === null ) {
+                    // EMAIL IS NOT IN SYSTEM
+                    res.status(400).json({ msg: "Please enter your registered email address."})
+                }
+                else {
+                    bcrypt
+                        .compare(req.body.password, user.password)
+                        .then(validPassword) => {
+                            if (validPassword) {
+                                res
+                                    .cookie("usertoken", jwt.sign({ _id: user._id }, process.env.JWT_SECRET),
+                                    {
+                                        httpOnly: true,
+                                        // expires: new Date(Date.now() + 99999),   // IF YOU WANT IT TO EXPIRE!
+                                    })}
+                        }
+                }
+            })
+
+
+
+    },
+
+
+
+
+    // NUKE ALL BELOW OR KEEP FOR LATER?
     getAll: (req,res) => {
-        TolmanSkiff.find()   //FINDS EVERYTHING IN DATABASE THAT IS A SOLMAN SKIFF
-            .then((allSkiffs) => {
-                console.log(allSkiffs);
-                res.json(allSkiffs);
+        User.find()   //FINDS EVERYTHING IN DATABASE THAT IS A SOLMAN SKIFF
+            .then((allUsers) => {
+                console.log(allUsers);
+                res.json(allUsers);
             })
             .catch((err) => {
                 console.log("error in getAll:" + err)
@@ -17,15 +65,10 @@ module.exports = {
 
     create: (req,res) => {
         console.log(req.body);
-        // parseFloat(stockLength).toFixed(2).match(regex)
-        // (req.body.stockLength = parseFloat(stockLength).toFixed(2) += 0.00)
-        // (req.body.stockLength = parseFloat(stockLength).toFixed(2))
-        // req.body.stockLength = parseFloat(stockLength).toFixed(2)
-        // req.body.stockLength = parseFloat(stockLength).toFixed(2)
-        TolmanSkiff.create(req.body)
-            .then((newSkiff) => {
-                console.log(newSkiff);
-                res.json(newSkiff);
+        User.create(req.body)
+            .then((newUser) => {
+                console.log(newUser);
+                res.json(newUser);
             })
             .catch((err) => { 
                 console.log("error in create:" + err);
@@ -35,10 +78,10 @@ module.exports = {
 
     getOne: (req,res) => {
         console.log(req.params.id);
-        TolmanSkiff.findById(req.params.id)  //THIS IS IN THE assigned ID in the skiffs.ROUTE
-            .then((oneSkiff) => {
-                console.log(oneSkiff);
-                res.json(oneSkiff);
+        User.findById(req.params.id)  //THIS IS IN THE assigned ID in the skiffs.ROUTE
+            .then((oneUser) => {
+                console.log(oneUser);
+                res.json(oneUser);
             })
             .catch((err) => { 
                 console.log("error in getOne:" + err);
@@ -50,13 +93,13 @@ module.exports = {
     update: (req,res) => {
         console.log(req.params.id);
         console.log(req.body);
-        TolmanSkiff.findByIdAndUpdate(req.params.id, req.body, {
+        User.findByIdAndUpdate(req.params.id, req.body, {
             new: true,
             runValidators: true,
         })  //THIS IS IN THE assigned ID in the skiffs.ROUTE
-            .then((updatedSkiff) => {
-                console.log(updatedSkiff);
-                res.json(updatedSkiff);
+            .then((updatedUser) => {
+                console.log(updatedUser);
+                res.json(updatedUser);
             })
             .catch((err) => { 
                 console.log("error in update:" + err);
@@ -66,10 +109,10 @@ module.exports = {
 
     delete: (req,res) => {
         console.log(req.params.id);
-        TolmanSkiff.findByIdAndRemove(req.params.id)  //THIS IS IN THE assigned ID in the skiffs.ROUTE
-            .then((removedSkiff) => {
-                console.log(removedSkiff);
-                res.json(removedSkiff);
+        User.findByIdAndRemove(req.params.id)  //THIS IS IN THE assigned ID in the skiffs.ROUTE
+            .then((removedUser) => {
+                console.log(removedUser + "has been deleted from your database.");
+                res.json(removedUser);
             })
             .catch((err) => { 
                 console.log("error in delete:" + err);
