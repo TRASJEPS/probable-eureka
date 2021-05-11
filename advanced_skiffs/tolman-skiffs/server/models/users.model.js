@@ -96,7 +96,7 @@ const UserSchema = new mongoose.Schema({
     },
 
     // SETUP NPM
-    pictureUrl: {    //CHANGE THIS TO OWNER FIRST NAME AND LAST NAME LATER
+    pictureUrl: {
         type: String,
     }, 
 

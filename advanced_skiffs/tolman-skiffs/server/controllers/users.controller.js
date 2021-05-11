@@ -13,7 +13,8 @@ module.exports = {
         const user = new User(req.body);
         user
             if (user === null ) {
-                // EMAIL IS NOT IN SYSTEM
+                // EMAIL IS NOT IN SYSTEM/
+                // ADD THESE YOURSELF VIA COMPASS
                 res.status(400).json({ msg: "Please enter your registered email address."})
             }
             
@@ -43,6 +44,7 @@ module.exports = {
                                         httpOnly: true,
                                         // USER that has expired // CHANGE TO INACTIVITY // if (activity) then restart the clock 15-10MIN
                                         // expires: new Date(Date.now() + 99999),   // IF YOU WANT IT TO EXPIRE!  IN SECONDS
+                                                //IF expires then trigger pop up warning OR popup you will be signed out in X mins 
                                     })}
                         }
                 }

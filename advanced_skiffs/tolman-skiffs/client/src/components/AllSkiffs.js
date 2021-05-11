@@ -187,6 +187,7 @@ const AllSkiffs = (props) => {
                     <h4 style={mainNameContainer}>{`${skiff.ownerName}'s ${skiff.modelName} Yacht`}</h4>
                     <br></br>
                     <img style={picPreviewSizer} src={ skiff.pictureUrl} />    {/* ADD IMG CONTAINER HERE */}
+                    <p key></p>
                     <p>{`Built by: ${skiff.builderName}`}</p>
                     <p> {`Cost: ${formatCurrency(skiff.stockLength)}`}</p>
                     <p>{`Custom Length: ${skiff.customLength}'`}</p>
