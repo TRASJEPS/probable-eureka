@@ -14,6 +14,7 @@ const UserSchema = new mongoose.Schema({
         minLength: [2, "Your last name must be at least 2 characters long."],
     }, 
     // THIS WILL BE USED TO VALIDATE YOUR ACCOUNT AND SEND YOU important HOA updates
+    // HURRR IS THIS RIGHT>>>>>>
     email: {    
         type: String,
         required: [true, "Please enter your email address."],
@@ -22,6 +23,7 @@ const UserSchema = new mongoose.Schema({
                             //  (/^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/.test(myForm.emailAddr.value))
             message: "Please enter a valid email address.",
         },
+        unique: true,
         // minLength: [5, "Please enter a valid email address."],
     }, 
 

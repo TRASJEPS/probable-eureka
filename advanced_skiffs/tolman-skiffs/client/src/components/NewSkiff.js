@@ -43,7 +43,7 @@ const NewSkiff = (props) => {
 const submitForm = (event) => {
     event.preventDefault();
     // NAU USE AXIOS!
-    // console.log(Number(stockLength.replace(/[^0-9.-]+/g,"")))
+    // console.log(Number(stockLength.replace(/[^0-9.-]+/g,"")))s
     // console.log(stockLength)
 
     const newSkiff = {       //USE THIS AS AN OBJECT
@@ -70,7 +70,9 @@ const submitForm = (event) => {
         navigate(`/skiff/${response.data._id}`);
         }
         })
-        .catch((err) => { console.log(err); 
+        .catch((err) => { console.log(JSON.stringify(err)); 
+            // JSON.stringify(err) is a COOL ADD!
+            //changed from console.log(err)
         });
     
 }

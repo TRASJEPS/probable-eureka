@@ -142,6 +142,7 @@ const titleHeader =
         <h1>Yacht Profile Details</h1>
         {/* AT THIS POINT ITS THE WHOLE OBJECT OR NOTHING */}
         {/* MAKE SURE TO CHECK ITS NOT UNDEFINED  */}
+        {/* USE THIS IF ITS ASYCRINOUS LOADING HURGGG */}
         {
             skiff.ownerName !== undefined ? 
             (

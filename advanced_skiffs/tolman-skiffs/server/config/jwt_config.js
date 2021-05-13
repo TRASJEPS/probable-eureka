@@ -7,12 +7,12 @@ module.exports = {
     authenticate( request, res, next) {
         // THE javaWebToken is what VERIFIES also called jwt w00t
         javaWebToken.verify(request.cookies.usertoken,
-        process.env.JWT_SECRET,
+        process.env.JWT_SECRET,     //THIS IS THE SECRET KEY, it can be called anything
         (err, payload) => {
-            if (err){
+            if (err){   // 401 is UNAUTHORIZED response, this occurs if check is not passed with correct key
                 res.status(401).json({ verified:false });
             } 
-            else {
+            else {      // IF VALID YOU GO TO THE NEXT PAGE
                 next();
             }
             
