@@ -13,19 +13,23 @@ const UserSchema = new mongoose.Schema({
         required: [true, "Please enter your last name."],
         minLength: [2, "Your last name must be at least 2 characters long."],
     }, 
+
     // THIS WILL BE USED TO VALIDATE YOUR ACCOUNT AND SEND YOU important HOA updates
     // HURRR IS THIS RIGHT>>>>>>
     email: {    
         type: String,
         required: [true, "Please enter your email address."],
         validate:{
-            validator: (val) => (/^[a-zA-Z0-9.+_-]+@[a-zA-Z0-9._-]+(?:\.[a-zA-Z]+)? $/.test(val)),     //// DID I DO THIS RIGHT CHECK IT
+            validator: (val) => /^([\w-\.]+@([\w-]+\.)+[\w-]+)?$/.test(val),     //// DID I DO THIS RIGHT CHECK IT
                             //  (/^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/.test(myForm.emailAddr.value))
+                            //  /^([\w-\.]+@([\w-]+\.)+[\w-]+)?$/.test(val)
+                            // MY OLD, NEEDS TO BE FIXED (/^[a-zA-Z0-9.+_-]+@[a-zA-Z0-9._-]+(?:\.[a-zA-Z]+)? $/.test(val))
             message: "Please enter a valid email address.",
         },
         unique: true,
         // minLength: [5, "Please enter a valid email address."],
     }, 
+
 
     // INCLUDE THE FRONT END PRETTY (strong, weak etc)
     password: {    

@@ -22,7 +22,8 @@ const NewUser = (props) => {
     const [ confirmNewUser, setConfirmNewUser ] = useState("");
     const [errs, setErrs ] = useState({});  //READY FOR OBJECT
 
-const submitForm = (event) => {
+const submitForm = event => {
+    console.log("click")
     event.preventDefault();
     // NAU USE AXIOS!
     // console.log(Number(stockLength.replace(/[^0-9.-]+/g,"")))
@@ -50,7 +51,10 @@ const submitForm = (event) => {
 
     console.log(newUser);
 
-    axios.post("http://localhost:7777/api/user/register", newUser, {withCredentials: true,})  
+    // SETUP WITH LOGIN 
+//CHANGING FROM with {withCredentials: true,}             add V  ,        V added here
+
+    axios.post("http://localhost:7777/api/user/register", newUser)  
         .then(response => {
             if(response.data.errors) {
                 setErrs(response.data.errors);
@@ -72,16 +76,34 @@ const submitForm = (event) => {
             setUserTotalVehicles("");
             setPictureUrl("");
             setDescription("");
+
             setErrs({}); // THIS MUST BE DONE IF ITS SUCCESSFUL TOO TO AVIOD CRASHES
+
             setConfirmNewUser("Thank you.  Your new account with Steamline Yachts has been created.");
+
+
+
+// THIS IS WHERE THE ALERT IS PASSED IN AND POSED THROUHG THE NEW USER FROM THE BACKEND
+// ONLY NEED TO SET IT HERE NOT MADE A CONST ABOVE
+// IN REFERENCE THROUGH response.data
+// THE .msg IS HOW IT IS CALLED ON THE BACKEND THROUGH THE users.controller.js 
+            props.setAlert(response.data.msg)
+
+
             navigate(`/`);   // SENDS TO MAIN PAGE
             }
             })
+
+            //
+            // AGH WHY IS THIS A PROBLEM
         .catch((err) => { 
-            console.log(err); 
+            // console.log(err);
+            // console.log("this is INSIDE the catch block"); 
             setErrs(err.response.data.errors);  // problem?????
+            // setErrs(err);  // problem?????
         });  
 };
+            //
 
 const titleHeader = 
 {
@@ -343,10 +365,6 @@ return (
                 { errs.userTotalVehicles? <span style={errorAlert}> { errs.userTotalVehicles.message }</span> : null }
             </div>
             
-
-
-            
-
             <div>
                 <label>Photo Link</label>
                 <input style={inputTextPadding} type="text" name="pictureUrl" onBlur={(event) => setPictureUrl(event.target.value)}></input>

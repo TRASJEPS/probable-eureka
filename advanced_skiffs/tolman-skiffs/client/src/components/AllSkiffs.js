@@ -169,6 +169,15 @@ const AllSkiffs = (props) => {
             : null
         } */}
         <h1 style={titleHeader}>All Yachts</h1>
+
+
+{/* THIS IS WHERE ALL ALERTS WILL COME AFTER ALTERNATITING  */}
+        <p>{props.alert}</p>
+
+
+
+
+
         <div style={addNewHeader}>
             <p>Add a new yacht to the database here.</p>
             <button style={largeButtonStyle} onClick={() => navigate(`/skiff/new`)}>Create New Yacht</button>
