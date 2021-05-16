@@ -71,11 +71,11 @@ module.exports = {
                     // TIME AFTER SUCCESSFUL LOGIN RESET
                     // DISPLAY TO USER THE TIME LOCKED
                     // COUNTER TOO
-                    // THE {} after the PHAT arrow are for the if statements etc
+                    // THE CURLY BRACKETS after the PHAT arrow are for the if statements etc
                     // the IF statement chain will begin below
                 .catch(err => {
                     // IF STATEMENT WILL LIVE HERE TO SETUP PARAMS OF VALIDATION
-                    res.status(400).json( { msg: "Your account or password is incorrect." })
+                    res.status(400).json( (err),{ msg: "Your account or password is incorrect." })
                     }
                 );
                 }

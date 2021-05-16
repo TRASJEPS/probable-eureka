@@ -51,34 +51,35 @@ const submitForm = (event) => {
     console.log(newUser);
 
     axios.post("http://localhost:7777/api/user/register", newUser, {withCredentials: true,})  
-        .then((response) => {
-        if(response.data.errors) {
-            setErrs(response.data.errors);
-        } else {    
-        console.log(response.data);
-        setFirstName("");
-        setLastName("");
-        setEmail("");
-        setPassword("");
-        setConfirmPassword("");           
-        setAssociatedHOAs("");
-        // setStreetAddress("");
-        setStreetNumber("");
-        setStreetName("");
-        setUnit("");
-        setState("");
-        setZipCode("");
-        setResidentSince("");
-        setUserTotalVehicles("");
-        setPictureUrl("");
-        setDescription("");
-        setConfirmNewUser("Thank you.  Your new account with Steamline Yachts has been created.");
-        navigate(`/`);   // SENDS TO MAIN PAGE
-        }
-        })
+        .then(response => {
+            if(response.data.errors) {
+                setErrs(response.data.errors);
+            } else {    
+            console.log(response.data);
+            setFirstName("");
+            setLastName("");
+            setEmail("");
+            setPassword("");
+            setConfirmPassword("");           
+            setAssociatedHOAs("");
+            // setStreetAddress("");
+            setStreetNumber("");
+            setStreetName("");
+            setUnit("");
+            setState("");
+            setZipCode("");
+            setResidentSince("");
+            setUserTotalVehicles("");
+            setPictureUrl("");
+            setDescription("");
+            setErrs({}); // THIS MUST BE DONE IF ITS SUCCESSFUL TOO TO AVIOD CRASHES
+            setConfirmNewUser("Thank you.  Your new account with Steamline Yachts has been created.");
+            navigate(`/`);   // SENDS TO MAIN PAGE
+            }
+            })
         .catch((err) => { 
             console.log(err); 
-            setErrs(err.response.data.errors);
+            setErrs(err.response.data.errors);  // problem?????
         });  
 };
 
@@ -364,7 +365,7 @@ return (
             </div>
             
             <button style={buttonStyle} type="submit">Create Your New Account</button>
-            <button style={buttonStyle} onClick={() => navigate(-1)}>Cancel</button>
+            <button style={buttonStyle} onClick={() => navigate(`/frontpage`)}>Cancel</button>
             
         </form>
     </div>
