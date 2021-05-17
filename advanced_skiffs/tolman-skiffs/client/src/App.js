@@ -24,7 +24,7 @@ const NotFound = () => {
 
  //  FROM THE NewUser path THIS MAKES THE SET ALERT PROP AND PASSES IT IN  PROPPPSSSS ** 2 ** 
  //  FROM THE AllSkiffs THIS IS THE ** 3 ** REFERENCEING THIS VARIABLE PASSED AS A PROP allowing the component access
- //
+
  
 
   return (
@@ -33,6 +33,7 @@ const NotFound = () => {
 
     <div className="App">
       <Router>
+
 
         <AllSkiffs path="/" alert = {alert} />  
 
