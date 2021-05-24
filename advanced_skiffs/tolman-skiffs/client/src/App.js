@@ -20,6 +20,8 @@ const NotFound = () => {
 
   // SETTING UP FOR THE USE STATE  ** 1 **
   // SHOULD THIS BE AN ARRAY? check later
+
+  
  const [ alert, setAlert ] = useState("");
 
  //  FROM THE NewUser path THIS MAKES THE SET ALERT PROP AND PASSES IT IN  PROPPPSSSS ** 2 ** 
@@ -31,13 +33,25 @@ const NotFound = () => {
     // FRONT END PATHING!! USE THIS ON PORT 3000
     //  NEVER EVER EVER EVER PUT A COMMENT AFTER A ROUTER PATH <>
 
+
+    // *** CONTEXT ***
+    // SETTING UP THE HEADER this keeps a value throughout the APP
+    // CONDITIONALLY renders, this holds onto repeated data
+    // HOOKS into it -->
+    // CONTEXT - puts state into a component - USE A GLOBAL STATE!
+    // USER ACCESS LEVELS!!! CONTEXT USE for access level...
+    //    REDUX - CLASS BASED VERSION of the hooks UseReducer and UseContext together
+
+    //  KILL THE alert system that is added on, SWITCH OVER TO THE CONTEXT
+
     <div className="App">
+      
+      {/* <GlobalHeader /> */}
+
+
       <Router>
 
-
         <AllSkiffs path="/" alert = {alert} />  
-
-
 
         <NewSkiff path="/skiff/new" />
         <OneSkiff path="/skiff/:id" />

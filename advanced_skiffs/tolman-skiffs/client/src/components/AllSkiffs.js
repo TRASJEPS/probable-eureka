@@ -174,16 +174,12 @@ const AllSkiffs = (props) => {
 {/* THIS IS WHERE ALL ALERTS WILL COME AFTER ALTERNATITING  */}
         <p>{props.alert}</p>
 
-
-
-
-
         <div style={addNewHeader}>
             <p>Add a new yacht to the database here.</p>
             <button style={largeButtonStyle} onClick={() => navigate(`/skiff/new`)}>Create New Yacht</button>
         </div>
         <div style={addNewHeader}>
-            <p>Welcome ((USER NAME HERE)).</p>
+            {/* <p>{`Welcome ${user.firstName} ${user.lastName}`}</p> */}
             <button style={largeButtonStyle} onClick={() => navigate(`/skiff/new`)}>View Your Profile</button>
             <button style={largeButtonStyle} onClick={() => navigate(`/skiff/new`)}>Edit</button>
             <button style={largeButtonStyle} onClick={() => navigate(`/skiff/new`)}>Log Out</button>
