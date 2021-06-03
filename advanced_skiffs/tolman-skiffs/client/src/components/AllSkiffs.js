@@ -188,16 +188,41 @@ const AllSkiffs = (props) => {
         {/* SKIFF is an object  */}
         {/* <div style={scaleFlex}> */}
             {allSkiffs.map((skiff, index) => (
-                <div style={skiffContainer}> 
+                <div style={skiffContainer} key={index}> 
                     <h4 style={mainNameContainer}>{`${skiff.ownerName}'s ${skiff.modelName} Yacht`}</h4>
                     <br></br>
-                    <img style={picPreviewSizer} src={ skiff.pictureUrl} />    {/* ADD IMG CONTAINER HERE */}
-                    <p key></p>
+                    <img style={picPreviewSizer} src={ skiff.pictureUrl} alt="picture"/>    {/* ADD IMG CONTAINER HERE */}
                     <p>{`Built by: ${skiff.builderName}`}</p>
                     <p> {`Cost: ${formatCurrency(skiff.stockLength)}`}</p>
                     <p>{`Custom Length: ${skiff.customLength}'`}</p>
                     <p>{`Description: ${skiff.description}`}</p>
                     <p id="smallFont">{`Date Added: ${skiff.createdAt.substring(5,10)}-${skiff.createdAt.substring(0,4)}`}</p>
+
+
+{/* THIS IS SO USEFUL  */}
+{/* ADDING THE USER NAME CREATED BY */}
+                    
+                    {/* THIS WILL ONLY CALL WHAT DOES EXIST!!!! */}
+                    {/* YOU CAN CALL THIS TO A LOT MORE THIS IS SO POWERFUL */}
+
+                    skiff.createdByUser ? {
+                    <p id="smallFont">{`Created by: ${ skiff.createdByUser.firstName} ${ skiff.createdByUser.lastName}`}</p>
+                    }
+
+
+                    {/* // USE THIS KIND OF FILTER FOR OPTIONAL FIELDS!!!! SUPER USEFUL! */}
+                    { skiff.description ? (
+                    <div>
+                         <p>{`Description: ${skiff.description}`}</p>
+                         <p>{`User ID: ${skiff.createdByUser._id}`}</p>
+                         <p>{`User Full Name: ${skiff.createdByUser.firstName} ${skiff.createdByUser.lastName}`}</p>
+                    </div>
+                     ):
+                     null
+                    };
+
+
+
                     <button style={buttonStyle} onClick={() => navigate(`/skiff/${skiff._id}`)}>Details</button>
                     <button style={buttonStyle} onClick={() => navigate(`/skiff/${skiff._id}/edit`)}>Edit</button>
                     <button style={buttonStyle} onClick={() => deleteSkiff(skiff)}>Delete</button>

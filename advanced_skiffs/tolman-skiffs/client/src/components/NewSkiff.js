@@ -61,7 +61,17 @@ const submitForm = (event) => {
     };
 
     console.log(newSkiff);
-    axios.post("http://localhost:7777/api/skiffs", newSkiff)  //THIS REPLACES THE LIST IN AXIOS
+
+    // SETUP THE CREDENTIALS!!!! **** URGG
+
+
+    axios.post("http://localhost:7777/api/skiffs", newSkiff
+    // {
+
+    // }
+    
+    
+    )  //THIS REPLACES THE LIST IN AXIOS
         .then((response) => {
         if(response.data.errors) {
             setErrs(response.data.errors);

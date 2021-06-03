@@ -8,15 +8,16 @@ import OneSkiff from './components/OneSkiff';
 import FrontPage from './components/FrontPage';
 import NewUser from './components/NewUser';
 
-function App() {
-
+//THIS MUST LIVE OUTSIDE THE APP
 const NotFound = () => {
-    return (
-      <div>
-        ERROR ROUTE NOT FOUND.  CHECK YOUR URL ENTRY.
-      </div>
-    )
-  };
+  return (
+    <div>
+      ERROR ROUTE NOT FOUND.  CHECK YOUR URL ENTRY.
+    </div>
+  )
+};
+
+function App() {
 
   // SETTING UP FOR THE USE STATE  ** 1 **
   // SHOULD THIS BE AN ARRAY? check later
@@ -27,6 +28,7 @@ const NotFound = () => {
  //  FROM THE NewUser path THIS MAKES THE SET ALERT PROP AND PASSES IT IN  PROPPPSSSS ** 2 ** 
  //  FROM THE AllSkiffs THIS IS THE ** 3 ** REFERENCEING THIS VARIABLE PASSED AS A PROP allowing the component access
 
+ const [ ] 
  
 
   return (
@@ -38,16 +40,18 @@ const NotFound = () => {
     // SETTING UP THE HEADER this keeps a value throughout the APP
     // CONDITIONALLY renders, this holds onto repeated data
     // HOOKS into it -->
-    // CONTEXT - puts state into a component - USE A GLOBAL STATE!
+    // CONTEXT - puts state into a component - USE A GLOBAL STATE!  global package
     // USER ACCESS LEVELS!!! CONTEXT USE for access level...
     //    REDUX - CLASS BASED VERSION of the hooks UseReducer and UseContext together
 
     //  KILL THE alert system that is added on, SWITCH OVER TO THE CONTEXT
 
+
     <div className="App">
       
+      {/* ADD THIS LATER  */}
       {/* <GlobalHeader /> */}
-
+      {/* <AllSkiffs default />   */}
 
       <Router>
 

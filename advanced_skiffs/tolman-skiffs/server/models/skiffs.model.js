@@ -81,6 +81,21 @@ const TolmanSkiffSchema = new mongoose.Schema({
         type: String,
     }, //SEPARATE BY COMMAS
 
+
+    //  THIS IS TO ADD CHECK IT WITH KEVIN TO MAKE SURE U DIDNT DUN GOOF gfjjkhdfgjhkfg
+
+
+    // THIS IS IMPORTANT!!!
+    // THIS IS SUPER IMPORTANT TO LINK THIS SO YOU CAN TRACK WHO MADE WHAT AND SET PERMISSIONS
+    // THIS IS A COOKIE!!!!!! SETUP COOKIE
+    createdBy: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: "User"
+    },
+
+
+
+
 }, { timestamps: true })   //THE TIMESTAMPS MAKES THE CREATED AND UPDATED AUTOMATICALLY
 
 //THIS MAKES A COLLECTION THAT IS ALL LOWERCSE AND PLURAL BASED ON THIS STRING "Skiff"

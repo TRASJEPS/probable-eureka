@@ -113,12 +113,18 @@ const UserSchema = new mongoose.Schema({
 
 }, { timestamps: true });
 
+// THIS IS SUPER IMPORTANT.  Using a virtual instance to make this protected
+
 // THIS IS FOR SETTING UP THE CONFIRM PASSWORD
 // FIRST is the virtual field that can be compared and validated
+// ADDING THE _ to the initial makes thsi the virtual 
+// THIS IS THE INTERNAL VIRTUAL VERSION only mongoose can tough this
+// get and set use as _ anyo other time use as without _
 UserSchema.virtual("confirmPassword")
     .get(() => this._confirmPassword)
     .set(value => (this._confirmPassword = value ));
 // THIS is the validator where the comparison happens
+// THIS LOOKS AT THE VALUES so do not use the __ here
 UserSchema.pre("validate",function(next){
     if(this.password !== this.confirmPassword) 
     {this.invalidate("confirmPassword","Your passwords must match.");}

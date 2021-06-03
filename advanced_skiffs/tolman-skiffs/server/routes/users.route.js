@@ -5,6 +5,11 @@ const { authenticate } = require("../config/jwt_config");
 //ALWAYS BEGIN WITH /API/ for EACH ROUTING START
 //create the valid routes
 // NOTING THE VERB IS WHATS IMPORTANT
+
+
+// ONLY ADD AUTHENTICATE TO ROUTES THAT ARE NOT NEEDED FOR THE SETUP / LOGIN
+
+
 module.exports = (app) => {                             //LAY GROUNDWORK FOR CONTROLLER
     app.get('/api/users',  UsersController.getAll);   //calling it this becuase this is about skiffs
     app.post('/api/users', UsersController.create);

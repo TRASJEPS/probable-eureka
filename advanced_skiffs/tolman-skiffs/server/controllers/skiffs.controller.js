@@ -1,8 +1,22 @@
 const TolmanSkiff = require('../models/skiffs.model');
+// ADDED JWT
+const jwt = require('jsonwebtoken');
 
 module.exports = {
     getAll: (req,res) => {
         TolmanSkiff.find()   //FINDS EVERYTHING IN DATABASE THAT IS A SOLMAN SKIFF
+
+
+
+
+
+            // YOU CAN ADD WHAT FIELDS TO SEARCH FOR AND LOOK AT.  FROM THE USER MODEL.  you can add "firstName", email etc
+            .populate("createdByUser", "firstName")
+
+            // you can add .populate to getOne too!
+
+            //You can setup this POPULATE TO FILTER BY DIFFERENT METHODS
+
             .then((allSkiffs) => {
                 console.log(allSkiffs);
                 res.json(allSkiffs);
@@ -20,6 +34,18 @@ module.exports = {
         // (req.body.stockLength = parseFloat(stockLength).toFixed(2))
         // req.body.stockLength = parseFloat(stockLength).toFixed(2)
         // req.body.stockLength = parseFloat(stockLength).toFixed(2)
+
+        //WIP HERE FOR AUTHO!!
+        const decodedJwt = jwt.decode(req.cookies.usertoken, {complete: true});
+        const userId = decodedJwt.payload.user_id;
+
+        // CREATE THE NORMAL SKIFF OBJECT BY WHAT WAS PASSED IN
+        const tolmanskiff = new TolmanSkiff(req.body);
+
+        // NOW ADD THE NEW CREATEDBY key in object and give it the value of this users ID
+        //  this will be store in our encoded COOKIE!
+        tolmanskiff.createdBy = userId;
+
         TolmanSkiff.create(req.body)
             .then((newSkiff) => {
                 console.log(newSkiff);
