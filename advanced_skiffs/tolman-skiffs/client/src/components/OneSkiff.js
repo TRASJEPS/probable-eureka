@@ -149,7 +149,7 @@ const titleHeader =
             <div style={skiffContainer}> 
                 <h4 style={mainNameContainer}>{`${skiff.ownerName}'s ${skiff.modelName} Yacht`}</h4>
                 <br></br>
-                <img src={ skiff.pictureUrl} />    {/* ADD IMG CONTAINER HERE */}
+                <img src={ skiff.pictureUrl} width="200px" height="200px" alt="Detail Photo"/>    {/* ADD IMG CONTAINER HERE */}
                 <p>{`Built by: ${skiff.builderName}`}</p>
                 {/* <p> {`Cost: ${ moneyStyle }`}</p> */}
 
