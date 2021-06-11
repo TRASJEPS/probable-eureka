@@ -199,19 +199,21 @@ const AllSkiffs = (props) => {
                     <p id="smallFont">{`Date Added: ${skiff.createdAt.substring(5,10)}-${skiff.createdAt.substring(0,4)}`}</p>
 
 
+{/* MOD AND ADD THESE FEATURES LATER. */}
+
 {/* THIS IS SO USEFUL  */}
 {/* ADDING THE USER NAME CREATED BY */}
                     
                     {/* THIS WILL ONLY CALL WHAT DOES EXIST!!!! */}
                     {/* YOU CAN CALL THIS TO A LOT MORE THIS IS SO POWERFUL */}
 
-                    skiff.createdByUser ? {
+                    {/* skiff.createdByUser ? {
                     <p id="smallFont">{`Created by: ${ skiff.createdByUser.firstName} ${ skiff.createdByUser.lastName}`}</p>
-                    }
+                    } */}
 
 
                     {/* // USE THIS KIND OF FILTER FOR OPTIONAL FIELDS!!!! SUPER USEFUL! */}
-                    { skiff.description ? (
+                    {/* { skiff.description ? (
                     <div>
                          <p>{`Description: ${skiff.description}`}</p>
                          <p>{`User ID: ${skiff.createdByUser._id}`}</p>
@@ -219,7 +221,7 @@ const AllSkiffs = (props) => {
                     </div>
                      ):
                      null
-                    };
+                    }; */}
 
 
 

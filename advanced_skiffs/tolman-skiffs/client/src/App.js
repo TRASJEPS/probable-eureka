@@ -28,7 +28,8 @@ function App() {
  //  FROM THE NewUser path THIS MAKES THE SET ALERT PROP AND PASSES IT IN  PROPPPSSSS ** 2 ** 
  //  FROM THE AllSkiffs THIS IS THE ** 3 ** REFERENCEING THIS VARIABLE PASSED AS A PROP allowing the component access
 
- const [ ] 
+//  ADD HERE LATER 
+//  const [ ] 
  
 
   return (
