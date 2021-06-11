@@ -5,13 +5,13 @@ var Float = require('mongoose-float').loadType(mongoose);
 const MachinesSchema = new mongoose.Schema({
     ownerName: {    
         type: String,
-        required: [true, "Please enter the owner's name."], 
+        required: [true, "Please enter the machine owner's name."], 
         minLength: [3, "Your owner name must be at least 3 characters long."],
     },
 
-    builderName: {   
+    manufactureName: {   
         type: String,
-        required: [true, "Please enter a builder name."], 
+        required: [true, "Please enter a brand or maker of the machine."], 
         minLength: [3, "Your builder name must be at least 3 characters long."],
     },
 
@@ -21,21 +21,21 @@ const MachinesSchema = new mongoose.Schema({
         enum: ['Standard', 'Wide Body', 'Jumbo', 'Flat Bottom'],  
     },
     
-    startDate: {   
+    manufactureDate: {   
         type: Date,
         required: [true, "Please set a a start date."], 
         min: ['1990-01-01', "Sorry you cannot build a boat before the plans were created.  Please try again."],
         max: [ new Date(), "You cannot say you are starting a date in the future."], 
     },
     
-    finishDate: {   
+    dateInstalled: {   
         type: Date,
         required: [true, "Please set a finish date."], 
         min: ['1990-01-01', "Sorry you cannot finish a boat before the plans were created.  Please try again."],
         
     },
 
-    buildComplete: {
+    machineInstalled: {
         type: Boolean,
         default: false,
     },
@@ -48,9 +48,9 @@ const MachinesSchema = new mongoose.Schema({
 
     totalMachines: {
         type: Float,
-        required: [true, "Please enter the total machine."],
-        min: [1, "Minimum length for a Tolman skiff must be at least 15 feet."],
-        max: [350, "Maximum length for a Tolman skiff is 30 feet."],
+        required: [true, "Please enter the total quantity of these machines."],
+        min: [1, "You must have at least one of these machines."],
+        max: [9999, "You can currently only support 9999 of these machines."],
     },
 
     machinePhoto: {   
@@ -66,8 +66,6 @@ const MachinesSchema = new mongoose.Schema({
         ref: "User"
     },
 
+}, { timestamps: true })   
 
-}, { timestamps: true })   //THE TIMESTAMPS MAKES THE CREATED AND UPDATED AUTOMATICALLY
-
-//THIS MAKES A COLLECTION THAT IS ALL LOWERCSE AND PLURAL BASED ON THIS STRING "Skiff"
 module.exports = mongoose.model("Machine", MachinesSchema);   

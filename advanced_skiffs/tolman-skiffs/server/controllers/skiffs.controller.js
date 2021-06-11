@@ -1,6 +1,12 @@
 const TolmanSkiff = require('../models/skiffs.model');
+
+
+
+
+
+
 // ADDED JWT
-const jwt = require('jsonwebtoken');
+// const jwt = require('jsonwebtoken');
 
 module.exports = {
     getAll: (req,res) => {
@@ -35,16 +41,29 @@ module.exports = {
         // req.body.stockLength = parseFloat(stockLength).toFixed(2)
         // req.body.stockLength = parseFloat(stockLength).toFixed(2)
 
+
+
         //WIP HERE FOR AUTHO!!
-        const decodedJwt = jwt.decode(req.cookies.usertoken, {complete: true});
-        const userId = decodedJwt.payload.user_id;
+        // const decodedJwt = jwt.decode(req.cookies.usertoken, {complete: true});
+        // const userId = decodedJwt.payload.user_id;
+
+
+
+
+
 
         // CREATE THE NORMAL SKIFF OBJECT BY WHAT WAS PASSED IN
-        const tolmanskiff = new TolmanSkiff(req.body);
+        
+        // const tolmanskiff = new TolmanSkiff(req.body);
 
         // NOW ADD THE NEW CREATEDBY key in object and give it the value of this users ID
         //  this will be store in our encoded COOKIE!
-        tolmanskiff.createdBy = userId;
+        
+        // tolmanskiff.createdBy = userId;
+
+
+
+
 
         TolmanSkiff.create(req.body)
             .then((newSkiff) => {
